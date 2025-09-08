@@ -64,7 +64,7 @@ except ImportError as e:
 def main(page: ft.Page):
     page.title = "Ecare Rate Calculator"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
-    
+
     def calculate_rate(e):
         """Maneja el cálculo de tarifa"""
         ui.set_progress(True)
@@ -143,6 +143,15 @@ def main(page: ft.Page):
     # Inicialización de la UI
     try:
         ui = RateCalculatorUI(calculate_rate, open_rates_dialog)
+        
+        # Callback para cambiar el modo y actualizar la UI
+        def on_mode_change(e):
+            ui.on_mode_change(e)
+            page.update()
+        
+        # Asigna el nuevo callback al cambio de pestaña
+        ui.distance_mode.on_change = on_mode_change
+
         page.add(ui.get_layout())
     except Exception as e:
         logger.error(f"Error al inicializar UI: {e}", exc_info=True)
