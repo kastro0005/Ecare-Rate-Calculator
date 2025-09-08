@@ -56,7 +56,14 @@ class RateCalculatorUI:
         self.after_hours = ft.Checkbox(label="Viaje después de horas (después de 7pm)")
         self.deadheads = ft.Checkbox(label="Viaje Round Trip")
         self.roundtrip = ft.Checkbox(label="Viaje Roundtrip)")
+        #intento de poner otros dos checkboxes
+        self.o2 = ft.Checkbox(label="Oxígeno")
+        self.isolation = ft.Checkbox(label="Aislamiento")
+        self.covid = ft.Checkbox(label="Covid")
+        self.stairchair = ft.Checkbox(label="Escalera")
 
+        
+        # Indicador de progreso y mensajes de estado
         self.progress = ft.ProgressBar(visible=False)
         self.status_text = ft.Text("")
         self.result = ft.Text(size=20, weight=ft.FontWeight.BOLD)
@@ -165,6 +172,7 @@ class RateCalculatorUI:
         self.update_status("")  # Limpiar mensajes de estado anteriores
         self.result.value = ""  # Limpiar resultados anteriores
 
+    #Metodo de organizar el layout
     def get_layout(self) -> ft.Column:
         """Retorna el layout completo de la UI"""
         return ft.Column(
@@ -174,6 +182,9 @@ class RateCalculatorUI:
                 self.manual_container,
                 ft.Row([self.service_level], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.after_hours, self.deadheads], alignment=ft.MainAxisAlignment.CENTER),
+                #Aki estoy intentando poner los otros dos checkboxes
+                ft.Row([self.o2, self.isolation], alignment=ft.MainAxisAlignment.CENTER),
+                ft.Row([self.covid, self.stairchair], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.calculate_button, self.rates_button], alignment=ft.MainAxisAlignment.CENTER),
                 self.progress,
                 self.status_text,
