@@ -99,7 +99,9 @@ def main(page: ft.Page):
                 ui.o2.value,
                 ui.liters_o2.value,
                 ui.stairchair.value,
-                ui.bariatric.value
+                ui.bariatric.value,
+                ui.wait.value,
+                float(ui.waiting_time.value or 0),
             )
             
             ui.update_result(result)

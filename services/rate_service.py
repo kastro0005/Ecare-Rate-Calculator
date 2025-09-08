@@ -1,5 +1,5 @@
 from typing import Dict, Union
-from config.constants import LEVEL_OF_SERVICE_BASE_RATES, LEVEL_OF_SERVICE_INCREMENTS, EXTRAS
+from config.constants import LEVEL_OF_SERVICE_BASE_RATES, LEVEL_OF_SERVICE_INCREMENTS, EXTRAS, WAITING_TIME_RATE
 from utils.exceptions import RateCalculationError
 
 class RateService:
@@ -12,7 +12,9 @@ class RateService:
         o2: bool = False,
         liters_o2: int = 0,
         stc: bool = False,
-        bariatric: bool = False
+        bariatric: bool = False,
+        wait: bool = False,
+        waiting_time: int = 0
     ) -> Dict[str, Union[float, str]]:
         """
         Calcula la tarifa basada en la distancia y los parámetros seleccionados
@@ -37,6 +39,9 @@ class RateService:
                 rate += EXTRAS.get("STC") # tarifa extra para silla de escaleras
             if bariatric:
                 rate += EXTRAS.get("Bariatric") # tarifa extra para bariátrico
+            if wait:
+                medias_horas = int(waiting_time * 2)  # Ej: 1.5 horas = 3 medias horas
+                rate += medias_horas * WAITING_TIME_RATE.get(service_level) # tarifa extra por tiempo de espera
             
             
 

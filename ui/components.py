@@ -69,11 +69,11 @@ class RateCalculatorUI:
         self.bariatric = ft.Checkbox(label="Bariatrico")
         self.stairchair = ft.Checkbox(label="Escalera")
 
-        # Campo de texto de los litros de O2
+        # Campo de texto de las horas de espera
         self.waiting_time = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True)
 
-        #checkboxe del Oxygeno conexctada al campo de texto
-        self.wait = ft.Checkbox(label="Wait Time in minutes", on_change=self.on_waiting_change)
+        #checkboxe del Waiting time
+        self.wait = ft.Checkbox(label="Tiempo de espera en horas", on_change=self.on_waiting_change)
         
 
 
