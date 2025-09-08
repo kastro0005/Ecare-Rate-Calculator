@@ -64,6 +64,7 @@ except ImportError as e:
 def main(page: ft.Page):
     page.title = "Ecare Rate Calculator"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    page.window_icon = "assets/icon.ico"
 
     def calculate_rate(e):
         """Maneja el cálculo de tarifa"""
