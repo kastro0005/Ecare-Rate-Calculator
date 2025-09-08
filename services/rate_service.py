@@ -41,7 +41,7 @@ class RateService:
                 rate += EXTRAS.get("Bariatric") # tarifa extra para bariátrico
             if wait:
                 medias_horas = int(waiting_time * 2)  # Ej: 1.5 horas = 3 medias horas
-                rate += medias_horas * WAITING_TIME_RATE.get(service_level) # tarifa extra por tiempo de espera
+                rate += medias_horas * WAITING_TIME_RATE.get(service_level, 0) # tarifa extra por tiempo de espera
             
             
 
