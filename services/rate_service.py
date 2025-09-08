@@ -8,7 +8,11 @@ class RateService:
         distance: float,
         service_level: str,
         after_hours: bool = False,
-        deadheads: bool = False
+        deadheads: bool = False,
+        o2: bool = False,
+        liters_o2: int = 0,
+        stc: bool = False,
+        bariatric: bool = False
     ) -> Dict[str, Union[float, str]]:
         """
         Calcula la tarifa basada en la distancia y los parámetros seleccionados
@@ -24,9 +28,19 @@ class RateService:
 
             # Aplicar modificadores
             if after_hours:
-                rate *= 1.5
+                rate += 150
             if deadheads:
                 rate *= 2
+            if o2:
+                rate += (liters_o2 * 30) #  $30 por unidad de O2
+            if stc:
+                rate += 400 # tarifa extra para silla de escaleras
+            if bariatric:
+                rate += 300 # tarifa extra para bariátrico
+            
+            
+
+
 
             return {
                 "distance": round(distance, 2),

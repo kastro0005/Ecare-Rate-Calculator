@@ -52,14 +52,18 @@ class RateCalculatorUI:
             width=200
         )
 
+        
+        # Nuevos
+        self.o2 = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER)
+
+        #checkboxes
+        self.liters_o2 = ft.Checkbox(label="Oxygen")
         self.after_hours = ft.Checkbox(label="Viaje después de horas (después de 7pm)")
         self.deadheads = ft.Checkbox(label="Viaje Round Trip")
-        self.roundtrip = ft.Checkbox(label="Viaje Roundtrip)")
-        #intento de poner otros dos checkboxes
-        self.o2 = ft.Checkbox(label="Oxígeno")
-        self.isolation = ft.Checkbox(label="Aislamiento")
-        self.covid = ft.Checkbox(label="Covid")
+        self.roundtrip = ft.Checkbox(label="Viaje Roundtrip)")     
+        self.bariatric = ft.Checkbox(label="Bariatrico")
         self.stairchair = ft.Checkbox(label="Escalera")
+        
 
         
         # Indicador de progreso y mensajes de estado
@@ -200,9 +204,8 @@ class RateCalculatorUI:
                 self.manual_container,
                 ft.Row([self.service_level], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.after_hours, self.deadheads], alignment=ft.MainAxisAlignment.CENTER),
-                #Aki estoy intentando poner los otros dos checkboxes
-                ft.Row([self.o2, self.isolation], alignment=ft.MainAxisAlignment.CENTER),
-                ft.Row([self.covid, self.stairchair], alignment=ft.MainAxisAlignment.CENTER),
+                ft.Row([self.liters_o2,self.o2], alignment=ft.MainAxisAlignment.CENTER),
+                ft.Row([self.bariatric, self.stairchair], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.calculate_button, self.rates_button], alignment=ft.MainAxisAlignment.CENTER),
                 self.progress,
                 self.status_text,

@@ -95,7 +95,10 @@ def main(page: ft.Page):
                 distance,
                 ui.service_level.value,
                 ui.after_hours.value,
-                ui.deadheads.value
+                ui.deadheads.value,
+                ui.o2.value,
+                ui.stairchair.value,
+                ui.bariatric.value
             )
             
             ui.update_result(result)
