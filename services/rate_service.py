@@ -1,5 +1,5 @@
 from typing import Dict, Union
-from config.constants import LEVEL_OF_SERVICE_BASE_RATES, LEVEL_OF_SERVICE_INCREMENTS
+from config.constants import LEVEL_OF_SERVICE_BASE_RATES, LEVEL_OF_SERVICE_INCREMENTS, EXTRAS
 from utils.exceptions import RateCalculationError
 
 class RateService:
@@ -28,15 +28,15 @@ class RateService:
 
             # Aplicar modificadores
             if after_hours:
-                rate += 150
+                rate += EXTRAS.get("AfterHours") # tarifa extra por viaje después de horas
             if deadheads:
                 rate *= 2
             if o2:
-                rate += (liters_o2 * 30) #  $30 por unidad de O2
+                rate += (liters_o2 * EXTRAS.get("O2")) #  rate por unidad de O2
             if stc:
-                rate += 400 # tarifa extra para silla de escaleras
+                rate += EXTRAS.get("STC") # tarifa extra para silla de escaleras
             if bariatric:
-                rate += 300 # tarifa extra para bariátrico
+                rate += EXTRAS.get("Bariatric") # tarifa extra para bariátrico
             
             
 

@@ -97,6 +97,7 @@ def main(page: ft.Page):
                 ui.after_hours.value,
                 ui.deadheads.value,
                 ui.o2.value,
+                ui.liters_o2.value,
                 ui.stairchair.value,
                 ui.bariatric.value
             )
