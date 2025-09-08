@@ -79,6 +79,7 @@ def main(page: ft.Page):
             # Obtener distancia según el modo
             if ui.is_manual_mode():
                 distance = ui.get_distance()
+                ui.hide_map()  # Oculta el enlace en modo manual
                 if distance <= 0:
                     raise ValidationError("Please, select a valid distance:")
             else:
@@ -87,7 +88,8 @@ def main(page: ft.Page):
                     raise ValidationError("Please, put both addresses correctly")
                 # Calcular distancia
                 distance, _ = LocationService.calculate_distance(ui.address1.value, ui.address2.value)
-            
+                ui.show_route_on_map(ui.address1.value, ui.address2.value)  # Muestra el enlace
+
             # Cálculo de tarifa
             result = RateService.calculate_rate(
                 distance,

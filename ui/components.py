@@ -2,7 +2,6 @@ import flet as ft
 from typing import Callable
 from config.constants import LEVEL_OF_SERVICE_BASE_RATES
 
-
 from services.address_autocomplete_service import AddressAutocompleteService
 from threading import Thread
 
@@ -71,12 +70,19 @@ class RateCalculatorUI:
         self.calculate_button = ft.ElevatedButton(
             text="Calcular",
             on_click=self.calculate_callback,
-            icon=ft.icons.CALCULATE
+            icon="calculate"  # <-- Usar el nombre del icono como string
         )
         self.rates_button = ft.ElevatedButton(
             text="Configurar Tarifas",
             on_click=self.open_rates_dialog_callback,
-            icon=ft.icons.SETTINGS
+            icon="settings"   # <-- Usar el nombre del icono como string
+        )
+
+        self.map_link = ft.TextButton(
+            text="Ver ruta en Google Maps",
+            visible=False,
+            url="",  # Se actualizará dinámicamente
+            style=ft.ButtonStyle(color="blue")
         )
 
         self.address_container = ft.Container(
@@ -172,6 +178,18 @@ class RateCalculatorUI:
         self.update_status("")  # Limpiar mensajes de estado anteriores
         self.result.value = ""  # Limpiar resultados anteriores
 
+    def show_route_on_map(self, origin: str, destination: str):
+        origin_url = origin.replace(" ", "+")
+        destination_url = destination.replace(" ", "+")
+        url = f"https://www.google.com/maps/dir/{origin_url}/{destination_url}/"
+        self.map_link.url = url
+        self.map_link.visible = True
+        self.map_link.update()
+
+    def hide_map(self):
+        self.map_link.visible = False
+        self.map_link.update()
+
     #Metodo de organizar el layout
     def get_layout(self) -> ft.Column:
         """Retorna el layout completo de la UI"""
@@ -188,7 +206,8 @@ class RateCalculatorUI:
                 ft.Row([self.calculate_button, self.rates_button], alignment=ft.MainAxisAlignment.CENTER),
                 self.progress,
                 self.status_text,
-                self.result
+                self.result,
+                self.map_link,  # <-- Agrega el botón/enlace aquí
             ],
             alignment=ft.MainAxisAlignment.CENTER,
             spacing=20
