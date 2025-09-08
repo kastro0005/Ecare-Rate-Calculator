@@ -53,18 +53,17 @@ class RateCalculatorUI:
         )
 
         
-        # Nuevos
-        self.o2 = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER)
+        # Campo de texto de los litros de O2
+        self.o2 = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True)
 
         #checkboxes
-        self.liters_o2 = ft.Checkbox(label="Oxygen")
+        self.liters_o2 = ft.Checkbox(label="Oxygen", on_change=self.on_liters_o2_change)
+
         self.after_hours = ft.Checkbox(label="Viaje después de horas (después de 7pm)")
         self.deadheads = ft.Checkbox(label="Viaje Round Trip")
         self.roundtrip = ft.Checkbox(label="Viaje Roundtrip)")     
         self.bariatric = ft.Checkbox(label="Bariatrico")
         self.stairchair = ft.Checkbox(label="Escalera")
-        
-
         
         # Indicador de progreso y mensajes de estado
         self.progress = ft.ProgressBar(visible=False)
@@ -243,3 +242,7 @@ class RateCalculatorUI:
             f"Tarifa base: ${result_data['base_rate']}\n"
             f"Tarifa total: ${result_data['total_rate']}"
         )
+
+    def on_liters_o2_change(self, e):
+            self.o2.disabled = not self.liters_o2.value
+            self.o2.update()
