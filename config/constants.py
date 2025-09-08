@@ -24,9 +24,18 @@ EXTRAS = {
     "AfterHours": 150,  #plus for after hours
     "STC": 400,
     "Bariatric": 300,
-    "WaitinfTime": 0, # por cada 30 minutos
+    
     
 }
+
+# tarifa por hora de tiempo de espera
+WAITING_TIME_RATE = {
+    "WCH": 50,
+    "STR": 75,
+    "BLS": 100,
+    "ALS": 150,
+    "CCT": 200,
+} 
 
 # Configuración de geolocalización
 MAX_RETRIES = 3

@@ -52,19 +52,32 @@ class RateCalculatorUI:
             width=200
         )
 
+        #Aki empiezan los checkboxes y campos de texto
         
+
+
+
         # Campo de texto de los litros de O2
         self.o2 = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True)
 
-        #checkboxes
+        #checkboxe del Oxygeno conexctada al campo de texto
         self.liters_o2 = ft.Checkbox(label="Oxygen", on_change=self.on_liters_o2_change)
-
+        #Resto de checkboxes
         self.after_hours = ft.Checkbox(label="Viaje después de horas (después de 7pm)")
         self.deadheads = ft.Checkbox(label="Viaje Round Trip")
         self.roundtrip = ft.Checkbox(label="Viaje Roundtrip)")     
         self.bariatric = ft.Checkbox(label="Bariatrico")
         self.stairchair = ft.Checkbox(label="Escalera")
+
+        # Campo de texto de los litros de O2
+        self.waiting_time = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True)
+
+        #checkboxe del Oxygeno conexctada al campo de texto
+        self.wait = ft.Checkbox(label="Wait Time in minutes", on_change=self.on_waiting_change)
         
+
+
+
         # Indicador de progreso y mensajes de estado
         self.progress = ft.ProgressBar(visible=False)
         self.status_text = ft.Text("")
@@ -205,6 +218,7 @@ class RateCalculatorUI:
                 ft.Row([self.after_hours, self.deadheads], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.liters_o2,self.o2], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.bariatric, self.stairchair], alignment=ft.MainAxisAlignment.CENTER),
+                ft.Row([self.wait, self.waiting_time], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.calculate_button, self.rates_button], alignment=ft.MainAxisAlignment.CENTER),
                 self.progress,
                 self.status_text,
@@ -246,3 +260,7 @@ class RateCalculatorUI:
     def on_liters_o2_change(self, e):
             self.o2.disabled = not self.liters_o2.value
             self.o2.update()
+
+    def on_waiting_change(self, e):
+            self.waiting_time.disabled = not self.wait.value
+            self.waiting_time.update()
