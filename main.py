@@ -15,6 +15,7 @@ import sys
 import flet as ft
 import logging
 import services
+import importlib
 
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -60,6 +61,11 @@ except ImportError as e:
     logger.error(f"Error importando módulos: {e}")
     logger.debug(f"Path actual: {sys.path}")
     raise
+
+def load_config_module(config_name):
+    # Ejemplo: config_name = "constants_clientA"
+    module = importlib.import_module(f"config.{config_name}")
+    return module
 
 def main(page: ft.Page):
     page.title = "Ecare Rate Calculator"

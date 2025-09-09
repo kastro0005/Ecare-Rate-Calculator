@@ -1,6 +1,7 @@
 import flet as ft
 from typing import Callable
 from config.constants import LEVEL_OF_SERVICE_BASE_RATES
+import importlib
 
 from services.address_autocomplete_service import AddressAutocompleteService
 from threading import Thread
@@ -62,6 +63,7 @@ class RateCalculatorUI:
 
         #checkboxe del Oxygeno conexctada al campo de texto
         self.liters_o2 = ft.Checkbox(label="Oxygen", on_change=self.on_liters_o2_change)
+
         #Resto de checkboxes
         self.after_hours = ft.Checkbox(label="Viaje después de horas (después de 7pm)")
         self.deadheads = ft.Checkbox(label="Viaje Round Trip")
@@ -75,7 +77,15 @@ class RateCalculatorUI:
         #checkboxe del Waiting time
         self.wait = ft.Checkbox(label="Tiempo de espera en horas", on_change=self.on_waiting_change)
         
-
+        # Selector de configuración de Provider
+        self.config_selector = ft.Dropdown(label="Configuración", options=[ft.dropdown.Option("constants"),
+                                                                           ft.dropdown.Option("Baptist_Rates"),
+                                                                           ft.dropdown.Option("HCA_Rates"),
+                             ],
+                                                                           value="constants",
+                                                                           width=200,
+                                                                           
+                                            )
 
 
         # Indicador de progreso y mensajes de estado
@@ -211,6 +221,7 @@ class RateCalculatorUI:
         """Retorna el layout completo de la UI"""
         return ft.Column(
             [
+                ft.Row([self.config_selector], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.distance_mode], alignment=ft.MainAxisAlignment.CENTER),
                 self.address_container,
                 self.manual_container,
@@ -264,3 +275,6 @@ class RateCalculatorUI:
     def on_waiting_change(self, e):
             self.waiting_time.disabled = not self.wait.value
             self.waiting_time.update()
+
+    
+
