@@ -109,6 +109,7 @@ def main(page: ft.Page):
                 ui.bariatric.value,
                 ui.wait.value,
                 float(ui.waiting_time.value or 0),
+                ui.config_selector.value  
             )
             
             ui.update_result(result)

@@ -80,8 +80,8 @@ class RateCalculatorUI:
         
         # Selector de configuración de Provider
         self.config_selector = ft.Dropdown(label="Source", options=[ft.dropdown.Option("Standard"),
-                                                                           ft.dropdown.Option("Baptist Rates"),
-                                                                           ft.dropdown.Option("HCA Rates"),
+                                                                           ft.dropdown.Option("Baptist"),
+                                                                           ft.dropdown.Option("HCA"),
                              ],
                                                                            value="constants",
                                                                            width=200,

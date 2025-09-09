@@ -1,5 +1,5 @@
 from typing import Dict, Union
-from config.constants import LEVEL_OF_SERVICE_BASE_RATES, LEVEL_OF_SERVICE_INCREMENTS, EXTRAS, WAITING_TIME_RATE
+from config.constants import *
 from utils.exceptions import RateCalculationError
 
 class RateService:
@@ -14,13 +14,27 @@ class RateService:
         stc: bool = False,
         bariatric: bool = False,
         wait: bool = False,
-        waiting_time: int = 0
+        waiting_time: int = 0,
+        provider: str = "Default"
     ) -> Dict[str, Union[float, str]]:
         """
         Calcula la tarifa basada en la distancia y los parámetros seleccionados
         """
         try:
-            base_rate = LEVEL_OF_SERVICE_BASE_RATES.get(service_level)
+            # Vamos a intentar iterar por los diferentes proveedores
+            #Provider va a guardar el nombre del proveedor seleccionado el el menu desplegable
+            #Logica de seleccion del proveedor
+            if provider == "Baptist":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_BAPTIST.get(service_level) 
+                provider = provider
+            elif provider == "HCA":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_HCA.get(service_level) 
+            else:
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES.get(service_level)
+
+
+
+            #Caso de que no se halla elegido proveedor
             if base_rate is None:
                 raise RateCalculationError(f"Nivel de servicio no válido: {service_level}")
 
