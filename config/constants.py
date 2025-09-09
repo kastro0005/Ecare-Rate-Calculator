@@ -1,4 +1,6 @@
-# Lista de tarifas base por nivel de servicio
+#Seccion de los base rates de acuerdo a cada nivel de servicio de cada proveedor
+
+# Lista de tarifas base por nivel de servicio estandard
 LEVEL_OF_SERVICE_BASE_RATES = {
     "WCH": 100,   # Silla de ruedas
     "STR": 175,  # Camilla
@@ -7,6 +9,31 @@ LEVEL_OF_SERVICE_BASE_RATES = {
     "CCT": 950,   # Transporte de cuidado critico
     
 }
+
+# Lista de tarifas base por nivel de servicio de Baptist
+LEVEL_OF_SERVICE_BASE_RATES_BAPTIST = {
+    "WCH": 80,   # Silla de ruedas
+    "STR": 100,  # Camilla
+    "BLS": 450,   # Soporte vital básico
+    "ALS": 550,   # Soporte vital avanzado
+    "CCT": 950,   # Transporte de cuidado critico
+    
+}
+
+# Lista de tarifas base por nivel de servicio de HCA
+LEVEL_OF_SERVICE_BASE_RATES_HCA = {
+    "WCH": 70,   # Silla de ruedas
+    "STR": 105,  # Camilla
+    "BLS": 450,   # Soporte vital básico
+    "ALS": 550,   # Soporte vital avanzado
+    "CCT": 950,   # Transporte de cuidado critico
+    
+}
+
+
+
+
+
 
 # Incrementos por milla por nivel de servicio
 LEVEL_OF_SERVICE_INCREMENTS = {
