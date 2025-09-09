@@ -59,28 +59,29 @@ class RateCalculatorUI:
 
 
         # Campo de texto de los litros de O2
-        self.o2 = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True)
+        self.o2 = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True, on_change=self.validate_decimal  # <-- Valida el decimal
+)
 
         #checkboxe del Oxygeno conexctada al campo de texto
-        self.liters_o2 = ft.Checkbox(label="Oxygen", on_change=self.on_liters_o2_change)
+        self.liters_o2 = ft.Checkbox(label="Liters of Oxygen", on_change=self.on_liters_o2_change )
 
         #Resto de checkboxes
-        self.after_hours = ft.Checkbox(label="Viaje después de horas (después de 7pm)")
+        self.after_hours = ft.Checkbox(label="Viaje después de horas (6pm-6am)")
         self.deadheads = ft.Checkbox(label="Viaje Round Trip")
         self.roundtrip = ft.Checkbox(label="Viaje Roundtrip)")     
         self.bariatric = ft.Checkbox(label="Bariatrico")
         self.stairchair = ft.Checkbox(label="Escalera")
 
         # Campo de texto de las horas de espera
-        self.waiting_time = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True)
+        self.waiting_time = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True,on_change=self.validate_decimal)
 
         #checkboxe del Waiting time
         self.wait = ft.Checkbox(label="Tiempo de espera en horas", on_change=self.on_waiting_change)
         
         # Selector de configuración de Provider
-        self.config_selector = ft.Dropdown(label="Configuración", options=[ft.dropdown.Option("constants"),
-                                                                           ft.dropdown.Option("Baptist_Rates"),
-                                                                           ft.dropdown.Option("HCA_Rates"),
+        self.config_selector = ft.Dropdown(label="Source", options=[ft.dropdown.Option("Standard"),
+                                                                           ft.dropdown.Option("Baptist Rates"),
+                                                                           ft.dropdown.Option("HCA Rates"),
                              ],
                                                                            value="constants",
                                                                            width=200,
@@ -221,7 +222,7 @@ class RateCalculatorUI:
         """Retorna el layout completo de la UI"""
         return ft.Column(
             [
-                ft.Row([self.config_selector], alignment=ft.MainAxisAlignment.CENTER),
+                ft.Row([self.config_selector], alignment=ft.MainAxisAlignment.END),
                 ft.Row([self.distance_mode], alignment=ft.MainAxisAlignment.CENTER),
                 self.address_container,
                 self.manual_container,
@@ -276,5 +277,21 @@ class RateCalculatorUI:
             self.waiting_time.disabled = not self.wait.value
             self.waiting_time.update()
 
-    
+    #Metodo para asegurarnos que solo pongan numeros en el campo de texto de oxygeno y waiting time
+    def validate_decimal(self, e):
+        # Permite solo números con máximo un decimal
+        import re
+        value = e.control.value
+        match = re.match(r"^\d+(\.\d{0,1})?$", value)
+        if not match and value != "":
+            # Elimina caracteres no válidos y limita a un decimal
+            parts = value.split(".")
+            if len(parts) == 2:
+                value = parts[0] + "." + parts[1][:1]
+            else:
+                value = ''.join(filter(str.isdigit, value))
+            e.control.value = value
+            e.control.update()
+
+
 
