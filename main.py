@@ -71,6 +71,7 @@ def main(page: ft.Page):
     page.title = "Ecare Rate Calculator"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.window_icon = "assets/icon.ico"
+    
 
     def calculate_rate(e):
         """Maneja el cálculo de tarifa"""
@@ -175,7 +176,7 @@ def main(page: ft.Page):
 
 if __name__ == "__main__":
     try:
-        ft.app(target=main)
+        ft.app(target=main, view=ft.WEB_BROWSER)
     except Exception as e:
         logger.error(f"Error al iniciar la aplicación: {e}", exc_info=True)
         # Mostrar una ventana de error si falla el inicio
