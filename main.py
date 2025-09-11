@@ -186,7 +186,7 @@ def main(page: ft.Page):
 
 if __name__ == "__main__":
     try:
-        ft.app(target=main, view=ft.WEB_BROWSER)
+        ft.app(target=main)
     except Exception as e:
         logger.error(f"Error al iniciar la aplicación: {e}", exc_info=True)
         # Mostrar una ventana de error si falla el inicio
