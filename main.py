@@ -135,6 +135,7 @@ def main(page: ft.Page):
     def save_rates(e):
         """Guarda las nuevas tarifas"""
         try:
+            rates_inputs = getattr(page, "dialog_rates_inputs", {})
             new_rates = {
                 los: float(input_field.value)
                 for los, input_field in rates_inputs.items()
@@ -149,8 +150,9 @@ def main(page: ft.Page):
     def open_rates_dialog(e):
         """Abre el diálogo de configuración de tarifas"""
         try:
-            dialog = RatesDialog.create_dialog(save_rates, close_rates_dialog)
+            dialog, rates_inputs = RatesDialog.create_dialog(save_rates, close_rates_dialog)
             page.dialog = dialog
+            page.dialog_rates_inputs = rates_inputs  # Guardar en la página
             dialog.open = True
             page.update()
         except Exception as e:
