@@ -1,6 +1,7 @@
 from typing import Dict, Union
 from config.constants import *
 from utils.exceptions import RateCalculationError
+import os
 
 class RateService:
     @staticmethod
@@ -71,15 +72,53 @@ class RateService:
             raise RateCalculationError(f"Error en el cálculo de la tarifa: {str(e)}")
 
     @staticmethod
-    def update_rates(new_rates: Dict[str, float]) -> None:
+    def update_rates(new_rates: Dict[str, float], provider: str = "Default") -> None:
         """
-        Actualiza las tarifas base y los incrementos
+        Actualiza las tarifas base según el proveedor
         """
         try:
-            for los, rate in new_rates.items():
-                if rate <= 0:
-                    raise ValueError(f"La tarifa para {los} debe ser mayor que 0")
-                LEVEL_OF_SERVICE_BASE_RATES[los] = rate
-                LEVEL_OF_SERVICE_INCREMENTS[los] = rate
+            if provider == "Baptist":
+                LEVEL_OF_SERVICE_BASE_RATES_BAPTIST.update(new_rates)
+            elif provider == "HCA":
+                LEVEL_OF_SERVICE_BASE_RATES_HCA.update(new_rates)
+            else:
+                LEVEL_OF_SERVICE_BASE_RATES.update(new_rates)
         except Exception as e:
             raise RateCalculationError(f"Error al actualizar tarifas: {str(e)}")
+
+    @staticmethod
+    def save_rates_to_file(provider: str = "Default", filepath: str = None):
+        """
+        Guarda los rates actuales en el archivo constants.py según el proveedor
+        """
+        try:
+            if not filepath:
+                filepath = os.path.join(os.path.dirname(__file__), "../config/constants.py")
+                filepath = os.path.abspath(filepath)
+
+            with open(filepath, "r", encoding="utf-8") as f:
+                lines = f.readlines()
+
+            def dict_to_str(name, d):
+                items = ",\n    ".join([f'"{k}": {v}' for k, v in d.items()])
+                return f'{name} = {{\n    {items}\n}}\n'
+
+            import re
+            def replace_dict(name, d, text):
+                pattern = rf'{name}\s*=\s*\{{.*?\}}'
+                return re.sub(pattern, dict_to_str(name, d), text, flags=re.DOTALL)
+
+            text = "".join(lines)
+            # Solo actualiza el diccionario del proveedor seleccionado
+            if provider == "Baptist":
+                text = replace_dict("LEVEL_OF_SERVICE_BASE_RATES_BAPTIST", LEVEL_OF_SERVICE_BASE_RATES_BAPTIST, text)
+            elif provider == "HCA":
+                text = replace_dict("LEVEL_OF_SERVICE_BASE_RATES_HCA", LEVEL_OF_SERVICE_BASE_RATES_HCA, text)
+            else:
+                text = replace_dict("LEVEL_OF_SERVICE_BASE_RATES", LEVEL_OF_SERVICE_BASE_RATES, text)
+
+            with open(filepath, "w", encoding="utf-8") as f:
+                f.write(text)
+
+        except Exception as e:
+            raise RateCalculationError(f"Error al guardar tarifas en archivo: {str(e)}")
