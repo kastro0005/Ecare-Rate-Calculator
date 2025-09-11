@@ -25,18 +25,20 @@ setup(
     long_description=read_readme(),
     long_description_content_type="text/markdown",
     
-    # URL del proyecto (si tienes repositorio)
-    url="https://github.com/usuario/proyecto",
+    # URL del proyecto
+    url="https://github.com/usuario/ecare-rate-calculator",
     
     # Encontrar paquetes automáticamente
-    packages=find_packages(exclude=['tests*', 'docs*']),
+    packages=find_packages(exclude=['tests*', 'docs*', 'env*', 'build*', 'dist*']),
     
     # Incluir archivos no-Python
     package_data={
-        'mi_aplicacion': [
+        '': [
             'assets/*',  # Incluir todos los archivos en la carpeta assets
-            'modulos/*.py',  # Incluir archivos Python en modulos
-            'config/*.json',  # Incluir archivos de configuración
+            'config/*.py',  # Incluir archivos de configuración
+            'ui/*.html',  # Incluir templates HTML
+            '*.ico',  # Incluir iconos
+            '*.png',  # Incluir imágenes
         ],
     },
     
@@ -45,41 +47,71 @@ setup(
     
     # Dependencias del proyecto
     install_requires=[
-        'flet',
-        'pygeo',
-        # Agrega aquí tus otras dependencias
-        # O usa la función read_requirements()
-    ] + read_requirements(),
+        'flet>=0.10.0',
+        'geopy>=2.3.0',
+        'requests>=2.32.0',
+        'pydantic>=2.3.0',
+        'python-dotenv>=1.0.0',
+        'Pillow>=10.0.0',
+        'aiohttp>=3.10.0',
+        'httpx>=0.24.0',
+    ],
     
-    # Dependencias opcionales
+    # Dependencias opcionales para desarrollo
     extras_require={
         'dev': [
-            'pytest',
-            'pytest-cov',
-            'flake8',
-            'black',
-            'mypy',
+            'pytest>=7.0.0',
+            'pytest-cov>=4.0.0',
+            'flake8>=5.0.0',
+            'black>=22.0.0',
+            'mypy>=1.0.0',
+        ],
+        'build': [
+            'pyinstaller>=5.13.0',
+            'pyinstaller-hooks-contrib>=2023.8',
         ],
     },
     
-    # Metadata para PyPI
+    # Clasificadores del proyecto
     classifiers=[
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Healthcare Industry",
+        "Topic :: Office/Business :: Financial",
+        "Topic :: Scientific/Engineering :: Medical Science Apps.",
+        "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
-        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Operating System :: OS Independent",
-        "Development Status :: 4 - Beta",
+        "Operating System :: Microsoft :: Windows",
+        "Operating System :: MacOS",
+        "Operating System :: POSIX :: Linux",
+        "Environment :: X11 Applications",
+        "Environment :: Win32 (MS Windows)",
+        "Environment :: MacOS X",
     ],
     
     # Requisitos de Python
     python_requires=">=3.8",
     
-    # Punto de entrada para la aplicación
+    # Puntos de entrada para scripts de consola
     entry_points={
         'console_scripts': [
-            'mi_aplicacion=mi_aplicacion.main:main',
+            'ecare-calculator=main:main',
+            'ecare-rate-calc=run:main',
         ],
+    },
+    
+    # Palabras clave para búsqueda
+    keywords='medical transport rate calculator emergency healthcare billing',
+    
+    # Información del proyecto
+    project_urls={
+        'Bug Reports': 'https://github.com/usuario/ecare-rate-calculator/issues',
+        'Source': 'https://github.com/usuario/ecare-rate-calculator',
+        'Documentation': 'https://github.com/usuario/ecare-rate-calculator#readme',
     },
 )
