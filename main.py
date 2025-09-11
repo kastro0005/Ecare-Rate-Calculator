@@ -135,11 +135,14 @@ def main(page: ft.Page):
     def save_rates(e):
         """Guarda las nuevas tarifas"""
         try:
+            rates_inputs = getattr(page, "dialog_rates_inputs", {})
+            provider = getattr(page, "dialog_provider", "Default")
             new_rates = {
                 los: float(input_field.value)
                 for los, input_field in rates_inputs.items()
             }
-            RateService.update_rates(new_rates)
+            RateService.update_rates(new_rates, provider)  # <-- Pasa el proveedor
+            RateService.save_rates_to_file(provider)        # <-- Guarda el proveedor
             ui.update_status("Tarifas actualizadas correctamente")
             close_rates_dialog(e)
         except Exception as e:
@@ -149,8 +152,15 @@ def main(page: ft.Page):
     def open_rates_dialog(e):
         """Abre el diálogo de configuración de tarifas"""
         try:
-            dialog = RatesDialog.create_dialog(save_rates, close_rates_dialog)
+            provider = ui.config_selector.value or "Default"
+            dialog, rates_inputs = RatesDialog.create_dialog(save_rates, close_rates_dialog, provider)
             page.dialog = dialog
+            page.dialog_rates_inputs = rates_inputs
+            page.dialog_provider = provider  # Guardar proveedor actual
+
+            # Agrega el diálogo al overlay si no está
+            if dialog not in page.overlay:
+                page.overlay.append(dialog)
             dialog.open = True
             page.update()
         except Exception as e:
