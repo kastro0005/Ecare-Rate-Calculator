@@ -1,12 +1,13 @@
-import sys
 import os
-
-# Añade el directorio del proyecto al PYTHONPATH
-project_root = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(project_root)
-
-from main import main
 import flet as ft
+from main import main
 
 if __name__ == "__main__":
-    ft.app(target=main)
+    # Para despliegue web
+    port = int(os.environ.get("PORT", 8080))
+    ft.app(
+        target=main,
+        view=ft.WEB_BROWSER,
+        port=port,
+        host="0.0.0.0"  # Importante para producción
+    )
