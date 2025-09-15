@@ -5,8 +5,10 @@ LEVEL_OF_SERVICE_BASE_RATES = {
     "WCH": 100,   # Silla de ruedas
     "STR": 175,  # Camilla
     "BLS": 450,   # Soporte vital básico
-    "ALS": 550,   # Soporte vital avanzado
+    "ALS NE": 550,   # Soporte vital avanzado
+    "ALS ER": 600,   # Soporte vital avanzado con especialista
     "CCT": 950,   # Transporte de cuidado critico
+
     
 }
 
@@ -15,7 +17,8 @@ LEVEL_OF_SERVICE_BASE_RATES_BAPTIST = {
     "WCH": 80,   # Silla de ruedas
     "STR": 100,  # Camilla
     "BLS": 450,   # Soporte vital básico
-    "ALS": 550,   # Soporte vital avanzado
+    "ALS NE": 550,   # Soporte vital avanzado
+    "ALS ER": 600,   # Soporte vital avanzado con especialista
     "CCT": 950,   # Transporte de cuidado critico
     
 }
@@ -25,7 +28,8 @@ LEVEL_OF_SERVICE_BASE_RATES_HCA = {
     "WCH": 70,   # Silla de ruedas
     "STR": 105,  # Camilla
     "BLS": 450,   # Soporte vital básico
-    "ALS": 550,   # Soporte vital avanzado
+    "ALS NE": 550,   # Soporte vital avanzado
+    "ALS ER": 600,   # Soporte vital avanzado con especialista
     "CCT": 950,   # Transporte de cuidado critico
     
 }
@@ -40,7 +44,8 @@ LEVEL_OF_SERVICE_INCREMENTS = {
     "WCH": 5,
     "STR": 9,
     "BLS": 11.5,
-    "ALS": 11.5 ,  
+    "ALS NE": 11.5 ,
+    "ALS ER": 11.5 ,  
     "CCT": 11.5 , 
 }
 
@@ -60,7 +65,8 @@ WAITING_TIME_RATE = {
     "WCH": 50,
     "STR": 75,
     "BLS": 100,
-    "ALS": 150,
+    "ALS NE": 150,
+    "ALS ER": 600,
     "CCT": 200,
 } 
 
