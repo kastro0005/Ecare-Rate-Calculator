@@ -78,12 +78,23 @@ class RateCalculatorUI:
         #checkboxe del Waiting time
         self.wait = ft.Checkbox(label="Tiempo de espera en horas", on_change=self.on_waiting_change)
         
+        #Selector de configuracion de Condado
+        self.county_selector = ft.Dropdown(label="County", options=[ft.dropdown.Option("Palm Beach"),  
+                                                                           ft.dropdown.Option("Broward"),
+                                                                           ft.dropdown.Option("Monroe"),
+                                                                           ft.dropdown.Option("Citrus"),
+                             ],
+                                                                           value="Palm Beach",
+                                                                           width=200,
+                                                                           
+                                            )
+
         # Selector de configuración de Provider
         self.config_selector = ft.Dropdown(label="Source", options=[ft.dropdown.Option("Standard"),
                                                                            ft.dropdown.Option("Baptist"),
                                                                            ft.dropdown.Option("HCA"),
                              ],
-                                                                           value="constants",
+                                                                           value="Standard",
                                                                            width=200,
                                                                            
                                             )
@@ -221,7 +232,8 @@ class RateCalculatorUI:
     def get_layout(self) -> ft.Column:
         """Retorna el layout completo de la UI"""
         return ft.Column(
-            [
+            [   
+                ft.Row([self.county_selector], alignment=ft.MainAxisAlignment.END),
                 ft.Row([self.config_selector], alignment=ft.MainAxisAlignment.END),
                 ft.Row([self.distance_mode], alignment=ft.MainAxisAlignment.CENTER),
                 self.address_container,
