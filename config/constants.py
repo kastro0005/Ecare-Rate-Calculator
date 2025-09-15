@@ -4,7 +4,7 @@
 LEVEL_OF_SERVICE_BASE_RATES = {
     "WCH": 100,   # Silla de ruedas
     "STR": 175,  # Camilla
-    "BLS": 450,   # Soporte vital básico
+    "BLS NE": 450,   # Soporte vital básico
     "BLS ER": 500, # Soporte vital básico con especialista
     "ALS NE": 550,   # Soporte vital avanzado
     "ALS ER": 600,   # Soporte vital avanzado con especialista
@@ -14,16 +14,27 @@ LEVEL_OF_SERVICE_BASE_RATES = {
     
 }
 
+
+
+
+
+
+"""Aqui van los base rates de los otros proveedores, si se quiere agregar otro proveedor
+solo hay que agregar otro diccionario con las tarifas base de ese proveedor y manteniendo
+ los mismos niveles de servicio y estructura, y orden que los demas diccionarios
+"""
+
+
 # Lista de tarifas base por nivel de servicio de Baptist
 LEVEL_OF_SERVICE_BASE_RATES_BAPTIST = {
-    "WCH": 80,   # Silla de ruedas
-    "STR": 100,  # Camilla
-    "BLS": 450,   # Soporte vital básico
-    "BLS ER": 500, # Soporte vital básico con especialista
-    "ALS NE": 550,   # Soporte vital avanzado
-    "ALS ER": 600,   # Soporte vital avanzado con especialista
-    "ALS2": 800,  # Soporte vital avanzado nivel 2
-    "CCT": 950,   # Transporte de cuidado critico
+    "WCH": 65,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 28416,   # Soporte vital básico
+    "BLS ER": 45466, # Soporte vital básico con especialista
+    "ALS NE": 340.99,   # Soporte vital avanzado
+    "ALS ER": 539.91,   # Soporte vital avanzado con especialista
+    "ALS2": 781.44,  # Soporte vital avanzado nivel 2
+    "CCT": 923.52,   # Transporte de cuidado critico
     
 }
 
@@ -31,9 +42,9 @@ LEVEL_OF_SERVICE_BASE_RATES_BAPTIST = {
 LEVEL_OF_SERVICE_BASE_RATES_HCA = {
     "WCH": 70,   # Silla de ruedas
     "STR": 105,  # Camilla
-    "BLS": 450,   # Soporte vital básico
-    "BLS ER": 500, # Soporte vital básico con especialista
-    "ALS NE": 550,   # Soporte vital avanzado
+    "BLS NE": 450,   # Soporte vital básico
+    "BLS ER": 550, # Soporte vital básico con especialista
+    "ALS NE": 500,   # Soporte vital avanzado
     "ALS ER": 600,   # Soporte vital avanzado con especialista
     "ALS2": 800,  # Soporte vital avanzado nivel 2
     "CCT": 950,   # Transporte de cuidado critico
@@ -49,12 +60,12 @@ LEVEL_OF_SERVICE_BASE_RATES_HCA = {
 LEVEL_OF_SERVICE_INCREMENTS = {
     "WCH": 5,
     "STR": 9,
-    "BLS": 11.5,
-    "BLS ER": 11.5, # Soporte vital básico con especialista
-    "ALS NE": 11.5 ,
-    "ALS ER": 11.5 ,  
-    "ALS2": 11.5,  # Soporte vital avanzado nivel 2
-    "CCT": 11.5 , 
+    "BLS NE": 13,
+    "BLS ER": 13, # Soporte vital básico con especialista
+    "ALS NE": 13 ,
+    "ALS ER": 13 ,  
+    "ALS2": 13,  # Soporte vital avanzado nivel 2
+    "CCT": 13 , 
 }
 
 #Incrementos Extras
@@ -62,9 +73,8 @@ LEVEL_OF_SERVICE_INCREMENTS = {
 EXTRAS = {
     "O2": 30,  # por litro
     "AfterHours": 150,  #plus for after hours
-    "STC": 400,
-    "Bariatric": 300,
-    
+    "STC": 250,
+    "Bariatric": 350,
     
 }
 
@@ -72,7 +82,7 @@ EXTRAS = {
 WAITING_TIME_RATE = {
     "WCH": 50,
     "STR": 75,
-    "BLS": 100,
+    "BLS NE": 100,
     "BLS ER": 500, # Soporte vital básico con especialista
     "ALS NE": 150,
     "ALS ER": 600,
