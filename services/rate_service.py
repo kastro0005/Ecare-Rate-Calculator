@@ -16,7 +16,7 @@ class RateService:
         bariatric: bool = False,
         wait: bool = False,
         waiting_time: int = 0,
-        provider: str = "Default"
+        provider: str = "Standard"
     ) -> Dict[str, Union[float, str]]:
         """
         Calcula la tarifa basada en la distancia y los parámetros seleccionados
@@ -45,9 +45,7 @@ class RateService:
 
             # Aplicar modificadores
             if after_hours:
-                rate += EXTRAS.get("AfterHours") # tarifa extra por viaje después de horas
-            if deadheads:
-                rate *= 2
+                rate += EXTRAS.get("AfterHours") # tarifa extra por viaje después de horas          
             if o2:
                 rate += (liters_o2 * EXTRAS.get("O2")) #  rate por unidad de O2
             if stc:
@@ -57,7 +55,8 @@ class RateService:
             if wait:
                 medias_horas = int(waiting_time * 2)  # Ej: 1.5 horas = 3 medias horas
                 rate += medias_horas * WAITING_TIME_RATE.get(service_level, 0) # tarifa extra por tiempo de espera
-            
+            if deadheads:
+                rate *= 2
             
 
 
