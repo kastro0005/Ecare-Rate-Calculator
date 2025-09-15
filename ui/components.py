@@ -15,15 +15,15 @@ class RateCalculatorUI:
         self.suggestions2 = ft.ListView(visible=False, spacing=2, height=120, width=300)
 
         self.address1 = ft.TextField(
-            label="Dirección 1",
-            hint_text="Ingrese la primera dirección",
+            label="First Address",
+            hint_text="Enter the first address",
             width=300,
             on_change=self.on_address1_change,
             on_blur=self.on_address1_blur
         )
         self.address2 = ft.TextField(
-            label="Dirección 2",
-            hint_text="Ingrese la segunda dirección",
+            label="Second Address",
+            hint_text="Enter the second address",
             width=300,
             on_change=self.on_address2_change,
             on_blur=self.on_address2_blur
@@ -33,22 +33,22 @@ class RateCalculatorUI:
             selected_index=0,
             on_change=self.on_mode_change,
             tabs=[
-                ft.Tab(text="Calcular por direcciones"),
-                ft.Tab(text="Ingresar millas manualmente")
+                ft.Tab(text="Calculate from addresses"),
+                ft.Tab(text="Enter distance manually")
             ]
         )
 
         self.manual_miles = ft.TextField(
-            label="Millas",
-            hint_text="Ingrese la distancia en millas",
+            label="Miles",
+            hint_text="Enter the Miles",
             width=300,
             visible=False,
             keyboard_type=ft.KeyboardType.NUMBER
         )
 
         self.service_level = ft.Dropdown(
-            label="Nivel de Servicio",
-            hint_text="Elija el nivel de servicio",
+            label="Level of Service",
+            hint_text="Choose Level of Service",
             options=[ft.dropdown.Option(los) for los in LEVEL_OF_SERVICE_BASE_RATES.keys()],
             width=200
         )
@@ -66,17 +66,17 @@ class RateCalculatorUI:
         self.liters_o2 = ft.Checkbox(label="Liters of Oxygen", on_change=self.on_liters_o2_change )
 
         #Resto de checkboxes
-        self.after_hours = ft.Checkbox(label="Viaje después de horas (6pm-6am)")
-        self.deadheads = ft.Checkbox(label="Viaje Round Trip")
-        self.roundtrip = ft.Checkbox(label="Viaje Roundtrip)")     
-        self.bariatric = ft.Checkbox(label="Bariatrico")
-        self.stairchair = ft.Checkbox(label="Escalera")
+        self.after_hours = ft.Checkbox(label="Afterhours (6pm-6am)")
+        self.deadheads = ft.Checkbox(label="Round Trip")
+        self.roundtrip = ft.Checkbox(label="Roundtrip)")     
+        self.bariatric = ft.Checkbox(label="Bariatric")
+        self.stairchair = ft.Checkbox(label="Stairchair")
 
         # Campo de texto de las horas de espera
         self.waiting_time = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True,on_change=self.validate_decimal)
 
         #checkboxe del Waiting time
-        self.wait = ft.Checkbox(label="Tiempo de espera en horas", on_change=self.on_waiting_change)
+        self.wait = ft.Checkbox(label="Waiting Time (Hours)", on_change=self.on_waiting_change)
         
         #Selector de configuracion de Condado
         self.county_selector = ft.Dropdown(label="County", options=[ft.dropdown.Option("Palm Beach"),  
@@ -106,12 +106,12 @@ class RateCalculatorUI:
         self.result = ft.Text(size=20, weight=ft.FontWeight.BOLD)
 
         self.calculate_button = ft.ElevatedButton(
-            text="Calcular",
+            text="Calculate Rate",
             on_click=self.calculate_callback,
             icon="calculate"  # <-- Usar el nombre del icono como string
         )
         self.rates_button = ft.ElevatedButton(
-            text="Configurar Tarifas",
+            text="Configurate Rates",
             on_click=self.open_rates_dialog_callback,
             icon="settings"   # <-- Usar el nombre del icono como string
         )
@@ -276,9 +276,9 @@ class RateCalculatorUI:
     def update_result(self, result_data: dict) -> None:
         """Actualiza el texto de resultado"""
         self.result.value = (
-            f"Distancia: {result_data['distance']} millas\n"
-            f"Tarifa base: ${result_data['base_rate']}\n"
-            f"Tarifa total: ${result_data['total_rate']}"
+            f"Distance: {result_data['distance']} miles\n"
+            f"Rate Base: ${result_data['base_rate']}\n"
+            f"Total Rate: ${result_data['total_rate']}"
         )
 
     def on_liters_o2_change(self, e):
