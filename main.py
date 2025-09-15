@@ -68,9 +68,10 @@ def load_config_module(config_name):
     return module
 
 def main(page: ft.Page):
-    page.title = "Ecare Rate Calculator"
+    page.title = "E-Care Rate Calculator"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.window_icon = "assets/icon.ico"
+    page.window_maximized = True  # <-- Esto abre la ventana en pantalla completa
     
 
     def calculate_rate(e):
