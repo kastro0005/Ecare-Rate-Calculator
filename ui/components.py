@@ -30,7 +30,7 @@ class RateCalculatorUI:
         )
 
         self.distance_mode = ft.Tabs(
-            selected_index=0,
+            selected_index=0,  # Esto selecciona "Enter distance manually" por defecto cambiar a 0 si quieres que sea por
             on_change=self.on_mode_change,
             tabs=[
                 ft.Tab(text="Calculate from addresses"),
