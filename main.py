@@ -72,7 +72,7 @@ def main(page: ft.Page):
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.window_icon = "assets/icon.ico"
     page.window_maximized = True  # <-- Esto abre la ventana en pantalla completa
-    
+    page.window_full_screen = True
 
     def calculate_rate(e):
         """Maneja el cálculo de tarifa"""

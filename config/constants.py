@@ -14,6 +14,40 @@ LEVEL_OF_SERVICE_BASE_RATES = {
     
 }
 
+# Incrementos por milla por nivel de servicio Standard
+LEVEL_OF_SERVICE_INCREMENTS = {
+    "WCH": 5,
+    "STR": 9,
+    "BLS NE": 13,
+    "BLS ER": 13, # Soporte vital básico con especialista
+    "ALS NE": 13 ,
+    "ALS ER": 13 ,  
+    "ALS2": 13,  # Soporte vital avanzado nivel 2
+    "CCT": 13 , 
+}
+
+#Incrementos Extras
+
+EXTRAS = {
+    "O2": 30,  # por litro
+    "AfterHours": 150,  #plus for after hours
+    "STC": 250,
+    "Bariatric": 350,
+    
+}
+
+# tarifa por hora de tiempo de espera
+WAITING_TIME_RATE = {
+    "WCH": 50,
+    "STR": 75,
+    "BLS NE": 100,
+    "BLS ER": 500, # Soporte vital básico con especialista
+    "ALS NE": 150,
+    "ALS ER": 600,
+    "ALS2": 800,  # Soporte vital avanzado nivel 2
+    "CCT": 200,
+} 
+
 
 
 
@@ -51,44 +85,33 @@ LEVEL_OF_SERVICE_BASE_RATES_HCA = {
     
 }
 
-
-
-
-
-
-# Incrementos por milla por nivel de servicio
-LEVEL_OF_SERVICE_INCREMENTS = {
-    "WCH": 5,
-    "STR": 9,
-    "BLS NE": 13,
-    "BLS ER": 13, # Soporte vital básico con especialista
-    "ALS NE": 13 ,
-    "ALS ER": 13 ,  
-    "ALS2": 13,  # Soporte vital avanzado nivel 2
-    "CCT": 13 , 
-}
-
-#Incrementos Extras
-
-EXTRAS = {
-    "O2": 30,  # por litro
-    "AfterHours": 150,  #plus for after hours
-    "STC": 250,
-    "Bariatric": 350,
+# Lista de tarifas base por nivel de servicio de Tenants
+LEVEL_OF_SERVICE_BASE_RATES_TENANTS = {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 284.16,   # Soporte vital básico
+    "BLS ER": 454.66, # Soporte vital básico con especialista
+    "ALS NE": 340.99,   # Soporte vital avanzado
+    "ALS ER": 539.91,   # Soporte vital avanzado con especialista
+    "ALS2": 781.84,  # Soporte vital avanzado nivel 2
+    "CCT": 923.52,   # Transporte de cuidado critico
     
 }
+# Incrementos por milla por nivel de servicio
+LEVEL_OF_SERVICE_INCREMENTS_TENANTS = {
+    "WCH": 2.5,
+    "STR": 3.5,
+    "BLS NE": 9.15,
+    "BLS ER": 9.15, # Soporte vital básico con especialista
+    "ALS NE": 9.15 ,
+    "ALS ER": 9.15 ,  
+    "ALS2": 9.15,  # Soporte vital avanzado nivel 2
+    "CCT": 9.15 , 
+}
 
-# tarifa por hora de tiempo de espera
-WAITING_TIME_RATE = {
-    "WCH": 50,
-    "STR": 75,
-    "BLS NE": 100,
-    "BLS ER": 500, # Soporte vital básico con especialista
-    "ALS NE": 150,
-    "ALS ER": 600,
-    "ALS2": 800,  # Soporte vital avanzado nivel 2
-    "CCT": 200,
-} 
+
+
+
 
 
 """Constantes para la parte de geolocalización y cálculo de rutas
