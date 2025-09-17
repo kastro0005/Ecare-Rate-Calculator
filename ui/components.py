@@ -93,6 +93,7 @@ class RateCalculatorUI:
         self.config_selector = ft.Dropdown(label="Source", options=[ft.dropdown.Option("Standard"),
                                                                            ft.dropdown.Option("Baptist"),
                                                                            ft.dropdown.Option("HCA"),
+                                                                            ft.dropdown.Option("Tenants (PBHD)"),
                              ],
                                                                            value="Standard",
                                                                            width=200,
