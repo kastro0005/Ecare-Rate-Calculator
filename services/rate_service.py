@@ -41,7 +41,23 @@ class RateService:
             elif provider == "Citrus Health and Rehab Center":
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_CITRUS_HEALTH_AND_REHAB_CENTER.get(service_level)
             elif provider == "Clearsky Rehab Hospital of Lecanto":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_CLEASKY_REHAB_HOSPITAL_OF_LECANTO.get(service_level)
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_CLEARSKY_REHAB_HOSPITAL_OF_LECANTO.get(service_level)
+            elif provider == "Crystal River Health and Rehab Center":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_CRYSTAL_RIVER_HEALTH_AND_REHAB_CENTER.get(service_level)
+            elif provider == "Diamond Ridge Health and Rehab Center":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_DIAMOND_RIDGE_HEALTH_AND_REHAB_CENTER.get(service_level)
+            elif provider == "Sunflower Springs":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_SUNFLOWER_SPRINGS.get(service_level)
+            elif provider == "Superior Residences of Lecanto":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_SUPERIOR_RESIDENCES_OF_LECANTO.get(service_level)
+            elif provider == "Tampa General Hospital Crystal River":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_TAMPA_GENERAL_HOSPITAL_CRYSTAL_RIVER.get(service_level)
+            elif provider == "TGH Crystal River Emergency Center":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_TGH_CRYSTAL_RIVER_EMERGENCY_CENTER.get(service_level)
+            elif provider == "The Gardens Assisted Living and Memory Care":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE.get(service_level)
+            elif provider == "Vitas Inpatient Hospice":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_VITAS_INPATIENT_HOSPICE.get(service_level)
             else:
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES.get(service_level)
 
@@ -68,7 +84,23 @@ class RateService:
             elif provider == "Citrus Health and Rehab Center":
                 increment = LEVEL_OF_SERVICE_INCREMENTS_CITRUS_HEALTH_AND_REHAB_CENTER.get(service_level, 0)
             elif provider == "Clearsky Rehab Hospital of Lecanto":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_CLEASKY_REHAB_HOSPITAL_OF_LECANTO.get(service_level, 0)
+                increment = LEVEL_OF_SERVICE_INCREMENTS_CLEARSKY_REHAB_HOSPITAL_OF_LECANTO.get(service_level, 0)
+            elif provider == "Crystal River Health and Rehab Center":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_CRYSTAL_RIVER_HEALTH_AND_REHAB_CENTER.get(service_level, 0)
+            elif provider == "Diamond Ridge Health and Rehab Center":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_CRYSTAL_RIVER_HEALTH_AND_REHAB_CENTER.get(service_level, 0)
+            elif provider == "Sunflower Springs":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_SUNFLOWER_SPRINGS.get(service_level, 0)
+            elif provider == "Superior Residences of Lecanto":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_SUPERIOR_RESIDENCES_OF_LECANTO.get(service_level, 0)
+            elif provider == "Tampa General Hospital Crystal River":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_TAMPA_GENERAL_HOSPITAL_CRYSTAL_RIVER.get(service_level, 0)
+            elif provider == "TGH Crystal River Emergency Center":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_TGH_CRYSTAL_RIVER_EMERGENCY_CENTER.get(service_level, 0)
+            elif provider == "The Gardens Assisted Living and Memory Care":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE.get(service_level, 0)
+            elif provider == "Vitas Inpatient Hospice":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_VITAS_INPATIENT_HOSPICE.get(service_level, 0)
             else:
                 increment = LEVEL_OF_SERVICE_INCREMENTS.get(service_level, 0)
             rate = base_rate + (increment * distance)
@@ -119,7 +151,23 @@ class RateService:
             elif provider == "Citrus Health and Rehab Center":
                 LEVEL_OF_SERVICE_BASE_RATES_CITRUS_HEALTH_AND_REHAB_CENTER.update(new_rates)
             elif provider == "Clearsky Rehab Hospital of Lecanto":
-                LEVEL_OF_SERVICE_BASE_RATES_CLEASKY_REHAB_HOSPITAL_OF_LECANTO.update(new_rates)
+                LEVEL_OF_SERVICE_BASE_RATES_CLEARSKY_REHAB_HOSPITAL_OF_LECANTO.update(new_rates)
+            elif provider == "Crystal River Health and Rehab Center":
+                LEVEL_OF_SERVICE_BASE_RATES_CRYSTAL_RIVER_HEALTH_AND_REHAB_CENTER.update(new_rates)
+            elif provider == "Diamond Ridge Health and Rehab Center":
+                LEVEL_OF_SERVICE_BASE_RATES_DIAMOND_RIDGE_HEALTH_AND_REHAB_CENTER.update(new_rates)
+            elif provider == "Sunflower Springs":
+                LEVEL_OF_SERVICE_BASE_RATES_SUNFLOWER_SPRINGS.update(new_rates)
+            elif provider == "Superior Residences of Lecanto":
+                LEVEL_OF_SERVICE_BASE_RATES_SUPERIOR_RESIDENCES_OF_LECANTO.update(new_rates)
+            elif provider == "Tampa General Hospital Crystal River":
+                LEVEL_OF_SERVICE_BASE_RATES_TAMPA_GENERAL_HOSPITAL_CRYSTAL_RIVER.update(new_rates)
+            elif provider == "TGH Crystal River Emergency Center":
+                LEVEL_OF_SERVICE_BASE_RATES_TGH_CRYSTAL_RIVER_EMERGENCY_CENTER.update(new_rates)
+            elif provider == "The Gardens Assisted Living and Memory Care":
+                LEVEL_OF_SERVICE_BASE_RATES_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE.update(new_rates)
+            elif provider == "Vitas Inpatient Hospice":
+                LEVEL_OF_SERVICE_BASE_RATES_VITAS_INPATIENT_HOSPICE.update(new_rates)
             else:
                 LEVEL_OF_SERVICE_BASE_RATES.update(new_rates)
         except Exception as e:
