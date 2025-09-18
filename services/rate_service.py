@@ -58,6 +58,16 @@ class RateService:
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE.get(service_level)
             elif provider == "Vitas Inpatient Hospice":
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_VITAS_INPATIENT_HOSPICE.get(service_level)
+            elif provider == "Amedysis Hospice":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_AMEDYSIS_HOSPICE.get(service_level)
+            elif provider == "Baptist Miami":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_BAPTIST_MIAMI.get(service_level)
+            elif provider == "Oasis at the Keys Nursing and Rehab":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_OASIS_AT_THE_KEYS_NURSING_AND_REHAB.get(service_level)
+            elif provider == "Palm Vista Nursing and Rehab Center":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_PALM_VISTA_NURSING_AND_REHAB_CENTER.get(service_level)
+            elif provider == "Vitas Monroe":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_VITAS_MONROE.get(service_level)
             else:
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES.get(service_level)
 
@@ -101,6 +111,16 @@ class RateService:
                 increment = LEVEL_OF_SERVICE_INCREMENTS_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE.get(service_level, 0)
             elif provider == "Vitas Inpatient Hospice":
                 increment = LEVEL_OF_SERVICE_INCREMENTS_VITAS_INPATIENT_HOSPICE.get(service_level, 0)
+            elif provider == "Amedysis Hospice":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_AMEDYSIS_HOSPICE.get(service_level, 0)
+            elif provider == "Baptist Miami":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_BAPTIST_MIAMI.get(service_level, 0)
+            elif provider == "Oasis at the Keys Nursing and Rehab":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_OASIS_AT_THE_KEYS_NURSING_AND_REHAB.get(service_level, 0)
+            elif provider == "Palm Vista Nursing and Rehab Center":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_PALM_VISTA_NURSING_AND_REHAB_CENTER.get(service_level, 0)
+            elif provider == "Vitas Monroe":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_VITAS_MONROE.get(service_level, 0)
             else:
                 increment = LEVEL_OF_SERVICE_INCREMENTS.get(service_level, 0)
             rate = base_rate + (increment * distance)
@@ -168,6 +188,16 @@ class RateService:
                 LEVEL_OF_SERVICE_BASE_RATES_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE.update(new_rates)
             elif provider == "Vitas Inpatient Hospice":
                 LEVEL_OF_SERVICE_BASE_RATES_VITAS_INPATIENT_HOSPICE.update(new_rates)
+            elif provider == "Amedysis Hospice":
+                LEVEL_OF_SERVICE_BASE_RATES_AMEDYSIS_HOSPICE.update(new_rates)
+            elif provider == "Baptist Miami":
+                LEVEL_OF_SERVICE_BASE_RATES_BAPTIST_MIAMI.update(new_rates)
+            elif provider == "Oasis at the Keys Nursing and Rehab":
+                LEVEL_OF_SERVICE_BASE_RATES_OASIS_AT_THE_KEYS_NURSING_AND_REHAB.update(new_rates)
+            elif provider == "Palm Vista Nursing and Rehab Center":
+                LEVEL_OF_SERVICE_BASE_RATES_PALM_VISTA_NURSING_AND_REHAB_CENTER.update(new_rates)
+            elif provider == "Vitas Monroe":
+                LEVEL_OF_SERVICE_BASE_RATES_VITAS_MONROE.update(new_rates)
             else:
                 LEVEL_OF_SERVICE_BASE_RATES.update(new_rates)
         except Exception as e:

@@ -426,12 +426,134 @@ LEVEL_OF_SERVICE_INCREMENTS_VITAS_INPATIENT_HOSPICE = {
 """Aqui termina la seccion de citrus county"""
 
 
+"""Aqui empieza Monroe County"""
+
+# Lista de tarifas base por nivel de servicio de Amedysis Hospice
+LEVEL_OF_SERVICE_BASE_RATES_AMEDYSIS_HOSPICE= {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 550,   # Soporte vital básico
+    "BLS ER": 600, # Soporte vital básico con especialista
+    "ALS NE": 800,   # Soporte vital avanzado
+    "ALS ER": 800,   # Soporte vital avanzado con especialista
+    "ALS2": 862.53,  # Soporte vital avanzado nivel 2
+    "CCT": 988.38,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio de Cedar Creek
+LEVEL_OF_SERVICE_INCREMENTS_AMEDYSIS_HOSPICE = {
+    "WCH": 2.5,
+    "STR": 5,
+    "BLS NE": 10.85,
+    "BLS ER": 10.85, # Soporte vital básico con especialista
+    "ALS NE": 10.85 ,
+    "ALS ER": 10.85 ,  
+    "ALS2": 10.85,  # Soporte vital avanzado nivel 2
+    "CCT": 10.85, 
+}
+# Lista de tarifas base por nivel de servicio de Baptist Miami
+LEVEL_OF_SERVICE_BASE_RATES_BAPTIST_MIAMI= {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 550,   # Soporte vital básico
+    "BLS ER": 600, # Soporte vital básico con especialista
+    "ALS NE": 800,   # Soporte vital avanzado
+    "ALS ER": 800,   # Soporte vital avanzado con especialista
+    "ALS2": 862.53,  # Soporte vital avanzado nivel 2
+    "CCT": 988.38,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio de Cedar Creek
+LEVEL_OF_SERVICE_INCREMENTS_BAPTIST_MIAMI = {
+    "WCH": 2.5,
+    "STR": 5,
+    "BLS NE": 10.85,
+    "BLS ER": 10.85, # Soporte vital básico con especialista
+    "ALS NE": 10.85 ,
+    "ALS ER": 10.85 ,  
+    "ALS2": 10.85,  # Soporte vital avanzado nivel 2
+    "CCT": 10.85, 
+}
+# Lista de tarifas base por nivel de servicio de Oasis at the Keys Nursing and Rehab
+LEVEL_OF_SERVICE_BASE_RATES_OASIS_AT_THE_KEYS_NURSING_AND_REHAB= {
+    "WCH": 100,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 292.78,   # Soporte vital básico
+    "BLS ER": 468.45, # Soporte vital básico con especialista
+    "ALS NE": 351.34,   # Soporte vital avanzado
+    "ALS ER": 556.28,   # Soporte vital avanzado con especialista
+    "ALS2": 805.15,  # Soporte vital avanzado nivel 2
+    "CCT": 951.54,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio de Oasis at the Keys Nursing and Rehab
+LEVEL_OF_SERVICE_INCREMENTS_OASIS_AT_THE_KEYS_NURSING_AND_REHAB = {
+    "WCH": 3,
+    "STR": 5,
+    "BLS NE": 9.24,
+    "BLS ER": 9.24, # Soporte vital básico con especialista
+    "ALS NE": 9.24 ,
+    "ALS ER": 9.24 ,  
+    "ALS2": 9.24,  # Soporte vital avanzado nivel 2
+    "CCT": 9.24, 
+}
+# Lista de tarifas base por nivel de servicio de Palm Vista Nursing and Rehab Center
+LEVEL_OF_SERVICE_BASE_RATES_PALM_VISTA_NURSING_AND_REHAB_CENTER= {
+    "WCH": 100,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 292.78,   # Soporte vital básico
+    "BLS ER": 468.45, # Soporte vital básico con especialista
+    "ALS NE": 351.34,   # Soporte vital avanzado
+    "ALS ER": 556.28,   # Soporte vital avanzado con especialista
+    "ALS2": 805.15,  # Soporte vital avanzado nivel 2
+    "CCT": 951.54,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio de Palm Vista Nursing and Rehab Center
+LEVEL_OF_SERVICE_INCREMENTS_PALM_VISTA_NURSING_AND_REHAB_CENTER = {
+    "WCH": 3,
+    "STR": 5,
+    "BLS NE": 9.24,
+    "BLS ER": 9.24, # Soporte vital básico con especialista
+    "ALS NE": 9.24 ,
+    "ALS ER": 9.24 ,  
+    "ALS2": 9.24,  # Soporte vital avanzado nivel 2
+    "CCT": 9.24, 
+}
+
+# Lista de tarifas base por nivel de servicio de Vitas Monroe
+LEVEL_OF_SERVICE_BASE_RATES_VITAS_MONROE= {
+    "WCH": 100,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 285.92,   # Soporte vital básico
+    "BLS ER": 457.47, # Soporte vital básico con especialista
+    "ALS NE": 343.1,   # Soporte vital avanzado
+    "ALS ER": 543.24,   # Soporte vital avanzado con especialista
+    "ALS2": 786.27,  # Soporte vital avanzado nivel 2
+    "CCT": 929.23,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio de Vitas Monroe
+LEVEL_OF_SERVICE_INCREMENTS_VITAS_MONROE = {
+    "WCH": 3,
+    "STR": 5,
+    "BLS NE": 9.02,
+    "BLS ER": 9.02, # Soporte vital básico con especialista
+    "ALS NE": 9.02 ,
+    "ALS ER": 9.02 ,  
+    "ALS2": 9.02,  # Soporte vital avanzado nivel 2
+    "CCT": 9.02, 
+}
+
+
+"""Aqui termina la seccion de Monroe County"""
 #Diccionario de proveedores por condado 
 COUNTY_PROVIDERS = {
     "Palm Beach": ["Standard", "Baptist", "Jupiter Medical Center", "Tenants (PBHN)"],
     "Broward": [ "Standard"],
-    "Monroe": ["Standard"],
-    "Citrus": [ "Arbor Trail Rehab and Skilled Nursing Center", "Cedar Creek", 
+    "Monroe": ["Standard", "Amedysis Hospice","Baptist Miami","Oasis at the Keys Nursing and Rehab","Palm Vista Nursing and Rehab Center",
+               "Vitas Monroe"],
+    "Citrus": [ "Standard", "Arbor Trail Rehab and Skilled Nursing Center", "Cedar Creek", 
                "Citrus Health and Rehab Center",  "Clearsky Rehab Hospital of Lecanto", 
                "Crystal River Health and Rehab Center", "Diamond Ridge Health and Rehab Center",
                "Sunflower Springs", "Superior Residences of Lecanto","Tampa General Hospital Crystal River",
