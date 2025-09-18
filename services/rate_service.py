@@ -39,8 +39,16 @@ class RateService:
             if base_rate is None:
                 raise RateCalculationError(f"Nivel de servicio no válido: {service_level}")
 
-            # Cálculo de tarifa base
-            increment = LEVEL_OF_SERVICE_INCREMENTS.get(service_level, 0)
+            # Cálculo de tarifa de incremento por milla
+            #Aki voy a intentar hacer que el incremento por milla sea diferente segun el proveedor
+            if provider == "Baptist":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_BAPTIST.get(service_level, 0)
+            elif provider == "HCA":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_HCA.get(service_level, 0)
+            elif provider == "Tenants":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_TENANTS.get(service_level, 0)
+            else:
+                increment = LEVEL_OF_SERVICE_INCREMENTS.get(service_level, 0)
             rate = base_rate + (increment * distance)
 
             # Aplicar modificadores

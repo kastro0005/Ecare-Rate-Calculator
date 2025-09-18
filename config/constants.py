@@ -71,6 +71,16 @@ LEVEL_OF_SERVICE_BASE_RATES_BAPTIST = {
     "CCT": 923.52,   # Transporte de cuidado critico
     
 }
+LEVEL_OF_SERVICE_INCREMENTS_BAPTIST = {
+    "WCH": 5,
+    "STR": 9,
+    "BLS NE": 13,
+    "BLS ER": 13, # Soporte vital básico con especialista
+    "ALS NE": 13 ,
+    "ALS ER": 13 ,  
+    "ALS2": 13,  # Soporte vital avanzado nivel 2
+    "CCT": 13 , 
+}
 
 # Lista de tarifas base por nivel de servicio de HCA
 LEVEL_OF_SERVICE_BASE_RATES_HCA = {
@@ -83,6 +93,16 @@ LEVEL_OF_SERVICE_BASE_RATES_HCA = {
     "ALS2": 800,  # Soporte vital avanzado nivel 2
     "CCT": 950,   # Transporte de cuidado critico
     
+}
+LEVEL_OF_SERVICE_INCREMENTS_HCA = {
+    "WCH": 5,
+    "STR": 9,
+    "BLS NE": 13,
+    "BLS ER": 13, # Soporte vital básico con especialista
+    "ALS NE": 13 ,
+    "ALS ER": 13 ,  
+    "ALS2": 13,  # Soporte vital avanzado nivel 2
+    "CCT": 13 , 
 }
 
 # Lista de tarifas base por nivel de servicio de Tenants
