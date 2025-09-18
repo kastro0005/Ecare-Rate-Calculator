@@ -22,130 +22,22 @@ class RateService:
         Calcula la tarifa basada en la distancia y los parámetros seleccionados
         """
         try:
-            # Vamos a intentar iterar por los diferentes proveedores
-            #Provider va a guardar el nombre del proveedor seleccionado el el menu desplegable
-            #Logica de seleccion del proveedor
-            if provider == "Baptist":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_BAPTIST.get(service_level) 
-            elif provider == "Boynton Beach Rehab Center":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_BOYNTON_BEACH_REHAB_CENTER.get(service_level)
-            elif provider == "Darcy Hall of Life Care":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_DARCY_HALL_OF_LIFE_CARE.get(service_level)
-            elif provider == "Kindred Hospital of Palm Beaches":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_KINDRED_HOSPITAL_PALM_BEACHES.get(service_level)
-            elif provider == "Jupiter Medical Center":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER.get(service_level) 
-            elif provider == "Terraces of LW Rehab":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_TERRACES_OF_LAKE_WORTH_REHAB.get(service_level)
-            elif provider == "Tenants (PBHN)":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_TENANTS.get(service_level)
-            elif provider == "Standard Citrus":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_STANDARD_CITRUS_COUNTY.get(service_level)
-            elif provider == "Arbor Trail Rehab and Skilled Nursing Center":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER.get(service_level)
-            elif provider == "Cedar Creek":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_CEDAR_CREEK.get(service_level)
-            elif provider == "Citrus Health and Rehab Center":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_CITRUS_HEALTH_AND_REHAB_CENTER.get(service_level)
-            elif provider == "Clearsky Rehab Hospital of Lecanto":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_CLEARSKY_REHAB_HOSPITAL_OF_LECANTO.get(service_level)
-            elif provider == "Crystal River Health and Rehab Center":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_CRYSTAL_RIVER_HEALTH_AND_REHAB_CENTER.get(service_level)
-            elif provider == "Diamond Ridge Health and Rehab Center":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_DIAMOND_RIDGE_HEALTH_AND_REHAB_CENTER.get(service_level)
-            elif provider == "Sunflower Springs":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_SUNFLOWER_SPRINGS.get(service_level)
-            elif provider == "Superior Residences of Lecanto":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_SUPERIOR_RESIDENCES_OF_LECANTO.get(service_level)
-            elif provider == "Tampa General Hospital Crystal River":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_TAMPA_GENERAL_HOSPITAL_CRYSTAL_RIVER.get(service_level)
-            elif provider == "TGH Crystal River Emergency Center":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_TGH_CRYSTAL_RIVER_EMERGENCY_CENTER.get(service_level)
-            elif provider == "The Gardens Assisted Living and Memory Care":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE.get(service_level)
-            elif provider == "Vitas Inpatient Hospice":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_VITAS_INPATIENT_HOSPICE.get(service_level)
-            elif provider == "Standard Monroe":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_STANDARD_MONROE_COUNTY.get(service_level)
-            elif provider == "Amedysis Hospice":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_AMEDYSIS_HOSPICE.get(service_level)
-            elif provider == "Baptist Miami":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_BAPTIST_MIAMI.get(service_level)
-            elif provider == "Oasis at the Keys Nursing and Rehab":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_OASIS_AT_THE_KEYS_NURSING_AND_REHAB.get(service_level)
-            elif provider == "Palm Vista Nursing and Rehab Center":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_PALM_VISTA_NURSING_AND_REHAB_CENTER.get(service_level)
-            elif provider == "Vitas Monroe":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_VITAS_MONROE.get(service_level)
-            else:
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES.get(service_level)
-
-
+            # Selección de diccionario base_rate
+            base_rates_dict = PROVIDER_BASE_RATES.get(provider, LEVEL_OF_SERVICE_BASE_RATES)
+            base_rate = base_rates_dict.get(service_level)
+            
+            
+           
 
             #Caso de que no se halla elegido proveedor
             if base_rate is None:
                 raise RateCalculationError(f"Nivel de servicio no válido: {service_level}")
-
-            # Cálculo de tarifa de incremento por milla
-            #Aki voy a intentar hacer que el incremento por milla sea diferente segun el proveedor
-            if provider == "Baptist":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_BAPTIST.get(service_level, 0)
-            elif provider == "Boynton Beach Rehab Center":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_BOYNTON_BEACH_REHAB_CENTER.get(service_level, 0)
-            elif provider == "Darcy Hall of Life Care":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_DARCY_HALL_OF_LIFE_CARE.get(service_level, 0)
-            elif provider == "Kindred Hospital of Palm Beaches":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_KINDRED_HOSPITAL_PALM_BEACHES.get(service_level, 0)
-            elif provider == "Jupiter Medical Center":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_JUPITER_MEDICAL_CENTER.get(service_level, 0)
-            elif provider == "Tenants (PBHN)":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_TENANTS.get(service_level, 0)
-            elif provider == "Terraces of LW Rehab":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_TERRACES_OF_LAKE_WORTH_REHAB.get(service_level, 0)
-            elif provider == "Standard Citrus":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_STANDARD_CITRUS_COUNTY.get(service_level, 0)
-            elif provider == "Arbor Trail Rehab and Skilled Nursing Center":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER.get(service_level, 0)
-            elif provider == "HCA":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_JUPITER_MEDICAL_CENTER.get(service_level, 0)
-            elif provider == "Cedar Creek":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_CEDAR_CREEK.get(service_level, 0)
-            elif provider == "Citrus Health and Rehab Center":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_CITRUS_HEALTH_AND_REHAB_CENTER.get(service_level, 0)
-            elif provider == "Clearsky Rehab Hospital of Lecanto":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_CLEARSKY_REHAB_HOSPITAL_OF_LECANTO.get(service_level, 0)
-            elif provider == "Crystal River Health and Rehab Center":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_CRYSTAL_RIVER_HEALTH_AND_REHAB_CENTER.get(service_level, 0)
-            elif provider == "Diamond Ridge Health and Rehab Center":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_CRYSTAL_RIVER_HEALTH_AND_REHAB_CENTER.get(service_level, 0)
-            elif provider == "Sunflower Springs":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_SUNFLOWER_SPRINGS.get(service_level, 0)
-            elif provider == "Superior Residences of Lecanto":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_SUPERIOR_RESIDENCES_OF_LECANTO.get(service_level, 0)
-            elif provider == "Tampa General Hospital Crystal River":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_TAMPA_GENERAL_HOSPITAL_CRYSTAL_RIVER.get(service_level, 0)
-            elif provider == "TGH Crystal River Emergency Center":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_TGH_CRYSTAL_RIVER_EMERGENCY_CENTER.get(service_level, 0)
-            elif provider == "The Gardens Assisted Living and Memory Care":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE.get(service_level, 0)
-            elif provider == "Vitas Inpatient Hospice":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_VITAS_INPATIENT_HOSPICE.get(service_level, 0)
-            elif provider == "Standard Monroe":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_STANDARD_MONROE_COUNTY.get(service_level, 0)
-            elif provider == "Amedysis Hospice":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_AMEDYSIS_HOSPICE.get(service_level, 0)
-            elif provider == "Baptist Miami":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_BAPTIST_MIAMI.get(service_level, 0)
-            elif provider == "Oasis at the Keys Nursing and Rehab":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_OASIS_AT_THE_KEYS_NURSING_AND_REHAB.get(service_level, 0)
-            elif provider == "Palm Vista Nursing and Rehab Center":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_PALM_VISTA_NURSING_AND_REHAB_CENTER.get(service_level, 0)
-            elif provider == "Vitas Monroe":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_VITAS_MONROE.get(service_level, 0)
-            else:
-                increment = LEVEL_OF_SERVICE_INCREMENTS.get(service_level, 0)
+            
+             # Selección de diccionario increment
+            increments_dict = PROVIDER_INCREMENTS.get(provider, LEVEL_OF_SERVICE_INCREMENTS)
+            increment = increments_dict.get(service_level, 0)
             rate = base_rate + (increment * distance)
-
+            
             # Aplicar modificadores
             if after_hours:
                 rate += EXTRAS.get("AfterHours") # tarifa extra por viaje después de horas          
@@ -179,60 +71,9 @@ class RateService:
         Actualiza las tarifas base según el proveedor
         """
         try:
-            if provider == "Baptist":
-                LEVEL_OF_SERVICE_BASE_RATES_BAPTIST.update(new_rates)
-            elif provider == "Boynton Beach Rehab Center":
-                LEVEL_OF_SERVICE_BASE_RATES_BOYNTON_BEACH_REHAB_CENTER.update(new_rates)
-            elif provider == "Darcy Hall of Life Care": 
-                LEVEL_OF_SERVICE_BASE_RATES_DARCY_HALL_OF_LIFE_CARE.update(new_rates)
-            elif provider == "Kindred Hospital of Palm Beaches":
-                LEVEL_OF_SERVICE_BASE_RATES_KINDRED_HOSPITAL_PALM_BEACHES.update(new_rates)
-            elif provider == "Jupiter Medical Center":
-                LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER.update(new_rates)
-            elif provider == "Tenants (PBHN)":
-                LEVEL_OF_SERVICE_BASE_RATES_TENANTS.update(new_rates)
-            elif provider == "Terraces of LW Rehab":
-                LEVEL_OF_SERVICE_BASE_RATES_TERRACES_OF_LAKE_WORTH_REHAB.update(new_rates)
-            elif provider == "Standard Citrus":
-                LEVEL_OF_SERVICE_BASE_RATES_STANDARD_CITRUS_COUNTY.update(new_rates)
-            elif provider == "Arbor Trail Rehab and Skilled Nursing Center":
-                LEVEL_OF_SERVICE_BASE_RATES_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER.update(new_rates)
-            elif provider == "Cedar Creek":
-                LEVEL_OF_SERVICE_BASE_RATES_CEDAR_CREEK.update(new_rates)
-            elif provider == "Citrus Health and Rehab Center":
-                LEVEL_OF_SERVICE_BASE_RATES_CITRUS_HEALTH_AND_REHAB_CENTER.update(new_rates)
-            elif provider == "Clearsky Rehab Hospital of Lecanto":
-                LEVEL_OF_SERVICE_BASE_RATES_CLEARSKY_REHAB_HOSPITAL_OF_LECANTO.update(new_rates)
-            elif provider == "Crystal River Health and Rehab Center":
-                LEVEL_OF_SERVICE_BASE_RATES_CRYSTAL_RIVER_HEALTH_AND_REHAB_CENTER.update(new_rates)
-            elif provider == "Diamond Ridge Health and Rehab Center":
-                LEVEL_OF_SERVICE_BASE_RATES_DIAMOND_RIDGE_HEALTH_AND_REHAB_CENTER.update(new_rates)
-            elif provider == "Sunflower Springs":
-                LEVEL_OF_SERVICE_BASE_RATES_SUNFLOWER_SPRINGS.update(new_rates)
-            elif provider == "Superior Residences of Lecanto":
-                LEVEL_OF_SERVICE_BASE_RATES_SUPERIOR_RESIDENCES_OF_LECANTO.update(new_rates)
-            elif provider == "Tampa General Hospital Crystal River":
-                LEVEL_OF_SERVICE_BASE_RATES_TAMPA_GENERAL_HOSPITAL_CRYSTAL_RIVER.update(new_rates)
-            elif provider == "TGH Crystal River Emergency Center":
-                LEVEL_OF_SERVICE_BASE_RATES_TGH_CRYSTAL_RIVER_EMERGENCY_CENTER.update(new_rates)
-            elif provider == "The Gardens Assisted Living and Memory Care":
-                LEVEL_OF_SERVICE_BASE_RATES_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE.update(new_rates)
-            elif provider == "Vitas Inpatient Hospice":
-                LEVEL_OF_SERVICE_BASE_RATES_VITAS_INPATIENT_HOSPICE.update(new_rates)
-            elif provider == "Standard Monroe":
-                LEVEL_OF_SERVICE_BASE_RATES_STANDARD_MONROE_COUNTY.update(new_rates)
-            elif provider == "Amedysis Hospice":
-                LEVEL_OF_SERVICE_BASE_RATES_AMEDYSIS_HOSPICE.update(new_rates)
-            elif provider == "Baptist Miami":
-                LEVEL_OF_SERVICE_BASE_RATES_BAPTIST_MIAMI.update(new_rates)
-            elif provider == "Oasis at the Keys Nursing and Rehab":
-                LEVEL_OF_SERVICE_BASE_RATES_OASIS_AT_THE_KEYS_NURSING_AND_REHAB.update(new_rates)
-            elif provider == "Palm Vista Nursing and Rehab Center":
-                LEVEL_OF_SERVICE_BASE_RATES_PALM_VISTA_NURSING_AND_REHAB_CENTER.update(new_rates)
-            elif provider == "Vitas Monroe":
-                LEVEL_OF_SERVICE_BASE_RATES_VITAS_MONROE.update(new_rates)
-            else:
-                LEVEL_OF_SERVICE_BASE_RATES.update(new_rates)
+            # Obtiene el diccionario correspondiente o el estándar si no existe
+            rates_dict = PROVIDER_BASE_RATES.get(provider, LEVEL_OF_SERVICE_BASE_RATES)
+            rates_dict.update(new_rates)
         except Exception as e:
             raise RateCalculationError(f"Error al actualizar tarifas: {str(e)}")
 

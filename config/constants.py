@@ -2,7 +2,7 @@
 
 #Diccionario de proveedores por condado 
 COUNTY_PROVIDERS = {
-    "Palm Beach": ["Standard", "Baptist","Boynton Beach Rehab Center","Darcy Hall of Life Care", "Kindred Hospital of Palm Beaches", "Jupiter Medical Center", "Tenants (PBHN)", "Terraces of LW Rehab",],
+    "Palm Beach": ["Standard", "Baptist","Boynton Beach Rehab Center","Darcy Hall of Life Care", "Kindred Hospital of Palm Beaches", "Jupiter Medical Center", "Tenants (PBHN)", "Terraces of Lake Worth Rehab",],
     "Broward": [ "Standard Broward"],
     "Monroe": ["Standard Monroe", "Amedysis Hospice","Baptist Miami","Oasis at the Keys Nursing and Rehab","Palm Vista Nursing and Rehab Center",
                "Vitas Monroe"],
@@ -14,7 +14,6 @@ COUNTY_PROVIDERS = {
                "Vitas Inpatient Hospice"],
 }
 
-
 # Lista de tarifas base por nivel de servicio estandard o base sin importancia del proveedor o county
 LEVEL_OF_SERVICE_BASE_RATES = {
     "WCH": 100,   # Silla de ruedas
@@ -24,9 +23,7 @@ LEVEL_OF_SERVICE_BASE_RATES = {
     "ALS NE": 550,   # Soporte vital avanzado
     "ALS ER": 600,   # Soporte vital avanzado con especialista
     "ALS2": 800,  # Soporte vital avanzado nivel 2
-    "CCT": 950,   # Transporte de cuidado critico
-
-    
+    "CCT": 950,   # Transporte de cuidado critico   
 }
 
 # Incrementos por milla por nivel de servicio Standard
@@ -402,7 +399,7 @@ LEVEL_OF_SERVICE_BASE_RATES_DIAMOND_RIDGE_HEALTH_AND_REHAB_CENTER= {
     
 }
 # Incrementos por milla por nivel de servicio de Cedar Creek
-LEVEL_OF_SERVICE_INCREMENTS_CRYSTAL_RIVER_HEALTH_AND_REHAB_CENTER = {
+LEVEL_OF_SERVICE_INCREMENTS_DIAMOND_RIDGE_HEALTH_AND_REHAB_CENTER = {
     "WCH": 3,
     "STR": 3,
     "BLS NE": 9.15,
@@ -702,6 +699,72 @@ LEVEL_OF_SERVICE_INCREMENTS_VITAS_MONROE = {
 """Aqui termina la seccion de Monroe County"""
 
 
+#Diccionario de mapeo de proveedores para facilitar la seleccion en el frontend
+PROVIDER_BASE_RATES = {
+    
+    "Baptist": LEVEL_OF_SERVICE_BASE_RATES_BAPTIST,
+    "Boynton Beach Rehab Center": LEVEL_OF_SERVICE_BASE_RATES_BOYNTON_BEACH_REHAB_CENTER,
+    "Darcy Hall of Life Care": LEVEL_OF_SERVICE_BASE_RATES_DARCY_HALL_OF_LIFE_CARE,
+    "Kindred Hospital of Palm Beaches": LEVEL_OF_SERVICE_BASE_RATES_KINDRED_HOSPITAL_PALM_BEACHES,
+    "Jupiter Medical Center": LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER,
+    "Tenants (PBHN)": LEVEL_OF_SERVICE_BASE_RATES_TENANTS,
+    "Terraces of Lake Worth Rehab": LEVEL_OF_SERVICE_BASE_RATES_TERRACES_OF_LAKE_WORTH_REHAB,
+    "Standard Citrus": LEVEL_OF_SERVICE_BASE_RATES_STANDARD_CITRUS_COUNTY,
+    "Arbor Trail Rehab and Skilled Nursing Center": LEVEL_OF_SERVICE_BASE_RATES_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER,
+    "Cedar Creek": LEVEL_OF_SERVICE_BASE_RATES_CEDAR_CREEK,
+    "Citrus Health and Rehab Center": LEVEL_OF_SERVICE_BASE_RATES_CITRUS_HEALTH_AND_REHAB_CENTER,
+    "Clearsky Rehab Hospital of Lecanto": LEVEL_OF_SERVICE_BASE_RATES_CLEARSKY_REHAB_HOSPITAL_OF_LECANTO,
+    "Crystal River Health and Rehab Center": LEVEL_OF_SERVICE_BASE_RATES_CRYSTAL_RIVER_HEALTH_AND_REHAB_CENTER,
+    "Diamond Ridge Health and Rehab Center": LEVEL_OF_SERVICE_BASE_RATES_DIAMOND_RIDGE_HEALTH_AND_REHAB_CENTER,
+    "Sunflower Springs": LEVEL_OF_SERVICE_BASE_RATES_SUNFLOWER_SPRINGS,
+    "Superior Residences of Lecanto": LEVEL_OF_SERVICE_BASE_RATES_SUPERIOR_RESIDENCES_OF_LECANTO,
+    "Tampa General Hospital Crystal River": LEVEL_OF_SERVICE_BASE_RATES_TAMPA_GENERAL_HOSPITAL_CRYSTAL_RIVER,
+    "TGH Crystal River Emergency Center": LEVEL_OF_SERVICE_BASE_RATES_TGH_CRYSTAL_RIVER_EMERGENCY_CENTER,
+    "The Gardens Assisted Living and Memory Care": LEVEL_OF_SERVICE_BASE_RATES_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE,
+    "Vitas Inpatient Hospice": LEVEL_OF_SERVICE_BASE_RATES_VITAS_INPATIENT_HOSPICE,
+    "Standard Monroe": LEVEL_OF_SERVICE_BASE_RATES_STANDARD_MONROE_COUNTY,
+    "Amedysis Hospice": LEVEL_OF_SERVICE_BASE_RATES_AMEDYSIS_HOSPICE,
+    "Baptist Miami": LEVEL_OF_SERVICE_BASE_RATES_BAPTIST_MIAMI,
+    "Oasis at the Keys Nursing and Rehab": LEVEL_OF_SERVICE_BASE_RATES_OASIS_AT_THE_KEYS_NURSING_AND_REHAB,
+    "Palm Vista Nursing and Rehab Center": LEVEL_OF_SERVICE_BASE_RATES_PALM_VISTA_NURSING_AND_REHAB_CENTER,
+    "Vitas Monroe": LEVEL_OF_SERVICE_BASE_RATES_VITAS_MONROE,
+    "Standard Broward": LEVEL_OF_SERVICE_BASE_RATES,
+
+    
+}
+
+PROVIDER_INCREMENTS = {
+    "Baptist": LEVEL_OF_SERVICE_INCREMENTS_BAPTIST,
+    "Boynton Beach Rehab Center": LEVEL_OF_SERVICE_INCREMENTS_BOYNTON_BEACH_REHAB_CENTER,
+    "Darcy Hall of Life Care": LEVEL_OF_SERVICE_INCREMENTS_DARCY_HALL_OF_LIFE_CARE,
+    "Kindred Hospital of Palm Beaches": LEVEL_OF_SERVICE_INCREMENTS_KINDRED_HOSPITAL_PALM_BEACHES,
+    "Jupiter Medical Center": LEVEL_OF_SERVICE_INCREMENTS_JUPITER_MEDICAL_CENTER,
+    "Tenants (PBHN)": LEVEL_OF_SERVICE_INCREMENTS_TENANTS,
+    "Terraces of Lake Worth Rehab": LEVEL_OF_SERVICE_INCREMENTS_TERRACES_OF_LAKE_WORTH_REHAB,
+    "Standard Citrus": LEVEL_OF_SERVICE_INCREMENTS_STANDARD_CITRUS_COUNTY,
+    "Arbor Trail Rehab and Skilled Nursing Center": LEVEL_OF_SERVICE_INCREMENTS_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER,
+    "Cedar Creek": LEVEL_OF_SERVICE_INCREMENTS_CEDAR_CREEK,
+    "Citrus Health and Rehab Center": LEVEL_OF_SERVICE_INCREMENTS_CITRUS_HEALTH_AND_REHAB_CENTER,
+    "Clearsky Rehab Hospital of Lecanto": LEVEL_OF_SERVICE_INCREMENTS_CLEARSKY_REHAB_HOSPITAL_OF_LECANTO,
+    "Crystal River Health and Rehab Center": LEVEL_OF_SERVICE_INCREMENTS_CRYSTAL_RIVER_HEALTH_AND_REHAB_CENTER,
+    "Diamond Ridge Health and Rehab Center": LEVEL_OF_SERVICE_INCREMENTS_DIAMOND_RIDGE_HEALTH_AND_REHAB_CENTER,
+    "Sunflower Springs": LEVEL_OF_SERVICE_INCREMENTS_SUNFLOWER_SPRINGS,
+    "Superior Residences of Lecanto": LEVEL_OF_SERVICE_INCREMENTS_SUPERIOR_RESIDENCES_OF_LECANTO,
+    "Tampa General Hospital Crystal River": LEVEL_OF_SERVICE_INCREMENTS_TAMPA_GENERAL_HOSPITAL_CRYSTAL_RIVER,
+    "TGH Crystal River Emergency Center": LEVEL_OF_SERVICE_INCREMENTS_TGH_CRYSTAL_RIVER_EMERGENCY_CENTER,
+    "The Gardens Assisted Living and Memory Care": LEVEL_OF_SERVICE_INCREMENTS_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE,
+    "Vitas Inpatient Hospice": LEVEL_OF_SERVICE_INCREMENTS_VITAS_INPATIENT_HOSPICE,
+    "Standard Monroe": LEVEL_OF_SERVICE_INCREMENTS_STANDARD_MONROE_COUNTY,
+    "Amedysis Hospice": LEVEL_OF_SERVICE_INCREMENTS_AMEDYSIS_HOSPICE,
+    "Baptist Miami": LEVEL_OF_SERVICE_INCREMENTS_BAPTIST_MIAMI,
+    "Oasis at the Keys Nursing and Rehab": LEVEL_OF_SERVICE_INCREMENTS_OASIS_AT_THE_KEYS_NURSING_AND_REHAB,
+    "Palm Vista Nursing and Rehab Center": LEVEL_OF_SERVICE_INCREMENTS_PALM_VISTA_NURSING_AND_REHAB_CENTER,
+    "Vitas Monroe": LEVEL_OF_SERVICE_INCREMENTS_VITAS_MONROE,
+    "Standard Citrus": LEVEL_OF_SERVICE_INCREMENTS_STANDARD_CITRUS_COUNTY,
+    "Standard Monroe": LEVEL_OF_SERVICE_INCREMENTS_STANDARD_MONROE_COUNTY,
+    "Standard Broward": LEVEL_OF_SERVICE_INCREMENTS,
+    
+}
 
 
 
@@ -718,5 +781,9 @@ LEVEL_OF_SERVICE_INCREMENTS_VITAS_MONROE = {
 MAX_RETRIES = 3
 RETRY_DELAY = 2  # seconds
 ROAD_DISTANCE_FACTOR = 1.3  # Factor para estimar distancia por carretera
+
+#Esto es solo para modo salve
+PROVIDER_BASE_RATES["Standard Broward"] = LEVEL_OF_SERVICE_BASE_RATES
+PROVIDER_INCREMENTS["Standard Broward"] = LEVEL_OF_SERVICE_INCREMENTS
 
 
