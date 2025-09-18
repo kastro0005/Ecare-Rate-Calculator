@@ -1,6 +1,6 @@
 import flet as ft
 from typing import Callable
-from config.constants import LEVEL_OF_SERVICE_BASE_RATES
+from config.constants import *
 import importlib
 
 from services.address_autocomplete_service import AddressAutocompleteService
@@ -79,15 +79,18 @@ class RateCalculatorUI:
         self.wait = ft.Checkbox(label="Waiting Time (Hours)", on_change=self.on_waiting_change)
         
         #Selector de configuracion de Condado
-        self.county_selector = ft.Dropdown(label="County", options=[ft.dropdown.Option("Palm Beach"),  
-                                                                           ft.dropdown.Option("Broward"),
-                                                                           ft.dropdown.Option("Monroe"),
-                                                                           ft.dropdown.Option("Citrus"),
-                             ],
-                                                                           value="Palm Beach",
-                                                                           width=200,
-                                                                           
-                                            )
+        self.county_selector = ft.Dropdown(
+    label="County",
+    options=[
+        ft.dropdown.Option("Palm Beach"),
+        ft.dropdown.Option("Broward"),
+        ft.dropdown.Option("Monroe"),
+        ft.dropdown.Option("Citrus"),
+    ],
+    value="Palm Beach",
+    width=200,
+    on_change=self.on_county_change  # <-- conecta el callback
+)
 
         # Selector de configuración de Provider
         self.config_selector = ft.Dropdown(label="Source", options=[ft.dropdown.Option("Standard"),
@@ -95,6 +98,9 @@ class RateCalculatorUI:
                                                                            ft.dropdown.Option("Jupiter Medical Center"),
                                                                             ft.dropdown.Option("Tenants (PBHN)"),
                                                                             ft.dropdown.Option("Arbor Trail Rehab and Skilled Nursing Center"),
+                                                                            ft.dropdown.Option("Cedar Creek"),
+                                                                            ft.dropdown.Option("Citrus Health and Rehab Center"),
+                                                                            ft.dropdown.Option("Clearsky Rehab Hospital of Lecanto")
                              ],
                                                                            value="Standard",
                                                                            width=200,
@@ -306,6 +312,13 @@ class RateCalculatorUI:
                 value = ''.join(filter(str.isdigit, value))
             e.control.value = value
             e.control.update()
+
+    def on_county_change(self, e):
+        county = self.county_selector.value
+        providers = COUNTY_PROVIDERS.get(county, ["Standard"])
+        self.config_selector.options = [ft.dropdown.Option(p) for p in providers]
+        self.config_selector.value = providers[0]  # Selecciona el primero por defecto
+        self.config_selector.update()
 
 
 

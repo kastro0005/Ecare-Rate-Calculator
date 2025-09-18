@@ -32,6 +32,16 @@ class RateService:
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER.get(service_level) 
             elif provider == "Tenants (PBHN)":
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_TENANTS.get(service_level)
+            elif provider == "Arbor Trail Rehab and Skilled Nursing Center":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER.get(service_level)
+            elif provider == "Jupiter Medical Center":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER.get(service_level)
+            elif provider == "Cedar Creek":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_CEDAR_CREEK.get(service_level)
+            elif provider == "Citrus Health and Rehab Center":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_CITRUS_HEALTH_AND_REHAB_CENTER.get(service_level)
+            elif provider == "Clearsky Rehab Hospital of Lecanto":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_CLEASKY_REHAB_HOSPITAL_OF_LECANTO.get(service_level)
             else:
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES.get(service_level)
 
@@ -51,6 +61,14 @@ class RateService:
                 increment = LEVEL_OF_SERVICE_INCREMENTS_TENANTS.get(service_level, 0)
             elif provider == "Arbor Trail Rehab and Skilled Nursing Center":
                 increment = LEVEL_OF_SERVICE_INCREMENTS_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER.get(service_level, 0)
+            elif provider == "HCA":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_JUPITER_MEDICAL_CENTER.get(service_level, 0)
+            elif provider == "Cedar Creek":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_CEDAR_CREEK.get(service_level, 0)
+            elif provider == "Citrus Health and Rehab Center":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_CITRUS_HEALTH_AND_REHAB_CENTER.get(service_level, 0)
+            elif provider == "Clearsky Rehab Hospital of Lecanto":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_CLEASKY_REHAB_HOSPITAL_OF_LECANTO.get(service_level, 0)
             else:
                 increment = LEVEL_OF_SERVICE_INCREMENTS.get(service_level, 0)
             rate = base_rate + (increment * distance)
@@ -96,6 +114,12 @@ class RateService:
                 LEVEL_OF_SERVICE_BASE_RATES_TENANTS.update(new_rates)
             elif provider == "Arbor Trail Rehab and Skilled Nursing Center":
                 LEVEL_OF_SERVICE_BASE_RATES_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER.update(new_rates)
+            elif provider == "Cedar Creek":
+                LEVEL_OF_SERVICE_BASE_RATES_CEDAR_CREEK.update(new_rates)
+            elif provider == "Citrus Health and Rehab Center":
+                LEVEL_OF_SERVICE_BASE_RATES_CITRUS_HEALTH_AND_REHAB_CENTER.update(new_rates)
+            elif provider == "Clearsky Rehab Hospital of Lecanto":
+                LEVEL_OF_SERVICE_BASE_RATES_CLEASKY_REHAB_HOSPITAL_OF_LECANTO.update(new_rates)
             else:
                 LEVEL_OF_SERVICE_BASE_RATES.update(new_rates)
         except Exception as e:
@@ -127,8 +151,6 @@ class RateService:
             # Solo actualiza el diccionario del proveedor seleccionado
             if provider == "Baptist":
                 text = replace_dict("LEVEL_OF_SERVICE_BASE_RATES_BAPTIST", LEVEL_OF_SERVICE_BASE_RATES_BAPTIST, text)
-            elif provider == "HCA":
-                text = replace_dict("LEVEL_OF_SERVICE_BASE_RATES_HCA", LEVEL_OF_SERVICE_BASE_RATES_HCA, text)
             else:
                 text = replace_dict("LEVEL_OF_SERVICE_BASE_RATES", LEVEL_OF_SERVICE_BASE_RATES, text)
 

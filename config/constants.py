@@ -1,5 +1,17 @@
 #Seccion de los base rates de acuerdo a cada nivel de servicio de cada proveedor
 
+
+COUNTY_PROVIDERS = {
+    "Palm Beach": ["Standard", "Baptist", "Jupiter Medical Center", "Tenants (PBHN)"],
+    "Broward": [ ],
+    "Monroe": [],
+    "Citrus": [ "Arbor Trail Rehab and Skilled Nursing Center", "Cedar Creek", "Citrus Health and Rehab Center", "Clearsky Rehab Hospital of Lecanto"],
+}
+
+
+
+
+
 # Lista de tarifas base por nivel de servicio estandard
 LEVEL_OF_SERVICE_BASE_RATES = {
     "WCH": 100,   # Silla de ruedas
@@ -163,7 +175,75 @@ LEVEL_OF_SERVICE_INCREMENTS_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER = {
     "CCT": 9.15 , 
 }
 
+# Lista de tarifas base por nivel de servicio de Cedar Creek
+LEVEL_OF_SERVICE_BASE_RATES_CEDAR_CREEK = {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 80,  # Camilla
+    "BLS NE": 272.61,   # Soporte vital básico
+    "BLS ER": 436.17, # Soporte vital básico con especialista
+    "ALS NE": 327.13,   # Soporte vital avanzado
+    "ALS ER": 517.96,   # Soporte vital avanzado con especialista
+    "ALS2": 749.67,  # Soporte vital avanzado nivel 2
+    "CCT": 885.98,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio de Cedar Creek
+LEVEL_OF_SERVICE_INCREMENTS_CEDAR_CREEK = {
+    "WCH": 2.5,
+    "STR": 5,
+    "BLS NE": 9.15,
+    "BLS ER": 9.15, # Soporte vital básico con especialista
+    "ALS NE": 9.15 ,
+    "ALS ER": 9.15 ,  
+    "ALS2": 9.15,  # Soporte vital avanzado nivel 2
+    "CCT": 9.15 , 
+}
 
+LEVEL_OF_SERVICE_BASE_RATES_CITRUS_HEALTH_AND_REHAB_CENTER = {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 272.61,   # Soporte vital básico
+    "BLS ER": 436.17, # Soporte vital básico con especialista
+    "ALS NE": 327.13,   # Soporte vital avanzado
+    "ALS ER": 517.96,   # Soporte vital avanzado con especialista
+    "ALS2": 749.67,  # Soporte vital avanzado nivel 2
+    "CCT": 885.98,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio de Cedar Creek
+LEVEL_OF_SERVICE_INCREMENTS_CITRUS_HEALTH_AND_REHAB_CENTER = {
+    "WCH": 2.5,
+    "STR": 3.5,
+    "BLS NE": 9.15,
+    "BLS ER": 9.15, # Soporte vital básico con especialista
+    "ALS NE": 9.15 ,
+    "ALS ER": 9.15 ,  
+    "ALS2": 9.15,  # Soporte vital avanzado nivel 2
+    "CCT": 9.15 , 
+}
+
+LEVEL_OF_SERVICE_BASE_RATES_CLEARSKY_REHAB_HOSPITAL_OF_LECANTO = {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 80,  # Camilla
+    "BLS NE": 272.61,   # Soporte vital básico
+    "BLS ER": 436.17, # Soporte vital básico con especialista
+    "ALS NE": 327.13,   # Soporte vital avanzado
+    "ALS ER": 517.96,   # Soporte vital avanzado con especialista
+    "ALS2": 749.67,  # Soporte vital avanzado nivel 2
+    "CCT": 885.98,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio de Cedar Creek
+LEVEL_OF_SERVICE_INCREMENTS_CLEARSKY_REHAB_HOSPITAL_OF_LECANTO = {
+    "WCH": 3,
+    "STR": 3,
+    "BLS NE": 9.15,
+    "BLS ER": 9.15, # Soporte vital básico con especialista
+    "ALS NE": 9.15 ,
+    "ALS ER": 9.15 ,  
+    "ALS2": 9.15,  # Soporte vital avanzado nivel 2
+    "CCT": 9.15 , 
+}
 
 
 
