@@ -92,8 +92,9 @@ class RateCalculatorUI:
         # Selector de configuración de Provider
         self.config_selector = ft.Dropdown(label="Source", options=[ft.dropdown.Option("Standard"),
                                                                            ft.dropdown.Option("Baptist"),
-                                                                           ft.dropdown.Option("HCA"),
-                                                                            ft.dropdown.Option("Tenants (PBHD)"),
+                                                                           ft.dropdown.Option("Jupiter Medical Center"),
+                                                                            ft.dropdown.Option("Tenants (PBHN)"),
+                                                                            ft.dropdown.Option("Arbor Trail Rehab and Skilled Nursing Center"),
                              ],
                                                                            value="Standard",
                                                                            width=200,

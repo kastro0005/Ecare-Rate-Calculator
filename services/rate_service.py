@@ -29,7 +29,9 @@ class RateService:
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_BAPTIST.get(service_level) 
                 provider = provider
             elif provider == "HCA":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_HCA.get(service_level) 
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER.get(service_level) 
+            elif provider == "Tenants (PBHN)":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_TENANTS.get(service_level)
             else:
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES.get(service_level)
 
@@ -43,10 +45,12 @@ class RateService:
             #Aki voy a intentar hacer que el incremento por milla sea diferente segun el proveedor
             if provider == "Baptist":
                 increment = LEVEL_OF_SERVICE_INCREMENTS_BAPTIST.get(service_level, 0)
-            elif provider == "HCA":
-                increment = LEVEL_OF_SERVICE_INCREMENTS_HCA.get(service_level, 0)
-            elif provider == "Tenants":
+            elif provider == "Jupiter Medical Center":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_JUPITER_MEDICAL_CENTER.get(service_level, 0)
+            elif provider == "Tenants (PBHN)":
                 increment = LEVEL_OF_SERVICE_INCREMENTS_TENANTS.get(service_level, 0)
+            elif provider == "Arbor Trail Rehab and Skilled Nursing Center":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER.get(service_level, 0)
             else:
                 increment = LEVEL_OF_SERVICE_INCREMENTS.get(service_level, 0)
             rate = base_rate + (increment * distance)
@@ -86,8 +90,12 @@ class RateService:
         try:
             if provider == "Baptist":
                 LEVEL_OF_SERVICE_BASE_RATES_BAPTIST.update(new_rates)
-            elif provider == "HCA":
-                LEVEL_OF_SERVICE_BASE_RATES_HCA.update(new_rates)
+            elif provider == "Jupiter Medical Center":
+                LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER.update(new_rates)
+            elif provider == "Tenants (PBHN)":
+                LEVEL_OF_SERVICE_BASE_RATES_TENANTS.update(new_rates)
+            elif provider == "Arbor Trail Rehab and Skilled Nursing Center":
+                LEVEL_OF_SERVICE_BASE_RATES_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER.update(new_rates)
             else:
                 LEVEL_OF_SERVICE_BASE_RATES.update(new_rates)
         except Exception as e:

@@ -83,7 +83,7 @@ LEVEL_OF_SERVICE_INCREMENTS_BAPTIST = {
 }
 
 # Lista de tarifas base por nivel de servicio de HCA
-LEVEL_OF_SERVICE_BASE_RATES_HCA = {
+LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER = {
     "WCH": 70,   # Silla de ruedas
     "STR": 105,  # Camilla
     "BLS NE": 450,   # Soporte vital básico
@@ -94,7 +94,7 @@ LEVEL_OF_SERVICE_BASE_RATES_HCA = {
     "CCT": 950,   # Transporte de cuidado critico
     
 }
-LEVEL_OF_SERVICE_INCREMENTS_HCA = {
+LEVEL_OF_SERVICE_INCREMENTS_JUPITER_MEDICAL_CENTER = {
     "WCH": 5,
     "STR": 9,
     "BLS NE": 13,
@@ -128,6 +128,43 @@ LEVEL_OF_SERVICE_INCREMENTS_TENANTS = {
     "ALS2": 9.15,  # Soporte vital avanzado nivel 2
     "CCT": 9.15 , 
 }
+
+
+
+
+
+
+
+
+
+
+"""Citrus County"""
+# Lista de tarifas base por nivel de servicio de Arbor Trail Rehab and Skilled Nursing Center
+LEVEL_OF_SERVICE_BASE_RATES_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER = {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 80,  # Camilla
+    "BLS NE": 272.61,   # Soporte vital básico
+    "BLS ER": 436.17, # Soporte vital básico con especialista
+    "ALS NE": 327.13,   # Soporte vital avanzado
+    "ALS ER": 517.96,   # Soporte vital avanzado con especialista
+    "ALS2": 749.67,  # Soporte vital avanzado nivel 2
+    "CCT": 885.98,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio
+LEVEL_OF_SERVICE_INCREMENTS_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER = {
+    "WCH": 3,
+    "STR": 3,
+    "BLS NE": 9.15,
+    "BLS ER": 9.15, # Soporte vital básico con especialista
+    "ALS NE": 9.15 ,
+    "ALS ER": 9.15 ,  
+    "ALS2": 9.15,  # Soporte vital avanzado nivel 2
+    "CCT": 9.15 , 
+}
+
+
+
 
 
 
