@@ -27,15 +27,22 @@ class RateService:
             #Logica de seleccion del proveedor
             if provider == "Baptist":
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_BAPTIST.get(service_level) 
-                provider = provider
-            elif provider == "HCA":
+            elif provider == "Boynton Beach Rehab Center":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_BOYNTON_BEACH_REHAB_CENTER.get(service_level)
+            elif provider == "Darcy Hall of Life Care":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_DARCY_HALL_OF_LIFE_CARE.get(service_level)
+            elif provider == "Kindred Hospital of Palm Beaches":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_KINDRED_HOSPITAL_PALM_BEACHES.get(service_level)
+            elif provider == "Jupiter Medical Center":
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER.get(service_level) 
+            elif provider == "Terraces of LW Rehab":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_TERRACES_OF_LAKE_WORTH_REHAB.get(service_level)
             elif provider == "Tenants (PBHN)":
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_TENANTS.get(service_level)
+            elif provider == "Standard Citrus":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_STANDARD_CITRUS_COUNTY.get(service_level)
             elif provider == "Arbor Trail Rehab and Skilled Nursing Center":
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER.get(service_level)
-            elif provider == "Jupiter Medical Center":
-                base_rate = LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER.get(service_level)
             elif provider == "Cedar Creek":
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_CEDAR_CREEK.get(service_level)
             elif provider == "Citrus Health and Rehab Center":
@@ -58,6 +65,8 @@ class RateService:
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE.get(service_level)
             elif provider == "Vitas Inpatient Hospice":
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_VITAS_INPATIENT_HOSPICE.get(service_level)
+            elif provider == "Standard Monroe":
+                base_rate = LEVEL_OF_SERVICE_BASE_RATES_STANDARD_MONROE_COUNTY.get(service_level)
             elif provider == "Amedysis Hospice":
                 base_rate = LEVEL_OF_SERVICE_BASE_RATES_AMEDYSIS_HOSPICE.get(service_level)
             elif provider == "Baptist Miami":
@@ -81,10 +90,20 @@ class RateService:
             #Aki voy a intentar hacer que el incremento por milla sea diferente segun el proveedor
             if provider == "Baptist":
                 increment = LEVEL_OF_SERVICE_INCREMENTS_BAPTIST.get(service_level, 0)
+            elif provider == "Boynton Beach Rehab Center":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_BOYNTON_BEACH_REHAB_CENTER.get(service_level, 0)
+            elif provider == "Darcy Hall of Life Care":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_DARCY_HALL_OF_LIFE_CARE.get(service_level, 0)
+            elif provider == "Kindred Hospital of Palm Beaches":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_KINDRED_HOSPITAL_PALM_BEACHES.get(service_level, 0)
             elif provider == "Jupiter Medical Center":
                 increment = LEVEL_OF_SERVICE_INCREMENTS_JUPITER_MEDICAL_CENTER.get(service_level, 0)
             elif provider == "Tenants (PBHN)":
                 increment = LEVEL_OF_SERVICE_INCREMENTS_TENANTS.get(service_level, 0)
+            elif provider == "Terraces of LW Rehab":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_TERRACES_OF_LAKE_WORTH_REHAB.get(service_level, 0)
+            elif provider == "Standard Citrus":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_STANDARD_CITRUS_COUNTY.get(service_level, 0)
             elif provider == "Arbor Trail Rehab and Skilled Nursing Center":
                 increment = LEVEL_OF_SERVICE_INCREMENTS_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER.get(service_level, 0)
             elif provider == "HCA":
@@ -111,6 +130,8 @@ class RateService:
                 increment = LEVEL_OF_SERVICE_INCREMENTS_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE.get(service_level, 0)
             elif provider == "Vitas Inpatient Hospice":
                 increment = LEVEL_OF_SERVICE_INCREMENTS_VITAS_INPATIENT_HOSPICE.get(service_level, 0)
+            elif provider == "Standard Monroe":
+                increment = LEVEL_OF_SERVICE_INCREMENTS_STANDARD_MONROE_COUNTY.get(service_level, 0)
             elif provider == "Amedysis Hospice":
                 increment = LEVEL_OF_SERVICE_INCREMENTS_AMEDYSIS_HOSPICE.get(service_level, 0)
             elif provider == "Baptist Miami":
@@ -160,10 +181,20 @@ class RateService:
         try:
             if provider == "Baptist":
                 LEVEL_OF_SERVICE_BASE_RATES_BAPTIST.update(new_rates)
+            elif provider == "Boynton Beach Rehab Center":
+                LEVEL_OF_SERVICE_BASE_RATES_BOYNTON_BEACH_REHAB_CENTER.update(new_rates)
+            elif provider == "Darcy Hall of Life Care": 
+                LEVEL_OF_SERVICE_BASE_RATES_DARCY_HALL_OF_LIFE_CARE.update(new_rates)
+            elif provider == "Kindred Hospital of Palm Beaches":
+                LEVEL_OF_SERVICE_BASE_RATES_KINDRED_HOSPITAL_PALM_BEACHES.update(new_rates)
             elif provider == "Jupiter Medical Center":
                 LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER.update(new_rates)
             elif provider == "Tenants (PBHN)":
                 LEVEL_OF_SERVICE_BASE_RATES_TENANTS.update(new_rates)
+            elif provider == "Terraces of LW Rehab":
+                LEVEL_OF_SERVICE_BASE_RATES_TERRACES_OF_LAKE_WORTH_REHAB.update(new_rates)
+            elif provider == "Standard Citrus":
+                LEVEL_OF_SERVICE_BASE_RATES_STANDARD_CITRUS_COUNTY.update(new_rates)
             elif provider == "Arbor Trail Rehab and Skilled Nursing Center":
                 LEVEL_OF_SERVICE_BASE_RATES_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER.update(new_rates)
             elif provider == "Cedar Creek":
@@ -188,6 +219,8 @@ class RateService:
                 LEVEL_OF_SERVICE_BASE_RATES_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE.update(new_rates)
             elif provider == "Vitas Inpatient Hospice":
                 LEVEL_OF_SERVICE_BASE_RATES_VITAS_INPATIENT_HOSPICE.update(new_rates)
+            elif provider == "Standard Monroe":
+                LEVEL_OF_SERVICE_BASE_RATES_STANDARD_MONROE_COUNTY.update(new_rates)
             elif provider == "Amedysis Hospice":
                 LEVEL_OF_SERVICE_BASE_RATES_AMEDYSIS_HOSPICE.update(new_rates)
             elif provider == "Baptist Miami":

@@ -1,13 +1,21 @@
 #Seccion de los base rates de acuerdo a cada nivel de servicio de cada proveedor
 
+#Diccionario de proveedores por condado 
+COUNTY_PROVIDERS = {
+    "Palm Beach": ["Standard", "Baptist","Boynton Beach Rehab Center","Darcy Hall of Life Care", "Kindred Hospital of Palm Beaches", "Jupiter Medical Center", "Tenants (PBHN)", "Terraces of LW Rehab",],
+    "Broward": [ "Standard Broward"],
+    "Monroe": ["Standard Monroe", "Amedysis Hospice","Baptist Miami","Oasis at the Keys Nursing and Rehab","Palm Vista Nursing and Rehab Center",
+               "Vitas Monroe"],
+    "Citrus": [ "Standard Citrus", "Arbor Trail Rehab and Skilled Nursing Center", "Cedar Creek", 
+               "Citrus Health and Rehab Center",  "Clearsky Rehab Hospital of Lecanto", 
+               "Crystal River Health and Rehab Center", "Diamond Ridge Health and Rehab Center",
+               "Sunflower Springs", "Superior Residences of Lecanto","Tampa General Hospital Crystal River",
+               "TGH Crystal River Emergency Center","The Gardens Assisted Living and Memory Care",
+               "Vitas Inpatient Hospice"],
+}
 
 
-
-
-
-
-
-# Lista de tarifas base por nivel de servicio estandard
+# Lista de tarifas base por nivel de servicio estandard o base sin importancia del proveedor o county
 LEVEL_OF_SERVICE_BASE_RATES = {
     "WCH": 100,   # Silla de ruedas
     "STR": 175,  # Camilla
@@ -65,6 +73,7 @@ solo hay que agregar otro diccionario con las tarifas base de ese proveedor y ma
  los mismos niveles de servicio y estructura, y orden que los demas diccionarios
 """
 
+"""Aqui empieza la seccion de palm beach county"""
 
 # Lista de tarifas base por nivel de servicio de Baptist
 LEVEL_OF_SERVICE_BASE_RATES_BAPTIST = {
@@ -136,16 +145,134 @@ LEVEL_OF_SERVICE_INCREMENTS_TENANTS = {
     "CCT": 9.15 , 
 }
 
+# Lista de tarifas base por nivel de servicio de Boynton Beach Rehab Center
+LEVEL_OF_SERVICE_BASE_RATES_BOYNTON_BEACH_REHAB_CENTER = {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 284.16,   # Soporte vital básico
+    "BLS ER": 454.66, # Soporte vital básico con especialista
+    "ALS NE": 340.99,   # Soporte vital avanzado
+    "ALS ER": 539.91,   # Soporte vital avanzado con especialista
+    "ALS2": 781.84,  # Soporte vital avanzado nivel 2
+    "CCT": 923.52,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio
+LEVEL_OF_SERVICE_INCREMENTS_BOYNTON_BEACH_REHAB_CENTER = {
+    "WCH": 2.5,
+    "STR": 5,
+    "BLS NE": 9.15,
+    "BLS ER": 9.15, # Soporte vital básico con especialista
+    "ALS NE": 9.15 ,
+    "ALS ER": 9.15 ,  
+    "ALS2": 9.15,  # Soporte vital avanzado nivel 2
+    "CCT": 9.15 , 
+}
+# Lista de tarifas base por nivel de servicio de Darcy Hall of Life Care
+LEVEL_OF_SERVICE_BASE_RATES_DARCY_HALL_OF_LIFE_CARE = {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 284.16,   # Soporte vital básico
+    "BLS ER": 454.66, # Soporte vital básico con especialista
+    "ALS NE": 340.99,   # Soporte vital avanzado
+    "ALS ER": 539.91,   # Soporte vital avanzado con especialista
+    "ALS2": 781.84,  # Soporte vital avanzado nivel 2
+    "CCT": 923.52,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio
+LEVEL_OF_SERVICE_INCREMENTS_DARCY_HALL_OF_LIFE_CARE = {
+    "WCH": 2.5,
+    "STR": 5,
+    "BLS NE": 9.15,
+    "BLS ER": 9.15, # Soporte vital básico con especialista
+    "ALS NE": 9.15 ,
+    "ALS ER": 9.15 ,  
+    "ALS2": 9.15,  # Soporte vital avanzado nivel 2
+    "CCT": 9.15 , 
+}
+# Lista de tarifas base por nivel de servicio de Kindred Hospital Palm Beaches
+LEVEL_OF_SERVICE_BASE_RATES_KINDRED_HOSPITAL_PALM_BEACHES = {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 284.16,   # Soporte vital básico
+    "BLS ER": 454.66, # Soporte vital básico con especialista
+    "ALS NE": 340.99,   # Soporte vital avanzado
+    "ALS ER": 539.91,   # Soporte vital avanzado con especialista
+    "ALS2": 781.84,  # Soporte vital avanzado nivel 2
+    "CCT": 923.52,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio
+LEVEL_OF_SERVICE_INCREMENTS_KINDRED_HOSPITAL_PALM_BEACHES = {
+    "WCH": 2.5,
+    "STR": 5,
+    "BLS NE": 9.15,
+    "BLS ER": 9.15, # Soporte vital básico con especialista
+    "ALS NE": 9.15 ,
+    "ALS ER": 9.15 ,  
+    "ALS2": 9.15,  # Soporte vital avanzado nivel 2
+    "CCT": 9.15 , 
+}
+# Lista de tarifas base por nivel de servicio de Terraces of Lake Worth Rehab
+LEVEL_OF_SERVICE_BASE_RATES_TERRACES_OF_LAKE_WORTH_REHAB = {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 284.16,   # Soporte vital básico
+    "BLS ER": 454.66, # Soporte vital básico con especialista
+    "ALS NE": 340.99,   # Soporte vital avanzado
+    "ALS ER": 539.91,   # Soporte vital avanzado con especialista
+    "ALS2": 781.84,  # Soporte vital avanzado nivel 2
+    "CCT": 923.52,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio
+LEVEL_OF_SERVICE_INCREMENTS_TERRACES_OF_LAKE_WORTH_REHAB = {
+    "WCH": 2.5,
+    "STR": 5,
+    "BLS NE": 9.15,
+    "BLS ER": 9.15, # Soporte vital básico con especialista
+    "ALS NE": 9.15 ,
+    "ALS ER": 9.15 ,  
+    "ALS2": 9.15,  # Soporte vital avanzado nivel 2
+    "CCT": 9.15 , 
+}
 
 
 
 
-
-
+"""Aqui termina la seccion de palm beach county"""
 
 
 
 """Citrus County"""
+
+LEVEL_OF_SERVICE_BASE_RATES_STANDARD_CITRUS_COUNTY = {
+    "WCH": 100,   # Silla de ruedas
+    "STR": 175,  # Camilla
+    "BLS NE": 430.5,   # Soporte vital básico
+    "BLS ER": 616.35, # Soporte vital básico con especialista
+    "ALS NE": 740.25,   # Soporte vital avanzado
+    "ALS ER": 929.25,   # Soporte vital avanzado con especialista
+    "ALS2": 1113,  # Soporte vital avanzado nivel 2
+    "CCT": 1849.05,   # Transporte de cuidado critico
+
+    
+}
+
+# Incrementos por milla por nivel de servicio Standard
+LEVEL_OF_SERVICE_INCREMENTS_STANDARD_CITRUS_COUNTY = {
+    "WCH": 5,
+    "STR": 9,
+    "BLS NE": 18.49,
+    "BLS ER": 18.49, # Soporte vital básico con especialista
+    "ALS NE": 18.49 ,
+    "ALS ER": 18.49 ,  
+    "ALS2": 18.49,  # Soporte vital avanzado nivel 2
+    "CCT": 18.49 , 
+}
+
+
 # Lista de tarifas base por nivel de servicio de Arbor Trail Rehab and Skilled Nursing Center
 LEVEL_OF_SERVICE_BASE_RATES_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER = {
     "WCH": 65,   # Silla de ruedas
@@ -428,6 +555,32 @@ LEVEL_OF_SERVICE_INCREMENTS_VITAS_INPATIENT_HOSPICE = {
 
 """Aqui empieza Monroe County"""
 
+
+LEVEL_OF_SERVICE_BASE_RATES_STANDARD_MONROE_COUNTY = {
+    "WCH": 150,   # Silla de ruedas
+    "STR": 250,  # Camilla
+    "BLS NE": 600,   # Soporte vital básico
+    "BLS ER": 600, # Soporte vital básico con especialista
+    "ALS NE": 800,   # Soporte vital avanzado
+    "ALS ER": 863.53,   # Soporte vital avanzado con especialista
+    "ALS2": 988.38,  # Soporte vital avanzado nivel 2
+    "CCT": 988.38,   # Transporte de cuidado critico
+
+    
+}
+
+# Incrementos por milla por nivel de servicio Standard
+LEVEL_OF_SERVICE_INCREMENTS_STANDARD_MONROE_COUNTY = {
+    "WCH": 6,
+    "STR": 9,
+    "BLS NE": 17,
+    "BLS ER": 17, # Soporte vital básico con especialista
+    "ALS NE": 17 ,
+    "ALS ER": 17 ,  
+    "ALS2": 17,  # Soporte vital avanzado nivel 2
+    "CCT": 17 , 
+}
+
 # Lista de tarifas base por nivel de servicio de Amedysis Hospice
 LEVEL_OF_SERVICE_BASE_RATES_AMEDYSIS_HOSPICE= {
     "WCH": 65,   # Silla de ruedas
@@ -547,19 +700,9 @@ LEVEL_OF_SERVICE_INCREMENTS_VITAS_MONROE = {
 
 
 """Aqui termina la seccion de Monroe County"""
-#Diccionario de proveedores por condado 
-COUNTY_PROVIDERS = {
-    "Palm Beach": ["Standard", "Baptist", "Jupiter Medical Center", "Tenants (PBHN)"],
-    "Broward": [ "Standard"],
-    "Monroe": ["Standard", "Amedysis Hospice","Baptist Miami","Oasis at the Keys Nursing and Rehab","Palm Vista Nursing and Rehab Center",
-               "Vitas Monroe"],
-    "Citrus": [ "Standard", "Arbor Trail Rehab and Skilled Nursing Center", "Cedar Creek", 
-               "Citrus Health and Rehab Center",  "Clearsky Rehab Hospital of Lecanto", 
-               "Crystal River Health and Rehab Center", "Diamond Ridge Health and Rehab Center",
-               "Sunflower Springs", "Superior Residences of Lecanto","Tampa General Hospital Crystal River",
-               "TGH Crystal River Emergency Center","The Gardens Assisted Living and Memory Care",
-               "Vitas Inpatient Hospice"],
-}
+
+
+
 
 
 
