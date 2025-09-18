@@ -80,47 +80,27 @@ class RateCalculatorUI:
         
         #Selector de configuracion de Condado
         self.county_selector = ft.Dropdown(
-    label="County",
-    options=[
+        label="County",
+        options=[
         ft.dropdown.Option("Palm Beach"),
         ft.dropdown.Option("Broward"),
         ft.dropdown.Option("Monroe"),
         ft.dropdown.Option("Citrus"),
-    ],
-    value="Palm Beach",
-    width=200,
-    on_change=self.on_county_change  # <-- conecta el callback
-)
+        ],
+        value="Palm Beach",
+        width=200,
+        on_change=self.on_county_change  # <-- conecta el callback para el cambio de condados
+        )
 
-        # Selector de configuración de Provider
-        self.config_selector = ft.Dropdown(label="Source", options=[ft.dropdown.Option("Standard"),
-                                                                           ft.dropdown.Option("Baptist"),
-                                                                           ft.dropdown.Option("Jupiter Medical Center"),
-                                                                            ft.dropdown.Option("Tenants (PBHN)"),
-                                                                            ft.dropdown.Option("Arbor Trail Rehab and Skilled Nursing Center"),
-                                                                            ft.dropdown.Option("Cedar Creek"),
-                                                                            ft.dropdown.Option("Citrus Health and Rehab Center"),
-                                                                            ft.dropdown.Option("Clearsky Rehab Hospital of Lecanto"),
-                                                                            ft.dropdown.Option("Crystal River Health and Rehab Center"),
-                                                                            ft.dropdown.Option("Diamond Ridge Health and Rehab Center"),
-                                                                            ft.dropdown.Option("Sunflower Springs"),
-                                                                            ft.dropdown.Option("Superior Residences of Lecanto"),
-                                                                            ft.dropdown.Option("Tampa General Hospital Crystal River"),
-                                                                            ft.dropdown.Option("TGH Crystal River Emergency Center"),
-                                                                            ft.dropdown.Option("The Gardens Assisted Living and Memory Care"),
-                                                                            ft.dropdown.Option("Vitas Inpatient Hospice"),
-                                                                            ft.dropdown.Option("Amedysis Hospice"),
-                                                                            ft.dropdown.Option("Baptist Miami"),
-                                                                            ft.dropdown.Option("Oasis at the Keys Nursing and Rehab"),
-                                                                            ft.dropdown.Option("Palm Vista Nursing and Rehab Center"),
-                                                                            ft.dropdown.Option("Vitas Monroe"),
-                             ],
-                                                                           value="Standard",
-                                                                           width=200,
-                                                                           
-                                            )
-
-
+        # Selector de configuración de Provider confugurado dinamicamente para mostrar primero los de palm beach y si cambias salen ls demas
+        self.config_selector = ft.Dropdown(
+            label="Source",
+            options=[ft.dropdown.Option(p) for p in COUNTY_PROVIDERS["Palm Beach"]],
+            value=COUNTY_PROVIDERS["Palm Beach"][0],
+            width=200,
+        )
+        
+        
         # Indicador de progreso y mensajes de estado
         self.progress = ft.ProgressBar(visible=False)
         self.status_text = ft.Text("")
