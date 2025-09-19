@@ -5,7 +5,6 @@ import importlib
 from threading import Thread
 from functools import partial
 
-from services.address_autocomplete_service import AddressAutocompleteService
 from services.google_places_service import get_address_suggestions, get_google_maps_distance
 
 class RateCalculatorUI:
@@ -135,7 +134,7 @@ class RateCalculatorUI:
         )
 
         self.map_link = ft.TextButton(
-            text="Ver ruta en Google Maps",
+            text="Show route on  Google Maps",
             visible=False,
             url="",  # Se actualizará dinámicamente
             style=ft.ButtonStyle(color="blue")
@@ -181,18 +180,17 @@ class RateCalculatorUI:
             #necesito hacer que la ventana entera ft se update
             return
         def fetch():
-            suggestions = AddressAutocompleteService.get_suggestions(query)
+            suggestions = get_address_suggestions(query)
             self.suggestions1.controls.clear()
             for suggestion in suggestions:
                 self.suggestions1.controls.append(
                     ft.Row([
                         ft.ListTile(
                             title=ft.Text(suggestion),
-                            # Al hacer clic en la suggestion, copia el valor al campo de texto
                             on_click=lambda e, s=suggestion: self.copy_suggestion1_to_textfield(s)
                         ),
                         ft.IconButton(
-                            icon=ft.icons.CONTENT_COPY,
+                            icon=ft.Icons.CONTENT_COPY,
                             tooltip="Copiar esta dirección",
                             on_click=lambda e, s=suggestion: self.copy_suggestion1_to_textfield(s)
                         )
@@ -231,7 +229,7 @@ class RateCalculatorUI:
             return
 
         def fetch():
-            suggestions = AddressAutocompleteService.get_suggestions(query)
+            suggestions = get_address_suggestions(query)
             self.suggestions2.controls.clear()
             for suggestion in suggestions:
                 self.suggestions2.controls.append(
@@ -391,6 +389,7 @@ class RateCalculatorUI:
         self.current_suggestion1 = suggestion
 
     def copy_suggestion1_to_textfield(self, suggestion):
+        print(f"Suggestion seleccionada: {suggestion}")  # <-- Imprime en consola
         self.address1.value = suggestion
         self.selected_address1 = suggestion
         self.address1.update()
