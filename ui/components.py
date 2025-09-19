@@ -23,12 +23,12 @@ class RateCalculatorUI:
             on_change=self.on_address1_change,
             on_blur=self.on_address1_blur
         )
-        self.address1_suggestions = ft.Dropdown(
+        """self.address1_suggestions = ft.Dropdown(
             label="Suggestions",
             options=[],
             visible=False,
             width=400,
-        )  # O usa un Dropdown, PopupMenu, etc.
+        ) """ # O usa un Dropdown, PopupMenu, etc.
 
         self.address2 = ft.TextField(
             label="Second Address",
@@ -37,12 +37,12 @@ class RateCalculatorUI:
             on_change=self.on_address2_change,
             on_blur=self.on_address2_blur
         )
-        self.address2_suggestions = ft.Dropdown(
+        """self.address2_suggestions = ft.Dropdown(
             label="Suggestions",
             options=[],
             visible=False,
             width=400,
-        )
+        )"""
 
         self.distance_mode = ft.Tabs(
             selected_index=0,  # Esto selecciona "Enter distance manually" por defecto cambiar a 0 si quieres que sea por
@@ -146,14 +146,12 @@ class RateCalculatorUI:
                     ft.Column([
                         self.address1,
                         self.suggestions1,
-                        self.address1_suggestions,
                     ])
                 ], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([
                     ft.Column([
                         self.address2,
                         self.suggestions2,
-                        self.address2_suggestions,  # <-- Agrega aquí
                     ])
                 ], alignment=ft.MainAxisAlignment.CENTER),
             ])
@@ -177,7 +175,6 @@ class RateCalculatorUI:
             self.suggestions1.visible = False
             self.address1.update()
             self.suggestions1.update()
-            #necesito hacer que la ventana entera ft se update
             return
         def fetch():
             suggestions = get_address_suggestions(query)
@@ -242,10 +239,10 @@ class RateCalculatorUI:
             self.suggestions2.update()
         Thread(target=fetch).start()
 
-        suggestions = get_address_suggestions(query)
+        """suggestions = get_address_suggestions(query)
         self.address2_suggestions.options = [ft.dropdown.Option(s) for s in suggestions]
         self.address2_suggestions.visible = bool(suggestions)
-        self.address2_suggestions.update()
+        self.address2_suggestions.update()"""
 
     def select_address2(self, suggestion):
         self.address2.value = suggestion
