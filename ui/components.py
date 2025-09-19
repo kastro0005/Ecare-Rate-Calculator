@@ -9,7 +9,8 @@ from services.address_autocomplete_service import AddressAutocompleteService
 from services.google_places_service import get_address_suggestions, get_google_maps_distance
 
 class RateCalculatorUI:
-    def __init__(self, calculate_callback: Callable, open_rates_dialog_callback: Callable):
+    def __init__(self, page, calculate_callback: Callable, open_rates_dialog_callback: Callable):
+        self.page = page
         self.calculate_callback = calculate_callback
         self.open_rates_dialog_callback = open_rates_dialog_callback
 
@@ -101,6 +102,7 @@ class RateCalculatorUI:
         ft.dropdown.Option("Broward"),
         ft.dropdown.Option("Monroe"),
         ft.dropdown.Option("Citrus"),
+        ft.dropdown.Option("Other")  # Nueva opción para "Other"
         ],
         value="Palm Beach",
         width=200,
@@ -176,6 +178,7 @@ class RateCalculatorUI:
             self.suggestions1.visible = False
             self.address1.update()
             self.suggestions1.update()
+            #necesito hacer que la ventana entera ft se update
             return
         def fetch():
             suggestions = AddressAutocompleteService.get_suggestions(query)
@@ -185,7 +188,8 @@ class RateCalculatorUI:
                     ft.Row([
                         ft.ListTile(
                             title=ft.Text(suggestion),
-                            on_click=lambda e, s=suggestion: self.set_current_suggestion1(s)
+                            # Al hacer clic en la suggestion, copia el valor al campo de texto
+                            on_click=lambda e, s=suggestion: self.copy_suggestion1_to_textfield(s)
                         ),
                         ft.IconButton(
                             icon=ft.icons.CONTENT_COPY,
@@ -392,6 +396,7 @@ class RateCalculatorUI:
         self.address1.update()
         self.suggestions1.visible = False
         self.suggestions1.update()
+        self.page.update()  # <-- Actualiza toda la página
 
 
 

@@ -180,7 +180,7 @@ def main(page: ft.Page):
 
     # Inicialización de la UI
     try:
-        ui = RateCalculatorUI(calculate_rate, open_rates_dialog)
+        ui = RateCalculatorUI(page, calculate_rate, open_rates_dialog)
         
         # Callback para cambiar el modo y actualizar la UI
         def on_mode_change(e):

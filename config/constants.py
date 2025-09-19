@@ -2,9 +2,9 @@
 
 #Diccionario de proveedores por condado 
 COUNTY_PROVIDERS = {
-    "Palm Beach": ["Standard", "Baptist","Boynton Beach Rehab Center","Darcy Hall of Life Care", "Kindred Hospital of Palm Beaches", "Jupiter Medical Center", "Tenants (PBHN)", "Terraces of Lake Worth Rehab",],
+    "Palm Beach": ["Standard","ALIVI Palm Beach" ,"Baptist","Boynton Beach Rehab Center","Darcy Hall of Life Care", "Kindred Hospital of Palm Beaches", "Jupiter Medical Center", "Tenants (PBHN)", "Terraces of Lake Worth Rehab",],
     "Broward": [ "Standard Broward"],
-    "Monroe": ["Standard Monroe", "Amedysis Hospice","Baptist Miami","Oasis at the Keys Nursing and Rehab","Palm Vista Nursing and Rehab Center",
+    "Monroe": ["Standard Monroe","ALIVI Monroe", "Amedysis Hospice","Baptist Miami","Oasis at the Keys Nursing and Rehab","Palm Vista Nursing and Rehab Center",
                "Vitas Monroe"],
     "Citrus": [ "Standard Citrus", "Arbor Trail Rehab and Skilled Nursing Center", "Cedar Creek", 
                "Citrus Health and Rehab Center",  "Clearsky Rehab Hospital of Lecanto", 
@@ -12,9 +12,10 @@ COUNTY_PROVIDERS = {
                "Sunflower Springs", "Superior Residences of Lecanto","Tampa General Hospital Crystal River",
                "TGH Crystal River Emergency Center","The Gardens Assisted Living and Memory Care",
                "Vitas Inpatient Hospice"],
+    "Other": ["One Call Medical Transport"],
 }
 
-# Lista de tarifas base por nivel de servicio estandard o base sin importancia del proveedor o county
+# Lista de tarifas base por nivel de servicio estandard o base sin importancia del proveedor o county que son los basicos en palm beach
 LEVEL_OF_SERVICE_BASE_RATES = {
     "WCH": 100,   # Silla de ruedas
     "STR": 175,  # Camilla
@@ -37,8 +38,31 @@ LEVEL_OF_SERVICE_INCREMENTS = {
     "ALS2": 13,  # Soporte vital avanzado nivel 2
     "CCT": 13 , 
 }
+#No se usa pero se deja por si acaso
+LEVEL_OF_SERVICE_BASE_RATES_ONE_CALL = {
+    "WCH": 0,   # Silla de ruedas
+    "STR": 0,  # Camilla
+    "BLS NE": 400,   # Soporte vital básico
+    "BLS ER": 400, # Soporte vital básico con especialista
+    "ALS NE": 600,   # Soporte vital avanzado
+    "ALS ER": 600,   # Soporte vital avanzado con especialista
+    "ALS2": 600,  # Soporte vital avanzado nivel 2
+    "CCT": 600,   # Transporte de cuidado critico   
+}
 
-#Incrementos Extras
+# Incrementos por milla por nivel de servicio Standard
+LEVEL_OF_SERVICE_INCREMENTS_ONE_CALL = {
+    "WCH": 0,
+    "STR": 0,
+    "BLS NE": 11,
+    "BLS ER": 11, # Soporte vital básico con especialista
+    "ALS NE": 11,
+    "ALS ER": 11,  
+    "ALS2": 11,  # Soporte vital avanzado nivel 2
+    "CCT": 11, 
+}
+
+#Incrementos Extras estandard 
 
 EXTRAS = {
     "O2": 30,  # por litro
@@ -72,7 +96,30 @@ solo hay que agregar otro diccionario con las tarifas base de ese proveedor y ma
 
 """Aqui empieza la seccion de palm beach county"""
 
+
+LEVEL_OF_SERVICE_BASE_RATES_ALIVI_PALM_BEACH = {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 200,  # Camilla
+    "BLS NE": 600,   # Soporte vital básico
+    "BLS ER": 600, # Soporte vital básico con especialista
+    "ALS NE": 750,   # Soporte vital avanzado
+    "ALS ER": 750,   # Soporte vital avanzado con especialista
+    "ALS2": 750,  # Soporte vital avanzado nivel 2
+    "CCT": 750,   # Transporte de cuidado critico
+    
+}
+LEVEL_OF_SERVICE_INCREMENTS_ALIVI_PALM_BEACH = {
+    "WCH": 5,
+    "STR": 9,
+    "BLS NE": 10.85,
+    "BLS ER": 10.85, # Soporte vital básico con especialista
+    "ALS NE": 10.85,
+    "ALS ER": 10.85,  
+    "ALS2": 10.85,  # Soporte vital avanzado nivel 2
+    "CCT": 10.85, 
+}
 # Lista de tarifas base por nivel de servicio de Baptist
+
 LEVEL_OF_SERVICE_BASE_RATES_BAPTIST = {
     "WCH": 65,   # Silla de ruedas
     "STR": 150,  # Camilla
@@ -577,6 +624,31 @@ LEVEL_OF_SERVICE_INCREMENTS_STANDARD_MONROE_COUNTY = {
     "ALS2": 17,  # Soporte vital avanzado nivel 2
     "CCT": 17 , 
 }
+# Lista de tarifas base por nivel de servicio de ALIVI Monroe
+LEVEL_OF_SERVICE_BASE_RATES_ALIVI_MONROE = {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 200,  # Camilla
+    "BLS NE": 600,   # Soporte vital básico
+    "BLS ER": 600, # Soporte vital básico con especialista
+    "ALS NE": 750,   # Soporte vital avanzado
+    "ALS ER": 750,   # Soporte vital avanzado con especialista
+    "ALS2": 750,  # Soporte vital avanzado nivel 2
+    "CCT": 750,   # Transporte de cuidado critico
+
+    
+}
+
+# Incrementos por milla por nivel de servicio ALIVI Monroe
+LEVEL_OF_SERVICE_INCREMENTS_ALIVI_MONROE = {
+    "WCH": 6,
+    "STR": 9,
+    "BLS NE": 14.5,
+    "BLS ER": 14.5, # Soporte vital básico con especialista
+    "ALS NE": 14.5,
+    "ALS ER": 14.5,  
+    "ALS2": 14.5,  # Soporte vital avanzado nivel 2
+    "CCT": 14.5, 
+}
 
 # Lista de tarifas base por nivel de servicio de Amedysis Hospice
 LEVEL_OF_SERVICE_BASE_RATES_AMEDYSIS_HOSPICE= {
@@ -701,7 +773,8 @@ LEVEL_OF_SERVICE_INCREMENTS_VITAS_MONROE = {
 
 #Diccionario de mapeo de proveedores para facilitar la seleccion en el frontend
 PROVIDER_BASE_RATES = {
-    
+    #Aqui empiezan los de palm beach county
+    "ALIVI Palm Beach": LEVEL_OF_SERVICE_BASE_RATES_ALIVI_PALM_BEACH,
     "Baptist": LEVEL_OF_SERVICE_BASE_RATES_BAPTIST,
     "Boynton Beach Rehab Center": LEVEL_OF_SERVICE_BASE_RATES_BOYNTON_BEACH_REHAB_CENTER,
     "Darcy Hall of Life Care": LEVEL_OF_SERVICE_BASE_RATES_DARCY_HALL_OF_LIFE_CARE,
@@ -709,6 +782,7 @@ PROVIDER_BASE_RATES = {
     "Jupiter Medical Center": LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER,
     "Tenants (PBHN)": LEVEL_OF_SERVICE_BASE_RATES_TENANTS,
     "Terraces of Lake Worth Rehab": LEVEL_OF_SERVICE_BASE_RATES_TERRACES_OF_LAKE_WORTH_REHAB,
+    #Aqui empiezan los de citrus county
     "Standard Citrus": LEVEL_OF_SERVICE_BASE_RATES_STANDARD_CITRUS_COUNTY,
     "Arbor Trail Rehab and Skilled Nursing Center": LEVEL_OF_SERVICE_BASE_RATES_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER,
     "Cedar Creek": LEVEL_OF_SERVICE_BASE_RATES_CEDAR_CREEK,
@@ -722,18 +796,25 @@ PROVIDER_BASE_RATES = {
     "TGH Crystal River Emergency Center": LEVEL_OF_SERVICE_BASE_RATES_TGH_CRYSTAL_RIVER_EMERGENCY_CENTER,
     "The Gardens Assisted Living and Memory Care": LEVEL_OF_SERVICE_BASE_RATES_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE,
     "Vitas Inpatient Hospice": LEVEL_OF_SERVICE_BASE_RATES_VITAS_INPATIENT_HOSPICE,
+    #Aqui empiezan los de monroe county
     "Standard Monroe": LEVEL_OF_SERVICE_BASE_RATES_STANDARD_MONROE_COUNTY,
+    "ALIVI Monroe": LEVEL_OF_SERVICE_BASE_RATES_ALIVI_MONROE,
     "Amedysis Hospice": LEVEL_OF_SERVICE_BASE_RATES_AMEDYSIS_HOSPICE,
     "Baptist Miami": LEVEL_OF_SERVICE_BASE_RATES_BAPTIST_MIAMI,
     "Oasis at the Keys Nursing and Rehab": LEVEL_OF_SERVICE_BASE_RATES_OASIS_AT_THE_KEYS_NURSING_AND_REHAB,
     "Palm Vista Nursing and Rehab Center": LEVEL_OF_SERVICE_BASE_RATES_PALM_VISTA_NURSING_AND_REHAB_CENTER,
     "Vitas Monroe": LEVEL_OF_SERVICE_BASE_RATES_VITAS_MONROE,
+    #Aqui empiezan los de broward county
     "Standard Broward": LEVEL_OF_SERVICE_BASE_RATES,
+    #Aqui empiezan los de Others
+    "One Call Medical Transport": LEVEL_OF_SERVICE_BASE_RATES_ONE_CALL,
 
     
 }
 
 PROVIDER_INCREMENTS = {
+    #Aqui empiezan los de palm beach county
+    "ALIVI Palm Beach": LEVEL_OF_SERVICE_INCREMENTS_ALIVI_PALM_BEACH,
     "Baptist": LEVEL_OF_SERVICE_INCREMENTS_BAPTIST,
     "Boynton Beach Rehab Center": LEVEL_OF_SERVICE_INCREMENTS_BOYNTON_BEACH_REHAB_CENTER,
     "Darcy Hall of Life Care": LEVEL_OF_SERVICE_INCREMENTS_DARCY_HALL_OF_LIFE_CARE,
@@ -741,6 +822,7 @@ PROVIDER_INCREMENTS = {
     "Jupiter Medical Center": LEVEL_OF_SERVICE_INCREMENTS_JUPITER_MEDICAL_CENTER,
     "Tenants (PBHN)": LEVEL_OF_SERVICE_INCREMENTS_TENANTS,
     "Terraces of Lake Worth Rehab": LEVEL_OF_SERVICE_INCREMENTS_TERRACES_OF_LAKE_WORTH_REHAB,
+    #Aqui empiezan los de citrus county
     "Standard Citrus": LEVEL_OF_SERVICE_INCREMENTS_STANDARD_CITRUS_COUNTY,
     "Arbor Trail Rehab and Skilled Nursing Center": LEVEL_OF_SERVICE_INCREMENTS_ARBOR_TRAIL_REHAB_AND_SKILLED_NURSING_CENTER,
     "Cedar Creek": LEVEL_OF_SERVICE_INCREMENTS_CEDAR_CREEK,
@@ -754,23 +836,21 @@ PROVIDER_INCREMENTS = {
     "TGH Crystal River Emergency Center": LEVEL_OF_SERVICE_INCREMENTS_TGH_CRYSTAL_RIVER_EMERGENCY_CENTER,
     "The Gardens Assisted Living and Memory Care": LEVEL_OF_SERVICE_INCREMENTS_THE_GARDENS_ASSISTED_LIVING_AND_MEMORY_CARE,
     "Vitas Inpatient Hospice": LEVEL_OF_SERVICE_INCREMENTS_VITAS_INPATIENT_HOSPICE,
+    #Aqui empiezan los de monroe county
     "Standard Monroe": LEVEL_OF_SERVICE_INCREMENTS_STANDARD_MONROE_COUNTY,
+    "ALIVI Monroe": LEVEL_OF_SERVICE_INCREMENTS_ALIVI_MONROE,
     "Amedysis Hospice": LEVEL_OF_SERVICE_INCREMENTS_AMEDYSIS_HOSPICE,
     "Baptist Miami": LEVEL_OF_SERVICE_INCREMENTS_BAPTIST_MIAMI,
     "Oasis at the Keys Nursing and Rehab": LEVEL_OF_SERVICE_INCREMENTS_OASIS_AT_THE_KEYS_NURSING_AND_REHAB,
     "Palm Vista Nursing and Rehab Center": LEVEL_OF_SERVICE_INCREMENTS_PALM_VISTA_NURSING_AND_REHAB_CENTER,
     "Vitas Monroe": LEVEL_OF_SERVICE_INCREMENTS_VITAS_MONROE,
     "Standard Citrus": LEVEL_OF_SERVICE_INCREMENTS_STANDARD_CITRUS_COUNTY,
-    "Standard Monroe": LEVEL_OF_SERVICE_INCREMENTS_STANDARD_MONROE_COUNTY,
+    #Aqui empiezan los de broward county
     "Standard Broward": LEVEL_OF_SERVICE_INCREMENTS,
+    #Aqui empiezan los de Others
+    "One Call Medical Transport": LEVEL_OF_SERVICE_INCREMENTS_ONE_CALL,
     
 }
-
-
-
-
-
-
 
 
 """Constantes para la parte de geolocalización y cálculo de rutas
