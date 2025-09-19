@@ -185,11 +185,6 @@ class RateCalculatorUI:
             self.suggestions1.update()
         Thread(target=fetch).start()
 
-        suggestions = get_address_suggestions(query)
-        self.address1_suggestions.options = [ft.dropdown.Option(s) for s in suggestions]
-        self.address1_suggestions.visible = bool(suggestions)
-        self.address1_suggestions.update()
-
     def select_address1(self, suggestion):
         print(f"Selected address 1: {suggestion}")
         self.address1.value = suggestion
