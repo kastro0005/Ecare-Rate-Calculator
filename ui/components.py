@@ -3,6 +3,7 @@ from typing import Callable
 from config.constants import *
 import importlib
 from threading import Thread
+from functools import partial
 
 from services.address_autocomplete_service import AddressAutocompleteService
 from services.google_places_service import get_address_suggestions, get_google_maps_distance
@@ -166,6 +167,7 @@ class RateCalculatorUI:
 
         self.selected_address1 = ""
         self.selected_address2 = ""
+        self.current_suggestion1 = ""
 
     def on_address1_change(self, e):
         query = self.address1.value.strip()
@@ -180,26 +182,33 @@ class RateCalculatorUI:
             self.suggestions1.controls.clear()
             for suggestion in suggestions:
                 self.suggestions1.controls.append(
-                    ft.ListTile(
-                        title=ft.Text(suggestion),
-                        on_click=lambda e, s=suggestion: self.select_address1(s)
-                    )
+                    ft.Row([
+                        ft.ListTile(
+                            title=ft.Text(suggestion),
+                            on_click=lambda e, s=suggestion: self.set_current_suggestion1(s)
+                        ),
+                        ft.IconButton(
+                            icon=ft.icons.CONTENT_COPY,
+                            tooltip="Copiar esta dirección",
+                            on_click=lambda e, s=suggestion: self.copy_suggestion1_to_textfield(s)
+                        )
+                    ])
                 )
             self.suggestions1.visible = bool(suggestions)
             self.suggestions1.update()
         Thread(target=fetch).start()
 
         suggestions = get_address_suggestions(query)
-        # Actualiza el componente de sugerencias
         self.address1_suggestions.options = [ft.dropdown.Option(s) for s in suggestions]
         self.address1_suggestions.visible = bool(suggestions)
         self.address1_suggestions.update()
 
     def select_address1(self, suggestion):
+        print(f"Selected address 1: {suggestion}")
         self.address1.value = suggestion
-        self.selected_address1 = suggestion  # Guarda la dirección completa
-        self.suggestions1.visible = False
         self.address1.update()
+        self.selected_address1 = suggestion
+        self.suggestions1.visible = False
         self.suggestions1.update()
 
     def on_address1_blur(self, e):
@@ -238,7 +247,7 @@ class RateCalculatorUI:
 
     def select_address2(self, suggestion):
         self.address2.value = suggestion
-        self.selected_address2 = suggestion  # Guarda la dirección completa
+        self.selected_address2 = suggestion
         self.suggestions2.visible = False
         self.address2.update()
         self.suggestions2.update()
@@ -373,6 +382,16 @@ class RateCalculatorUI:
             })
         except Exception as e:
             self.update_status(f"Error al calcular la tarifa: {str(e)}", is_error=True)
+
+    def set_current_suggestion1(self, suggestion):
+        self.current_suggestion1 = suggestion
+
+    def copy_suggestion1_to_textfield(self, suggestion):
+        self.address1.value = suggestion
+        self.selected_address1 = suggestion
+        self.address1.update()
+        self.suggestions1.visible = False
+        self.suggestions1.update()
 
 
 

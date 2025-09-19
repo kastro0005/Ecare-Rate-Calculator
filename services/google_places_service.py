@@ -19,6 +19,7 @@ def get_address_suggestions(input_text: str) -> list:
         return []
     return [item["description"] for item in data["predictions"]]
 
+
 def get_google_maps_distance(origin: str, destination: str) -> float:
     """
     Calcula la distancia en millas entre dos direcciones usando Google Maps Directions API.

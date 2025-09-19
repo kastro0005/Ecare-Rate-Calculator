@@ -97,6 +97,7 @@ def main(page: ft.Page):
                 if not ui.address1.value or not ui.address2.value:
                     raise ValidationError("Please, put both addresses correctly")
                 # Calcular distancia con google maps
+                #llamo a la funcion get_google_maps_distance y le paso las dos variables
                 distance = get_google_maps_distance(ui.address1.value, ui.address2.value)
                 ui.show_route_on_map(ui.address1.value, ui.address2.value)  # Muestra el enlace
 
