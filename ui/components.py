@@ -2,9 +2,10 @@ import flet as ft
 from typing import Callable
 from config.constants import *
 import importlib
+from threading import Thread
 
 from services.address_autocomplete_service import AddressAutocompleteService
-from threading import Thread
+from services.google_places_service import get_address_suggestions
 
 class RateCalculatorUI:
     def __init__(self, calculate_callback: Callable, open_rates_dialog_callback: Callable):
@@ -21,12 +22,25 @@ class RateCalculatorUI:
             on_change=self.on_address1_change,
             on_blur=self.on_address1_blur
         )
+        self.address1_suggestions = ft.Dropdown(
+            label="Suggestions",
+            options=[],
+            visible=False,
+            width=400,
+        )  # O usa un Dropdown, PopupMenu, etc.
+
         self.address2 = ft.TextField(
             label="Second Address",
             hint_text="Enter the second address",
             width=300,
             on_change=self.on_address2_change,
             on_blur=self.on_address2_blur
+        )
+        self.address2_suggestions = ft.Dropdown(
+            label="Suggestions",
+            options=[],
+            visible=False,
+            width=400,
         )
 
         self.distance_mode = ft.Tabs(
@@ -127,10 +141,18 @@ class RateCalculatorUI:
         self.address_container = ft.Container(
             content=ft.Column([
                 ft.Row([
-                    ft.Column([self.address1, self.suggestions1])
+                    ft.Column([
+                        self.address1,
+                        self.suggestions1,
+                        self.address1_suggestions,
+                    ])
                 ], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([
-                    ft.Column([self.address2, self.suggestions2])
+                    ft.Column([
+                        self.address2,
+                        self.suggestions2,
+                        self.address2_suggestions,  # <-- Agrega aquí
+                    ])
                 ], alignment=ft.MainAxisAlignment.CENTER),
             ])
         )
@@ -164,6 +186,12 @@ class RateCalculatorUI:
             self.suggestions1.update()
         Thread(target=fetch).start()
 
+        suggestions = get_address_suggestions(query)
+        # Actualiza el componente de sugerencias
+        self.address1_suggestions.options = [ft.dropdown.Option(s) for s in suggestions]
+        self.address1_suggestions.visible = bool(suggestions)
+        self.address1_suggestions.update()
+
     def select_address1(self, suggestion):
         self.address1.value = suggestion
         self.suggestions1.visible = False
@@ -181,7 +209,10 @@ class RateCalculatorUI:
             self.suggestions2.visible = False
             self.address2.update()
             self.suggestions2.update()
+            self.address2_suggestions.visible = False
+            self.address2_suggestions.update()
             return
+
         def fetch():
             suggestions = AddressAutocompleteService.get_suggestions(query)
             self.suggestions2.controls.clear()
@@ -195,6 +226,11 @@ class RateCalculatorUI:
             self.suggestions2.visible = bool(suggestions)
             self.suggestions2.update()
         Thread(target=fetch).start()
+
+        suggestions = get_address_suggestions(query)
+        self.address2_suggestions.options = [ft.dropdown.Option(s) for s in suggestions]
+        self.address2_suggestions.visible = bool(suggestions)
+        self.address2_suggestions.update()
 
     def select_address2(self, suggestion):
         self.address2.value = suggestion
