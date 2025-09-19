@@ -16,6 +16,8 @@ import flet as ft
 import logging
 import services
 import importlib
+import requests
+from dotenv import load_dotenv
 
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -23,8 +25,9 @@ project_root = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, project_root)
 
 
-from services.location_service import LocationService
+
 from services.rate_service import RateService
+from services.google_maps_service import get_google_maps_distance
 
 
 # Configuración de rutas para desarrollo y producción
@@ -50,8 +53,6 @@ logger = logging.getLogger(__name__)
 
 # Importar después de configurar el path
 try:
-    from services.location_service import LocationService
-    from services.rate_service import RateService
     from ui.components import RateCalculatorUI
     from ui.dialogs import RatesDialog
     from utils.exceptions import LocationError, ValidationError, RateCalculationError
@@ -95,8 +96,8 @@ def main(page: ft.Page):
                 # Validar direcciones
                 if not ui.address1.value or not ui.address2.value:
                     raise ValidationError("Please, put both addresses correctly")
-                # Calcular distancia
-                distance, _ = LocationService.calculate_distance(ui.address1.value, ui.address2.value)
+                # Calcular distancia con google maps
+                distance = get_google_maps_distance(ui.address1.value, ui.address2.value)
                 ui.show_route_on_map(ui.address1.value, ui.address2.value)  # Muestra el enlace
 
             # Cálculo de tarifa
@@ -113,6 +114,14 @@ def main(page: ft.Page):
                 float(ui.waiting_time.value or 0),
                 ui.config_selector.value  
             )
+
+            
+             # Ejemplo de uso de la función get_google_maps_distance
+            try:
+                km = get_google_maps_distance(ui.address1.value, ui.address2.value)
+                print(f"DistanciaGM: {km} km")
+            except Exception as e:
+                print("Error:", e)
             
             ui.update_result(result)
             ui.update_status("Cálculo completado exitosamente")
@@ -184,6 +193,7 @@ def main(page: ft.Page):
     except Exception as e:
         logger.error(f"Error al inicializar UI: {e}", exc_info=True)
         page.add(ft.Text(f"Error al iniciar la aplicación: {str(e)}", color="red"))
+
 
 if __name__ == "__main__":
     try:
