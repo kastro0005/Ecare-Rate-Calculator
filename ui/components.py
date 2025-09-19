@@ -5,7 +5,7 @@ import importlib
 from threading import Thread
 
 from services.address_autocomplete_service import AddressAutocompleteService
-from services.google_places_service import get_address_suggestions
+from services.google_places_service import get_address_suggestions, get_google_maps_distance
 
 class RateCalculatorUI:
     def __init__(self, calculate_callback: Callable, open_rates_dialog_callback: Callable):
@@ -164,6 +164,9 @@ class RateCalculatorUI:
             visible=False
         )
 
+        self.selected_address1 = ""
+        self.selected_address2 = ""
+
     def on_address1_change(self, e):
         query = self.address1.value.strip()
         if len(query) < 3:
@@ -194,6 +197,7 @@ class RateCalculatorUI:
 
     def select_address1(self, suggestion):
         self.address1.value = suggestion
+        self.selected_address1 = suggestion  # Guarda la dirección completa
         self.suggestions1.visible = False
         self.address1.update()
         self.suggestions1.update()
@@ -234,6 +238,7 @@ class RateCalculatorUI:
 
     def select_address2(self, suggestion):
         self.address2.value = suggestion
+        self.selected_address2 = suggestion  # Guarda la dirección completa
         self.suggestions2.visible = False
         self.address2.update()
         self.suggestions2.update()
@@ -348,6 +353,26 @@ class RateCalculatorUI:
         self.config_selector.options = [ft.dropdown.Option(p) for p in providers]
         self.config_selector.value = providers[0]  # Selecciona el primero por defecto
         self.config_selector.update()
+
+    def calculate_rate(self):
+        """Calcula la tarifa basada en las direcciones seleccionadas"""
+        try:
+            if not self.selected_address1 or not self.selected_address2:
+                self.update_status("Selecciona una dirección válida de las sugerencias", is_error=True)
+                return
+            distance = get_google_maps_distance(self.selected_address1, self.selected_address2)
+            # Aquí puedes agregar la lógica para calcular la tarifa basada en la distancia y otros parámetros
+            base_rate = LEVEL_OF_SERVICE_BASE_RATES[self.service_level.value]
+            total_rate = base_rate * distance  # Ejemplo de cálculo, ajusta según tu lógica
+            
+            # Muestra el resultado
+            self.update_result({
+                "distance": distance,
+                "base_rate": base_rate,
+                "total_rate": total_rate
+            })
+        except Exception as e:
+            self.update_status(f"Error al calcular la tarifa: {str(e)}", is_error=True)
 
 
 
