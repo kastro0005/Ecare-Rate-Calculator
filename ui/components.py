@@ -23,13 +23,7 @@ class RateCalculatorUI:
             on_change=self.on_address1_change,
             on_blur=self.on_address1_blur
         )
-        """self.address1_suggestions = ft.Dropdown(
-            label="Suggestions",
-            options=[],
-            visible=False,
-            width=400,
-        ) """ # O usa un Dropdown, PopupMenu, etc.
-
+       
         self.address2 = ft.TextField(
             label="Second Address",
             hint_text="Enter the second address",
@@ -37,12 +31,6 @@ class RateCalculatorUI:
             on_change=self.on_address2_change,
             on_blur=self.on_address2_blur
         )
-        """self.address2_suggestions = ft.Dropdown(
-            label="Suggestions",
-            options=[],
-            visible=False,
-            width=400,
-        )"""
 
         self.distance_mode = ft.Tabs(
             selected_index=0,  # Esto selecciona "Enter distance manually" por defecto cambiar a 0 si quieres que sea por
@@ -239,10 +227,6 @@ class RateCalculatorUI:
             self.suggestions2.update()
         Thread(target=fetch).start()
 
-        """suggestions = get_address_suggestions(query)
-        self.address2_suggestions.options = [ft.dropdown.Option(s) for s in suggestions]
-        self.address2_suggestions.visible = bool(suggestions)
-        self.address2_suggestions.update()"""
 
     def select_address2(self, suggestion):
         self.address2.value = suggestion
