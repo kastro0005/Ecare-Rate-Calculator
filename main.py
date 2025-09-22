@@ -116,16 +116,16 @@ def main(page: ft.Page):
                 ui.config_selector.value  
             )
 
-            
-             # Ejemplo de uso de la función get_google_maps_distance
-            try:
-                km = get_google_maps_distance(ui.address1.value, ui.address2.value)
-                print(f"DistanciaGM: {km} km")
-            except Exception as e:
-                print("Error:", e)
+            # Solo prueba la API si NO es modo manual
+            if not ui.is_manual_mode():
+                try:
+                    km = get_google_maps_distance(ui.address1.value, ui.address2.value)
+                    print(f"DistanciaGM: {km} km")
+                except Exception as e:
+                    print("Error:", e)
             
             ui.update_result(result)
-            ui.update_status("Cálculo completado exitosamente")
+            ui.update_status("Calculation completed successfully")
             
         except (ValidationError, LocationError, RateCalculationError) as e:
             logger.error(f"Error de validación: {e}")
