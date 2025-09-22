@@ -137,8 +137,8 @@ def main(page: ft.Page):
             ui.update_result(result)
             # AlertDialog con el resultado
             result_text = (
-                f"Distance: {distance} km\n"
                 f"Rate Base: ${result['base_rate']}\n"
+                f"Distance: {distance} km\n"
                 f"Total Rate: ${result['total_rate']}"
             )
 
