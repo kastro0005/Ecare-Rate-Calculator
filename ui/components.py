@@ -1,11 +1,8 @@
 import flet as ft
 from typing import Callable
 from config.constants import *
-import importlib
-from threading import Thread
-from functools import partial
 
-from services.google_places_service import get_address_suggestions, get_google_maps_distance
+from services.google_places_service import get_google_maps_distance
 
 class RateCalculatorUI:
     def __init__(self, page, calculate_callback: Callable, open_rates_dialog_callback: Callable):
@@ -13,34 +10,28 @@ class RateCalculatorUI:
         self.calculate_callback = calculate_callback
         self.open_rates_dialog_callback = open_rates_dialog_callback
 
-        self.suggestions1 = ft.ListView(visible=False, spacing=2, height=120, width=300)
-        self.suggestions2 = ft.ListView(visible=False, spacing=2, height=120, width=300)
-
+        # Campos de texto para la direccion 1
         self.address1 = ft.TextField(
             label="First Address",
             hint_text="Enter the first address",
             width=300,
-            on_change=self.on_address1_change,
-            on_blur=self.on_address1_blur
         )
-       
+       # Campos de texto para la direccion 2
         self.address2 = ft.TextField(
             label="Second Address",
             hint_text="Enter the second address",
             width=300,
-            on_change=self.on_address2_change,
-            on_blur=self.on_address2_blur
         )
-
+        # Modo de distancia: Direcciones o manual
         self.distance_mode = ft.Tabs(
-            selected_index=0,  # Esto selecciona "Enter distance manually" por defecto cambiar a 0 si quieres que sea por
+            selected_index=0,
             on_change=self.on_mode_change,
             tabs=[
                 ft.Tab(text="Calculate from addresses"),
                 ft.Tab(text="Enter distance manually")
             ]
         )
-
+        # Campo de texto para ingresar millas manualmente
         self.manual_miles = ft.TextField(
             label="Miles",
             hint_text="Enter the Miles",
@@ -48,92 +39,73 @@ class RateCalculatorUI:
             visible=False,
             keyboard_type=ft.KeyboardType.NUMBER
         )
-
+        # Dropdown para seleccionar el nivel de servicio
         self.service_level = ft.Dropdown(
             label="Level of Service",
             hint_text="Choose Level of Service",
             options=[ft.dropdown.Option(los) for los in LEVEL_OF_SERVICE_BASE_RATES.keys()],
             width=200
         )
-
-        #Aki empiezan los checkboxes y campos de texto
-        
-
-
-
-        # Campo de texto de los litros de O2
-        self.o2 = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True, on_change=self.validate_decimal  # <-- Valida el decimal
-)
-
-        #checkboxe del Oxygeno conexctada al campo de texto
+        # Otros campos y checkboxes
+        self.o2 = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True, on_change=self.validate_decimal)
         self.liters_o2 = ft.Checkbox(label="Liters of Oxygen", on_change=self.on_liters_o2_change )
-
-        #Resto de checkboxes
         self.after_hours = ft.Checkbox(label="Afterhours (6pm-6am)")
         self.deadheads = ft.Checkbox(label="Round Trip")
         self.roundtrip = ft.Checkbox(label="Roundtrip)")     
         self.bariatric = ft.Checkbox(label="Bariatric")
         self.stairchair = ft.Checkbox(label="Stairchair")
-
-        # Campo de texto de las horas de espera
         self.waiting_time = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True,on_change=self.validate_decimal)
-
-        #checkboxe del Waiting time
         self.wait = ft.Checkbox(label="Waiting Time (Hours)", on_change=self.on_waiting_change)
-        
-        #Selector de configuracion de Condado
+        # Dropdowns para seleccionar el condado y la configuracion con Palm beach como default
         self.county_selector = ft.Dropdown(
-        label="County",
-        options=[ft.dropdown.Option(c) for c in COUNTY_PROVIDERS.keys()],
-        value="Palm Beach",
-        width=200,
-        on_change=self.on_county_change  # <-- conecta el callback para el cambio de condados
+            label="County",
+            options=[ft.dropdown.Option(c) for c in COUNTY_PROVIDERS.keys()],
+            value="Palm Beach",
+            width=200,
+            on_change=self.on_county_change
         )
-
-        # Selector de configuración de Provider confugurado dinamicamente para mostrar primero los de palm beach y si cambias salen ls demas
+        # Configuracion de proveedores segun el condado
         self.config_selector = ft.Dropdown(
             label="Source",
             options=[ft.dropdown.Option(p) for p in COUNTY_PROVIDERS["Palm Beach"]],
             value=COUNTY_PROVIDERS["Palm Beach"][0],
             width=200,
         )
-        
-        
-        # Indicador de progreso y mensajes de estado
+        # Barra de progreso y textos para estado y resultado
         self.progress = ft.ProgressBar(visible=False)
         self.status_text = ft.Text("")
         self.result = ft.Text(size=20, weight=ft.FontWeight.BOLD)
 
+        #Boton de calcular 
         self.calculate_button = ft.ElevatedButton(
             text="Calculate Rate",
             on_click=self.calculate_callback,
-            icon="calculate"  # <-- Usar el nombre del icono como string
+            icon="calculate"
         )
+        #Boton para abrir dialogo de configuracion de tarifas
         self.rates_button = ft.ElevatedButton(
             text="Configurate Rates",
             on_click=self.open_rates_dialog_callback,
-            icon="settings"   # <-- Usar el nombre del icono como string
+            icon="settings"
         )
 
         self.map_link = ft.TextButton(
-            text="Show route on  Google Maps",
+            text="Show route on Google Maps",
             visible=False,
-            url="",  # Se actualizará dinámicamente
+            url="",
             style=ft.ButtonStyle(color="blue")
         )
-
+        # Contenedores para organizar la interfaz
         self.address_container = ft.Container(
             content=ft.Column([
                 ft.Row([
                     ft.Column([
                         self.address1,
-                        self.suggestions1,
                     ])
                 ], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([
                     ft.Column([
                         self.address2,
-                        self.suggestions2,
                     ])
                 ], alignment=ft.MainAxisAlignment.CENTER),
             ])
@@ -146,98 +118,15 @@ class RateCalculatorUI:
             visible=False
         )
 
-        self.selected_address1 = ""
-        self.selected_address2 = ""
-        self.current_suggestion1 = ""
-
-    def on_address1_change(self, e):
-        query = self.address1.value.strip()
-        if len(query) < 3:
-            self.suggestions1.controls.clear()
-            self.suggestions1.visible = False
-            self.address1.update()
-            self.suggestions1.update()
-            return
-        def fetch():
-            suggestions = get_address_suggestions(query)
-            self.suggestions1.controls.clear()
-            for suggestion in suggestions:
-                self.suggestions1.controls.append(
-                    ft.Row([
-                        ft.ListTile(
-                            title=ft.Text(suggestion),
-                            on_click=lambda e, s=suggestion: self.copy_suggestion1_to_textfield(s)
-                        ),
-                        ft.IconButton(
-                            icon=ft.Icons.CONTENT_COPY,
-                            tooltip="Copiar esta dirección",
-                            on_click=lambda e, s=suggestion: self.copy_suggestion1_to_textfield(s)
-                        )
-                    ])
-                )
-            self.suggestions1.visible = bool(suggestions)
-            self.suggestions1.update()
-        Thread(target=fetch).start()
-
-    def select_address1(self, suggestion):
-        print(f"Selected address 1: {suggestion}")
-        self.address1.value = suggestion
-        self.address1.update()
-        self.selected_address1 = suggestion
-        self.suggestions1.visible = False
-        self.suggestions1.update()
-
-    def on_address1_blur(self, e):
-        self.suggestions1.visible = False
-        self.suggestions1.update()
-
-    def on_address2_change(self, e):
-        query = self.address2.value.strip()
-        if len(query) < 3:
-            self.suggestions2.controls.clear()
-            self.suggestions2.visible = False
-            self.address2.update()
-            self.suggestions2.update()
-            self.address2_suggestions.visible = False
-            self.address2_suggestions.update()
-            return
-
-        def fetch():
-            suggestions = get_address_suggestions(query)
-            self.suggestions2.controls.clear()
-            for suggestion in suggestions:
-                self.suggestions2.controls.append(
-                    ft.ListTile(
-                        title=ft.Text(suggestion),
-                        on_click=lambda e, s=suggestion: self.select_address2(s)
-                    )
-                )
-            self.suggestions2.visible = bool(suggestions)
-            self.suggestions2.update()
-        Thread(target=fetch).start()
-
-
-    def select_address2(self, suggestion):
-        self.address2.value = suggestion
-        self.selected_address2 = suggestion
-        self.suggestions2.visible = False
-        self.address2.update()
-        self.suggestions2.update()
-
-    def on_address2_blur(self, e):
-        self.suggestions2.visible = False
-        self.suggestions2.update()
-
     def on_mode_change(self, e):
-        """Maneja el cambio entre modos de entrada de distancia"""
         is_manual = self.distance_mode.selected_index == 1
         self.address_container.visible = not is_manual
         self.manual_container.visible = is_manual
         self.address1.visible = not is_manual
         self.address2.visible = not is_manual
         self.manual_miles.visible = is_manual
-        self.update_status("")  # Limpiar mensajes de estado anteriores
-        self.result.value = ""  # Limpiar resultados anteriores
+        self.update_status("")
+        self.result.value = ""
 
     def show_route_on_map(self, origin: str, destination: str):
         origin_url = origin.replace(" ", "+")
@@ -251,9 +140,7 @@ class RateCalculatorUI:
         self.map_link.visible = False
         self.map_link.update()
 
-    #Metodo de organizar el layout
     def get_layout(self) -> ft.Column:
-        """Retorna el layout completo de la UI"""
         return ft.Column(
             [   
                 ft.Row([self.county_selector], alignment=ft.MainAxisAlignment.END),
@@ -270,34 +157,29 @@ class RateCalculatorUI:
                 self.progress,
                 self.status_text,
                 self.result,
-                self.map_link,  # <-- Agrega el botón/enlace aquí
+                self.map_link,
             ],
             alignment=ft.MainAxisAlignment.CENTER,
             spacing=20
         )
 
     def is_manual_mode(self) -> bool:
-        """Retorna True si está en modo manual de millas"""
         return self.distance_mode.selected_index == 1
 
     def get_distance(self) -> float:
-        """Retorna la distancia ingresada manualmente"""
         try:
             return float(self.manual_miles.value or 0)
         except ValueError:
             raise ValueError("Por favor, ingrese un valor numérico válido para las millas")
 
     def update_status(self, message: str, is_error: bool = False) -> None:
-        """Actualiza el mensaje de estado"""
         self.status_text.value = message
         self.status_text.color = "red" if is_error else "black"
 
     def set_progress(self, visible: bool) -> None:
-        """Controla la visibilidad del indicador de progreso"""
         self.progress.visible = visible
 
     def update_result(self, result_data: dict) -> None:
-        """Actualiza el texto de resultado"""
         self.result.value = (
             f"Distance: {result_data['distance']} miles\n"
             f"Rate Base: ${result_data['base_rate']}\n"
@@ -305,21 +187,18 @@ class RateCalculatorUI:
         )
 
     def on_liters_o2_change(self, e):
-            self.o2.disabled = not self.liters_o2.value
-            self.o2.update()
+        self.o2.disabled = not self.liters_o2.value
+        self.o2.update()
 
     def on_waiting_change(self, e):
-            self.waiting_time.disabled = not self.wait.value
-            self.waiting_time.update()
+        self.waiting_time.disabled = not self.wait.value
+        self.waiting_time.update()
 
-    #Metodo para asegurarnos que solo pongan numeros en el campo de texto de oxygeno y waiting time
     def validate_decimal(self, e):
-        # Permite solo números con máximo un decimal
         import re
         value = e.control.value
         match = re.match(r"^\d+(\.\d{0,1})?$", value)
         if not match and value != "":
-            # Elimina caracteres no válidos y limita a un decimal
             parts = value.split(".")
             if len(parts) == 2:
                 value = parts[0] + "." + parts[1][:1]
@@ -332,21 +211,17 @@ class RateCalculatorUI:
         county = self.county_selector.value
         providers = COUNTY_PROVIDERS.get(county, ["Standard"])
         self.config_selector.options = [ft.dropdown.Option(p) for p in providers]
-        self.config_selector.value = providers[0]  # Selecciona el primero por defecto
+        self.config_selector.value = providers[0]
         self.config_selector.update()
 
     def calculate_rate(self):
-        """Calcula la tarifa basada en las direcciones seleccionadas"""
         try:
-            if not self.selected_address1 or not self.selected_address2:
-                self.update_status("Selecciona una dirección válida de las sugerencias", is_error=True)
+            if not self.address1.value or not self.address2.value:
+                self.update_status("Por favor, ingrese ambas direcciones", is_error=True)
                 return
-            distance = get_google_maps_distance(self.selected_address1, self.selected_address2)
-            # Aquí puedes agregar la lógica para calcular la tarifa basada en la distancia y otros parámetros
+            distance = get_google_maps_distance(self.address1.value, self.address2.value)
             base_rate = LEVEL_OF_SERVICE_BASE_RATES[self.service_level.value]
-            total_rate = base_rate * distance  # Ejemplo de cálculo, ajusta según tu lógica
-            
-            # Muestra el resultado
+            total_rate = base_rate * distance
             self.update_result({
                 "distance": distance,
                 "base_rate": base_rate,
@@ -354,18 +229,6 @@ class RateCalculatorUI:
             })
         except Exception as e:
             self.update_status(f"Error al calcular la tarifa: {str(e)}", is_error=True)
-
-    def set_current_suggestion1(self, suggestion):
-        self.current_suggestion1 = suggestion
-
-    def copy_suggestion1_to_textfield(self, suggestion):
-        print(f"Suggestion seleccionada: {suggestion}")  # <-- Imprime en consola
-        self.address1.value = suggestion
-        self.selected_address1 = suggestion
-        self.address1.update()
-        self.suggestions1.visible = False
-        self.suggestions1.update()
-        self.page.update()  # <-- Actualiza toda la página
 
 
 
