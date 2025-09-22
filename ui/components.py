@@ -10,19 +10,16 @@ class RateCalculatorUI:
         self.calculate_callback = calculate_callback
         self.open_rates_dialog_callback = open_rates_dialog_callback
 
-        # Campos de texto para la direccion 1
         self.address1 = ft.TextField(
             label="First Address",
             hint_text="Enter the first address",
             width=300,
         )
-       # Campos de texto para la direccion 2
         self.address2 = ft.TextField(
             label="Second Address",
             hint_text="Enter the second address",
             width=300,
         )
-        # Modo de distancia: Direcciones o manual
         self.distance_mode = ft.Tabs(
             selected_index=0,
             on_change=self.on_mode_change,
@@ -31,7 +28,6 @@ class RateCalculatorUI:
                 ft.Tab(text="Enter distance manually")
             ]
         )
-        # Campo de texto para ingresar millas manualmente
         self.manual_miles = ft.TextField(
             label="Miles",
             hint_text="Enter the Miles",
@@ -39,14 +35,12 @@ class RateCalculatorUI:
             visible=False,
             keyboard_type=ft.KeyboardType.NUMBER
         )
-        # Dropdown para seleccionar el nivel de servicio
         self.service_level = ft.Dropdown(
             label="Level of Service",
             hint_text="Choose Level of Service",
             options=[ft.dropdown.Option(los) for los in LEVEL_OF_SERVICE_BASE_RATES.keys()],
             width=200
         )
-        # Otros campos y checkboxes
         self.o2 = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True, on_change=self.validate_decimal)
         self.liters_o2 = ft.Checkbox(label="Liters of Oxygen", on_change=self.on_liters_o2_change )
         self.after_hours = ft.Checkbox(label="Afterhours (6pm-6am)")
@@ -56,7 +50,6 @@ class RateCalculatorUI:
         self.stairchair = ft.Checkbox(label="Stairchair")
         self.waiting_time = ft.TextField("", width=100, keyboard_type=ft.KeyboardType.NUMBER, disabled=True,on_change=self.validate_decimal)
         self.wait = ft.Checkbox(label="Waiting Time (Hours)", on_change=self.on_waiting_change)
-        # Dropdowns para seleccionar el condado y la configuracion con Palm beach como default
         self.county_selector = ft.Dropdown(
             label="County",
             options=[ft.dropdown.Option(c) for c in COUNTY_PROVIDERS.keys()],
@@ -64,29 +57,26 @@ class RateCalculatorUI:
             width=200,
             on_change=self.on_county_change
         )
-        # Configuracion de proveedores segun el condado
         self.config_selector = ft.Dropdown(
             label="Source",
             options=[ft.dropdown.Option(p) for p in COUNTY_PROVIDERS["Palm Beach"]],
             value=COUNTY_PROVIDERS["Palm Beach"][0],
             width=200,
         )
-        # Barra de progreso y textos para estado y resultado
         self.progress = ft.ProgressBar(visible=False)
         self.status_text = ft.Text("")
         self.result = ft.Text(size=20, weight=ft.FontWeight.BOLD)
 
-        #Boton de calcular 
         self.calculate_button = ft.ElevatedButton(
             text="Calculate Rate",
             on_click=self.calculate_callback,
             icon="calculate"
         )
-        #Boton para abrir dialogo de configuracion de tarifas
         self.rates_button = ft.ElevatedButton(
             text="Configurate Rates",
             on_click=self.open_rates_dialog_callback,
-            icon="settings"
+            icon="settings",
+            disabled=True  # <-- El botón sale desactivado
         )
 
         self.map_link = ft.TextButton(
@@ -95,7 +85,6 @@ class RateCalculatorUI:
             url="",
             style=ft.ButtonStyle(color="blue")
         )
-        # Contenedores para organizar la interfaz
         self.address_container = ft.Container(
             content=ft.Column([
                 ft.Row([
@@ -158,16 +147,13 @@ class RateCalculatorUI:
                 self.status_text,
                 self.result,
                 self.map_link,
-                # Firma corporativa como enlace
                 ft.Row([
                     ft.TextButton(
                         text="Developed by Sierra-Esperanza Creations ©",
-                        url="https://www.sierraesperanzac.com",  # Cambia por tu URL real
+                        url="https://www.sierraesperanzac.com",
                         style=ft.ButtonStyle(color="white")
                     )
                 ], alignment=ft.MainAxisAlignment.CENTER)
-
-                #Final de la interfaz grafica 
             ],
             alignment=ft.MainAxisAlignment.CENTER,
             spacing=20
@@ -180,7 +166,7 @@ class RateCalculatorUI:
         try:
             return float(self.manual_miles.value or 0)
         except ValueError:
-            raise ValueError("Por favor, ingrese un valor numérico válido para las millas")
+            raise ValueError("PLEASE ENTER A VALID NUMBER FOR MILES")
 
     def update_status(self, message: str, is_error: bool = False) -> None:
         self.status_text.value = message
@@ -227,7 +213,7 @@ class RateCalculatorUI:
     def calculate_rate(self):
         try:
             if not self.address1.value or not self.address2.value:
-                self.update_status("Por favor, ingrese ambas direcciones", is_error=True)
+                self.update_status("Please enter both addresses", is_error=True)
                 return
             distance = get_google_maps_distance(self.address1.value, self.address2.value)
             base_rate = LEVEL_OF_SERVICE_BASE_RATES[self.service_level.value]
@@ -238,7 +224,7 @@ class RateCalculatorUI:
                 "total_rate": total_rate
             })
         except Exception as e:
-            self.update_status(f"Error al calcular la tarifa: {str(e)}", is_error=True)
+            self.update_status(f"Error Calculating Rate: {str(e)}", is_error=True)
 
 
 

@@ -2,18 +2,15 @@ import flet as ft
 from typing import Dict, Callable
 from config.constants import *
 
+
 class RatesDialog:
     @staticmethod
     def create_dialog(save_callback: Callable, close_callback: Callable, provider="Default"):
         rates_inputs = {}
 
-        # Selecciona el diccionario de rates según proveedor
-        if provider == "Baptist":
-            rates_dict = LEVEL_OF_SERVICE_BASE_RATES_BAPTIST
-        elif provider == "HCA":
-            rates_dict = LEVEL_OF_SERVICE_BASE_RATES_HCA
-        else:
-            rates_dict = LEVEL_OF_SERVICE_BASE_RATES
+        # Selecciona el diccionario de rates según proveedor con un ciclo iterativo dependiendo del proveedor seleccionado en el UI
+        rates_dict = LEVEL_OF_SERVICE_BASE_RATES  # Valor por defecto
+        rates_dict =PROVIDER_BASE_RATES.get(provider, LEVEL_OF_SERVICE_BASE_RATES)
 
         content = ft.Column(
             [

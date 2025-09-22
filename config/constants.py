@@ -147,75 +147,6 @@ LEVEL_OF_SERVICE_INCREMENTS_BAPTIST = {
     "CCT": 9.5, 
 }
 
-# Lista de tarifas base por nivel de servicio de HCA
-LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER = {
-    "WCH": 65,   # Silla de ruedas
-    "STR": 150,  # Camilla
-    "BLS NE": 450,   # Soporte vital básico
-    "BLS ER": 500, # Soporte vital básico con especialista
-    "ALS NE": 550,   # Soporte vital avanzado
-    "ALS ER": 600,   # Soporte vital avanzado con especialista
-    "ALS2": 800,  # Soporte vital avanzado nivel 2
-    "CCT": 950,   # Transporte de cuidado critico
-    
-}
-LEVEL_OF_SERVICE_INCREMENTS_JUPITER_MEDICAL_CENTER = {
-    "WCH": 2.5,
-    "STR": 5,
-    "BLS NE": 11.5,
-    "BLS ER": 11.5, # Soporte vital básico con especialista
-    "ALS NE": 11.5 ,
-    "ALS ER": 11.5 ,  
-    "ALS2": 11.5,  # Soporte vital avanzado nivel 2
-    "CCT": 11.5 , 
-}
-
-# Lista de tarifas base por nivel de servicio de Jupiter Rehab Center
-LEVEL_OF_SERVICE_BASE_RATES_JUPITER_REHAB_CENTER = {
-    "WCH": 60,   # Silla de ruedas
-    "STR": 150,  # Camilla
-    "BLS NE": 450,   # Soporte vital básico
-    "BLS ER": 500, # Soporte vital básico con especialista
-    "ALS NE": 550,   # Soporte vital avanzado
-    "ALS ER": 600,   # Soporte vital avanzado con especialista
-    "ALS2": 800,  # Soporte vital avanzado nivel 2
-    "CCT": 950,   # Transporte de cuidado critico
-    
-}
-LEVEL_OF_SERVICE_INCREMENTS_JUPITER_REHAB_CENTER = {
-    "WCH": 2.5,
-    "STR": 3,
-    "BLS NE": 11.5,
-    "BLS ER": 11.5, # Soporte vital básico con especialista
-    "ALS NE": 11.5 ,
-    "ALS ER": 11.5 ,  
-    "ALS2": 11.5,  # Soporte vital avanzado nivel 2
-    "CCT": 11.5 , 
-}
-
-# Lista de tarifas base por nivel de servicio de Tenants
-LEVEL_OF_SERVICE_BASE_RATES_TENANTS = {
-    "WCH": 65,   # Silla de ruedas
-    "STR": 150,  # Camilla
-    "BLS NE": 284.16,   # Soporte vital básico
-    "BLS ER": 454.66, # Soporte vital básico con especialista
-    "ALS NE": 340.99,   # Soporte vital avanzado
-    "ALS ER": 539.91,   # Soporte vital avanzado con especialista
-    "ALS2": 781.84,  # Soporte vital avanzado nivel 2
-    "CCT": 923.52,   # Transporte de cuidado critico
-    
-}
-# Incrementos por milla por nivel de servicio
-LEVEL_OF_SERVICE_INCREMENTS_TENANTS = {
-    "WCH": 2.5,
-    "STR": 3.5,
-    "BLS NE": 9.15,
-    "BLS ER": 9.15, # Soporte vital básico con especialista
-    "ALS NE": 9.15 ,
-    "ALS ER": 9.15 ,  
-    "ALS2": 9.15,  # Soporte vital avanzado nivel 2
-    "CCT": 9.15 , 
-}
 
 # Lista de tarifas base por nivel de servicio de Boynton Beach Rehab Center
 LEVEL_OF_SERVICE_BASE_RATES_BOYNTON_BEACH_REHAB_CENTER = {
@@ -263,6 +194,54 @@ LEVEL_OF_SERVICE_INCREMENTS_DARCY_HALL_OF_LIFE_CARE = {
     "ALS2": 9.15,  # Soporte vital avanzado nivel 2
     "CCT": 9.15 , 
 }
+
+# Lista de tarifas base por nivel de servicio de HCA
+LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER = {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 450,   # Soporte vital básico
+    "BLS ER": 500, # Soporte vital básico con especialista
+    "ALS NE": 550,   # Soporte vital avanzado
+    "ALS ER": 600,   # Soporte vital avanzado con especialista
+    "ALS2": 800,  # Soporte vital avanzado nivel 2
+    "CCT": 950,   # Transporte de cuidado critico
+    
+}
+LEVEL_OF_SERVICE_INCREMENTS_JUPITER_MEDICAL_CENTER = {
+    "WCH": 2.5,
+    "STR": 5,
+    "BLS NE": 11.5,
+    "BLS ER": 11.5, # Soporte vital básico con especialista
+    "ALS NE": 11.5 ,
+    "ALS ER": 11.5 ,  
+    "ALS2": 11.5,  # Soporte vital avanzado nivel 2
+    "CCT": 11.5 , 
+}
+
+# Lista de tarifas base por nivel de servicio de Jupiter Rehab Center
+LEVEL_OF_SERVICE_BASE_RATES_JUPITER_REHAB_CENTER = {
+    "WCH": 60,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 450,   # Soporte vital básico
+    "BLS ER": 500, # Soporte vital básico con especialista
+    "ALS NE": 550,   # Soporte vital avanzado
+    "ALS ER": 600,   # Soporte vital avanzado con especialista
+    "ALS2": 800,  # Soporte vital avanzado nivel 2
+    "CCT": 950,   # Transporte de cuidado critico
+    
+}
+LEVEL_OF_SERVICE_INCREMENTS_JUPITER_REHAB_CENTER = {
+    "WCH": 2.5,
+    "STR": 3,
+    "BLS NE": 11.5,
+    "BLS ER": 11.5, # Soporte vital básico con especialista
+    "ALS NE": 11.5 ,
+    "ALS ER": 11.5 ,  
+    "ALS2": 11.5,  # Soporte vital avanzado nivel 2
+    "CCT": 11.5 , 
+}
+
+
 # Lista de tarifas base por nivel de servicio de Kindred Hospital Palm Beaches
 LEVEL_OF_SERVICE_BASE_RATES_KINDRED_HOSPITAL_PALM_BEACHES = {
     "WCH": 65,   # Silla de ruedas
@@ -286,7 +265,32 @@ LEVEL_OF_SERVICE_INCREMENTS_KINDRED_HOSPITAL_PALM_BEACHES = {
     "ALS2": 9.15,  # Soporte vital avanzado nivel 2
     "CCT": 9.15 , 
 }
+
+# Lista de tarifas base por nivel de servicio de Tenants
+LEVEL_OF_SERVICE_BASE_RATES_TENANTS = {
+    "WCH": 65,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 284.16,   # Soporte vital básico
+    "BLS ER": 454.66, # Soporte vital básico con especialista
+    "ALS NE": 340.99,   # Soporte vital avanzado
+    "ALS ER": 539.91,   # Soporte vital avanzado con especialista
+    "ALS2": 781.84,  # Soporte vital avanzado nivel 2
+    "CCT": 923.52,   # Transporte de cuidado critico
+    
+}
+# Incrementos por milla por nivel de servicio
+LEVEL_OF_SERVICE_INCREMENTS_TENANTS = {
+    "WCH": 2.5,
+    "STR": 3.5,
+    "BLS NE": 9.15,
+    "BLS ER": 9.15, # Soporte vital básico con especialista
+    "ALS NE": 9.15 ,
+    "ALS ER": 9.15 ,  
+    "ALS2": 9.15,  # Soporte vital avanzado nivel 2
+    "CCT": 9.15 , 
+}
 # Lista de tarifas base por nivel de servicio de Terraces of Lake Worth Rehab
+
 LEVEL_OF_SERVICE_BASE_RATES_TERRACES_OF_LAKE_WORTH_REHAB = {
     "WCH": 65,   # Silla de ruedas
     "STR": 150,  # Camilla

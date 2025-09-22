@@ -18,6 +18,16 @@ import services
 import importlib
 import requests
 from dotenv import load_dotenv
+import os
+import sys
+
+def resource_path(relative_path):
+    # PyInstaller workaround for data files
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
+load_dotenv(resource_path(".env"))
 
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -125,6 +135,25 @@ def main(page: ft.Page):
                     print("Error:", e)
             
             ui.update_result(result)
+            # AlertDialog con el resultado
+            result_text = (
+                f"Distance: {distance} km\n"
+                f"Rate Base: ${result['base_rate']}\n"
+                f"Total Rate: ${result['total_rate']}"
+            )
+
+            dialog = ft.AlertDialog(
+                title=ft.Text("Calculation Result"),
+                content=ft.Text(result_text),
+                actions=[
+                    ft.TextButton("Guardar", on_click=lambda e: dialog.dismiss()),
+                    ft.TextButton("Cancelar", on_click=lambda e: dialog.dismiss()),
+                ],
+                modal=True
+)
+            page.dialog = dialog      # <-- Asigna el diálogo a la página
+            dialog.open = True        # <-- Abre el diálogo
+            page.update()             # <-- Actualiza la página
             ui.update_status("Calculation completed successfully")
             
         except (ValidationError, LocationError, RateCalculationError) as e:
@@ -163,7 +192,7 @@ def main(page: ft.Page):
     def open_rates_dialog(e):
         """Abre el diálogo de configuración de tarifas"""
         try:
-            provider = ui.config_selector.value or "Default"
+            provider = ui.config_selector.value or "Standard"
             dialog, rates_inputs = RatesDialog.create_dialog(save_rates, close_rates_dialog, provider)
             page.dialog = dialog
             page.dialog_rates_inputs = rates_inputs
@@ -207,3 +236,7 @@ if __name__ == "__main__":
         root = tk.Tk()
         root.withdraw()
         messagebox.showerror("Error", f"Error al iniciar la aplicación: {str(e)}")
+
+
+import os
+print("API KEY:", os.getenv("GOOGLE_MAPS_API_KEY"))
