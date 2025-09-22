@@ -2,7 +2,7 @@
 
 #Diccionario de proveedores por condado 
 COUNTY_PROVIDERS = {
-    "Palm Beach": ["Standard","ALIVI Palm Beach" ,"Baptist","Boynton Beach Rehab Center","Darcy Hall of Life Care", "Kindred Hospital of Palm Beaches", "Jupiter Medical Center", "Tenants (PBHN)", "Terraces of Lake Worth Rehab",],
+    "Palm Beach": ["Standard","ALIVI Palm Beach" ,"Baptist","Boynton Beach Rehab Center","Darcy Hall of Life Care", "Jupiter Medical Center", "Jupiter Rehab Center", "Kindred Hospital of Palm Beaches",  "Tenants (PBHN)", "Terraces of Lake Worth Rehab",],
     "Broward": [ "Standard Broward"],
     "Monroe": ["Standard Monroe","ALIVI Monroe", "Amedysis Hospice","Baptist Miami","Oasis at the Keys Nursing and Rehab","Palm Vista Nursing and Rehab Center",
                "Vitas Monroe"],
@@ -118,13 +118,18 @@ LEVEL_OF_SERVICE_INCREMENTS_ALIVI_PALM_BEACH = {
     "ALS2": 10.85,  # Soporte vital avanzado nivel 2
     "CCT": 10.85, 
 }
-# Lista de tarifas base por nivel de servicio de Baptist
+
+
+
+
+
+# Lista de tarifas base por nivel de servicio de Baptist Palm Beach
 
 LEVEL_OF_SERVICE_BASE_RATES_BAPTIST = {
     "WCH": 65,   # Silla de ruedas
     "STR": 150,  # Camilla
-    "BLS NE": 28416,   # Soporte vital básico
-    "BLS ER": 45466, # Soporte vital básico con especialista
+    "BLS NE": 284.16,   # Soporte vital básico
+    "BLS ER": 454.66, # Soporte vital básico con especialista
     "ALS NE": 340.99,   # Soporte vital avanzado
     "ALS ER": 539.91,   # Soporte vital avanzado con especialista
     "ALS2": 781.44,  # Soporte vital avanzado nivel 2
@@ -132,37 +137,60 @@ LEVEL_OF_SERVICE_BASE_RATES_BAPTIST = {
     
 }
 LEVEL_OF_SERVICE_INCREMENTS_BAPTIST = {
-    "WCH": 5,
-    "STR": 9,
-    "BLS NE": 13,
-    "BLS ER": 13, # Soporte vital básico con especialista
-    "ALS NE": 13 ,
-    "ALS ER": 13 ,  
-    "ALS2": 13,  # Soporte vital avanzado nivel 2
-    "CCT": 13 , 
+    "WCH": 2.5,
+    "STR": 5,
+    "BLS NE": 9.5,
+    "BLS ER": 9.5, # Soporte vital básico con especialista
+    "ALS NE": 9.5 ,
+    "ALS ER": 9.5 ,  
+    "ALS2": 9.5,  # Soporte vital avanzado nivel 2
+    "CCT": 9.5, 
 }
 
 # Lista de tarifas base por nivel de servicio de HCA
 LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER = {
-    "WCH": 70,   # Silla de ruedas
-    "STR": 105,  # Camilla
+    "WCH": 65,   # Silla de ruedas
+    "STR": 150,  # Camilla
     "BLS NE": 450,   # Soporte vital básico
-    "BLS ER": 550, # Soporte vital básico con especialista
-    "ALS NE": 500,   # Soporte vital avanzado
+    "BLS ER": 500, # Soporte vital básico con especialista
+    "ALS NE": 550,   # Soporte vital avanzado
     "ALS ER": 600,   # Soporte vital avanzado con especialista
     "ALS2": 800,  # Soporte vital avanzado nivel 2
     "CCT": 950,   # Transporte de cuidado critico
     
 }
 LEVEL_OF_SERVICE_INCREMENTS_JUPITER_MEDICAL_CENTER = {
-    "WCH": 5,
-    "STR": 9,
-    "BLS NE": 13,
-    "BLS ER": 13, # Soporte vital básico con especialista
-    "ALS NE": 13 ,
-    "ALS ER": 13 ,  
-    "ALS2": 13,  # Soporte vital avanzado nivel 2
-    "CCT": 13 , 
+    "WCH": 2.5,
+    "STR": 5,
+    "BLS NE": 11.5,
+    "BLS ER": 11.5, # Soporte vital básico con especialista
+    "ALS NE": 11.5 ,
+    "ALS ER": 11.5 ,  
+    "ALS2": 11.5,  # Soporte vital avanzado nivel 2
+    "CCT": 11.5 , 
+}
+
+# Lista de tarifas base por nivel de servicio de Jupiter Rehab Center
+LEVEL_OF_SERVICE_BASE_RATES_JUPITER_REHAB_CENTER = {
+    "WCH": 60,   # Silla de ruedas
+    "STR": 150,  # Camilla
+    "BLS NE": 450,   # Soporte vital básico
+    "BLS ER": 500, # Soporte vital básico con especialista
+    "ALS NE": 550,   # Soporte vital avanzado
+    "ALS ER": 600,   # Soporte vital avanzado con especialista
+    "ALS2": 800,  # Soporte vital avanzado nivel 2
+    "CCT": 950,   # Transporte de cuidado critico
+    
+}
+LEVEL_OF_SERVICE_INCREMENTS_JUPITER_REHAB_CENTER = {
+    "WCH": 2.5,
+    "STR": 3,
+    "BLS NE": 11.5,
+    "BLS ER": 11.5, # Soporte vital básico con especialista
+    "ALS NE": 11.5 ,
+    "ALS ER": 11.5 ,  
+    "ALS2": 11.5,  # Soporte vital avanzado nivel 2
+    "CCT": 11.5 , 
 }
 
 # Lista de tarifas base por nivel de servicio de Tenants
@@ -778,8 +806,9 @@ PROVIDER_BASE_RATES = {
     "Baptist": LEVEL_OF_SERVICE_BASE_RATES_BAPTIST,
     "Boynton Beach Rehab Center": LEVEL_OF_SERVICE_BASE_RATES_BOYNTON_BEACH_REHAB_CENTER,
     "Darcy Hall of Life Care": LEVEL_OF_SERVICE_BASE_RATES_DARCY_HALL_OF_LIFE_CARE,
-    "Kindred Hospital of Palm Beaches": LEVEL_OF_SERVICE_BASE_RATES_KINDRED_HOSPITAL_PALM_BEACHES,
     "Jupiter Medical Center": LEVEL_OF_SERVICE_BASE_RATES_JUPITER_MEDICAL_CENTER,
+    "Jupiter Rehab Center": LEVEL_OF_SERVICE_BASE_RATES_JUPITER_REHAB_CENTER,
+    "Kindred Hospital of Palm Beaches": LEVEL_OF_SERVICE_BASE_RATES_KINDRED_HOSPITAL_PALM_BEACHES,
     "Tenants (PBHN)": LEVEL_OF_SERVICE_BASE_RATES_TENANTS,
     "Terraces of Lake Worth Rehab": LEVEL_OF_SERVICE_BASE_RATES_TERRACES_OF_LAKE_WORTH_REHAB,
     #Aqui empiezan los de citrus county
@@ -818,8 +847,9 @@ PROVIDER_INCREMENTS = {
     "Baptist": LEVEL_OF_SERVICE_INCREMENTS_BAPTIST,
     "Boynton Beach Rehab Center": LEVEL_OF_SERVICE_INCREMENTS_BOYNTON_BEACH_REHAB_CENTER,
     "Darcy Hall of Life Care": LEVEL_OF_SERVICE_INCREMENTS_DARCY_HALL_OF_LIFE_CARE,
-    "Kindred Hospital of Palm Beaches": LEVEL_OF_SERVICE_INCREMENTS_KINDRED_HOSPITAL_PALM_BEACHES,
     "Jupiter Medical Center": LEVEL_OF_SERVICE_INCREMENTS_JUPITER_MEDICAL_CENTER,
+    "Jupiter Rehab Center": LEVEL_OF_SERVICE_INCREMENTS_JUPITER_REHAB_CENTER,
+    "Kindred Hospital of Palm Beaches": LEVEL_OF_SERVICE_INCREMENTS_KINDRED_HOSPITAL_PALM_BEACHES,
     "Tenants (PBHN)": LEVEL_OF_SERVICE_INCREMENTS_TENANTS,
     "Terraces of Lake Worth Rehab": LEVEL_OF_SERVICE_INCREMENTS_TERRACES_OF_LAKE_WORTH_REHAB,
     #Aqui empiezan los de citrus county

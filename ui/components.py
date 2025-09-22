@@ -84,13 +84,7 @@ class RateCalculatorUI:
         #Selector de configuracion de Condado
         self.county_selector = ft.Dropdown(
         label="County",
-        options=[
-        ft.dropdown.Option("Palm Beach"),
-        ft.dropdown.Option("Broward"),
-        ft.dropdown.Option("Monroe"),
-        ft.dropdown.Option("Citrus"),
-        ft.dropdown.Option("Other")  # Nueva opción para "Other"
-        ],
+        options=[ft.dropdown.Option(c) for c in COUNTY_PROVIDERS.keys()],
         value="Palm Beach",
         width=200,
         on_change=self.on_county_change  # <-- conecta el callback para el cambio de condados
