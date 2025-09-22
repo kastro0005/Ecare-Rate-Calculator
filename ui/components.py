@@ -158,6 +158,16 @@ class RateCalculatorUI:
                 self.status_text,
                 self.result,
                 self.map_link,
+                # Firma corporativa como enlace
+                ft.Row([
+                    ft.TextButton(
+                        text="Developed by Sierra-Esperanza Creations ©",
+                        url="https://www.sierraesperanzac.com",  # Cambia por tu URL real
+                        style=ft.ButtonStyle(color="white")
+                    )
+                ], alignment=ft.MainAxisAlignment.CENTER)
+
+                #Final de la interfaz grafica 
             ],
             alignment=ft.MainAxisAlignment.CENTER,
             spacing=20
