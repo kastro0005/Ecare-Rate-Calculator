@@ -16,12 +16,18 @@ def get_address_suggestions(input_text: str) -> list:
         params = {
             "input": input_text,
             "key": api_key,
-            "types": "address"  # Solo direcciones
+            "types": "address", # Solo direcciones
+            "components": "country:us", # Restringir a EE.UU.
+            "language": "en"  # Idioma de la respuesta
         }
         
         response = requests.get(url, params=params)
         data = response.json()
         
+        if data.get("status") == "ZERO_RESULTS":
+            print("No suggestions found  {input_text}")
+            return []
+
         if data.get("status") != "OK":
             print(f"API Error: {data.get('status')}")
             return []
