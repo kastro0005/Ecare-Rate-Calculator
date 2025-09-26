@@ -76,7 +76,7 @@ class RateCalculatorUI:
             text="Configurate Rates",
             on_click=self.open_rates_dialog_callback,
             icon="settings",
-            disabled=True  # <-- El botón sale desactivado
+            disabled=True
         )
 
         self.map_link = ft.TextButton(
@@ -129,22 +129,42 @@ class RateCalculatorUI:
         self.map_link.visible = False
         self.map_link.update()
 
+    #mETODO DE PRIEBA
+    def show_result_dialog(self, result_data: dict):
+        dialog = ft.AlertDialog( modal=True,
+                title=ft.Text("Calculation Results"),
+                content=ft.Column([
+                    ft.Text(f"Distance: {result_data['distance']} miles"),
+                    ft.Text(f"Rate Base: ${result_data['base_rate']}"),
+                    ft.Text(f"Total Rate: ${result_data['total_rate']}")
+                ], tight=True, spacing=5),
+                actions=[
+                    ft.TextButton("Close", on_click=lambda e: self.close_dialog())
+                ],
+                actions_alignment=ft.MainAxisAlignment.END,
+            )
+        self.page.dialog = dialog
+        dialog.open = True
+        self.page.update()
+
+    #End Prueba
+
     def get_layout(self) -> ft.Column:
         return ft.Column(
-            [   
+            [
+                ft.Row([self.distance_mode], alignment=ft.MainAxisAlignment.CENTER),  # Tabs arriba
+                self.address_container,  # Direcciones pegadas justo debajo de los tabs
+                self.manual_container,
                 ft.Row([self.county_selector], alignment=ft.MainAxisAlignment.END),
                 ft.Row([self.config_selector], alignment=ft.MainAxisAlignment.END),
-                ft.Row([self.distance_mode], alignment=ft.MainAxisAlignment.CENTER),
-                self.address_container,
-                self.manual_container,
                 ft.Row([self.service_level], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.after_hours, self.deadheads], alignment=ft.MainAxisAlignment.CENTER),
-                ft.Row([self.liters_o2,self.o2], alignment=ft.MainAxisAlignment.CENTER),
+                ft.Row([self.liters_o2, self.o2], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.bariatric, self.stairchair], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.wait, self.waiting_time], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.calculate_button, self.rates_button], alignment=ft.MainAxisAlignment.CENTER),
-                self.progress,
-                self.status_text,
+                #self.progress,
+                #self.status_text,
                 self.result,
                 self.map_link,
                 ft.Row([
@@ -156,7 +176,7 @@ class RateCalculatorUI:
                 ], alignment=ft.MainAxisAlignment.CENTER)
             ],
             alignment=ft.MainAxisAlignment.CENTER,
-            spacing=20
+            spacing=8
         )
 
     def is_manual_mode(self) -> bool:
@@ -177,10 +197,11 @@ class RateCalculatorUI:
 
     def update_result(self, result_data: dict) -> None:
         self.result.value = (
+             f"Rate Base: ${result_data['base_rate']}\n"
             f"Distance: {result_data['distance']} miles\n"
-            f"Rate Base: ${result_data['base_rate']}\n"
             f"Total Rate: ${result_data['total_rate']}"
         )
+        self.show_result_dialog(result_data)
 
     def on_liters_o2_change(self, e):
         self.o2.disabled = not self.liters_o2.value
@@ -223,8 +244,13 @@ class RateCalculatorUI:
                 "base_rate": base_rate,
                 "total_rate": total_rate
             })
+            
         except Exception as e:
             self.update_status(f"Error Calculating Rate: {str(e)}", is_error=True)
+    
+    def close_dialog(self):
+        self.page.dialog.open = False
+        self.page.update()
 
 
 
