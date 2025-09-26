@@ -10,15 +10,25 @@ class RateCalculatorUI:
         self.calculate_callback = calculate_callback
         self.open_rates_dialog_callback = open_rates_dialog_callback
 
+        # Listas de sugerencias
+        self.suggestions1 = ft.ListView(visible=False, spacing=2, height=150, width=300)
+        self.suggestions2 = ft.ListView(visible=False, spacing=2, height=150, width=300)
+
+        # Campos de texto con eventos de autocompletado
         self.address1 = ft.TextField(
             label="First Address",
             hint_text="Enter the first address",
             width=300,
+            on_change=self.on_address1_change,
+            on_blur=self.on_address1_blur
         )
+        
         self.address2 = ft.TextField(
             label="Second Address",
             hint_text="Enter the second address",
             width=300,
+            on_change=self.on_address2_change,
+            on_blur=self.on_address2_blur
         )
         self.distance_mode = ft.Tabs(
             selected_index=0,
@@ -90,11 +100,13 @@ class RateCalculatorUI:
                 ft.Row([
                     ft.Column([
                         self.address1,
+                        self.suggestions1,  # Lista de sugerencias para address1
                     ])
                 ], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([
                     ft.Column([
                         self.address2,
+                        self.suggestions2,  # Lista de sugerencias para address2
                     ])
                 ], alignment=ft.MainAxisAlignment.CENTER),
             ])
@@ -251,6 +263,96 @@ class RateCalculatorUI:
     def close_dialog(self):
         self.page.dialog.open = False
         self.page.update()
+
+    def on_address1_change(self, e):
+        query = self.address1.value.strip()
+        self.suggestions1.controls.clear()
+        
+        if query and len(query) >= 3:
+            from services.google_places_service import get_address_suggestions
+            suggestions = get_address_suggestions(query)
+            
+            if suggestions:
+                for suggestion in suggestions:
+                    self.suggestions1.controls.append(
+                        ft.ListTile(
+                            title=ft.Text(suggestion),
+                            data=suggestion,
+                            on_click=self.on_address1_suggestion_click
+                        )
+                    )
+                self.suggestions1.visible = True
+            else:
+                self.suggestions1.visible = False
+        else:
+            self.suggestions1.visible = False
+        
+        self.page.update()
+
+    def on_address1_suggestion_click(self, e):
+        selected_address = e.control.data
+        print(f"Dirección seleccionada: {selected_address}")  # Debug
+        
+        # Actualiza el campo
+        self.address1.value = selected_address
+        
+        # Oculta las sugerencias
+        self.suggestions1.visible = False
+        self.suggestions1.controls.clear()
+        
+        # Actualiza explícitamente el campo y la página
+        self.address1.update()
+        self.suggestions1.update()
+        self.page.update()
+
+    def on_address1_blur(self, e):
+        # Sin hilos, solo ocultar después de un delay
+        pass  # O simplemente no hagas nada aquí
+
+    def on_address2_change(self, e):
+        query = self.address2.value.strip()
+        self.suggestions2.controls.clear()
+        
+        if query and len(query) >= 3:
+            from services.google_places_service import get_address_suggestions
+            suggestions = get_address_suggestions(query)
+            
+            if suggestions:
+                for suggestion in suggestions:
+                    self.suggestions2.controls.append(
+                        ft.ListTile(
+                            title=ft.Text(suggestion),
+                            data=suggestion,
+                            on_click=self.on_address2_suggestion_click
+                        )
+                    )
+                self.suggestions2.visible = True
+            else:
+                self.suggestions2.visible = False
+        else:
+            self.suggestions2.visible = False
+        
+        self.page.update()
+
+    def on_address2_suggestion_click(self, e):
+        selected_address = e.control.data
+        print(f"Dirección seleccionada: {selected_address}")  # Debug
+        
+        # Actualiza el campo
+        self.address2.value = selected_address
+        
+        # Oculta las sugerencias
+        self.suggestions2.visible = False
+        self.suggestions2.controls.clear()
+        
+        # Actualiza explícitamente el campo y la página
+        self.address2.update()
+        self.suggestions2.update()
+        self.page.update()
+
+    def on_address2_blur(self, e):
+        # Sin hilos, solo ocultar después de un delay  
+        pass  # O simplemente no hagas nada aquí
 
 
 
