@@ -89,6 +89,13 @@ class RateCalculatorUI:
             disabled=True
         )
 
+        self.clear_button = ft.ElevatedButton(
+            text="Clear",
+            on_click=self.clear_all_fields,
+            icon="clear",
+            color="red"
+        )
+
         self.map_link = ft.TextButton(
             text="Show route on Google Maps",
             visible=False,
@@ -174,7 +181,7 @@ class RateCalculatorUI:
                 ft.Row([self.liters_o2, self.o2], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.bariatric, self.stairchair], alignment=ft.MainAxisAlignment.CENTER),
                 ft.Row([self.wait, self.waiting_time], alignment=ft.MainAxisAlignment.CENTER),
-                ft.Row([self.calculate_button, self.rates_button], alignment=ft.MainAxisAlignment.CENTER),
+                ft.Row([self.calculate_button, self.rates_button, self.clear_button], alignment=ft.MainAxisAlignment.CENTER),
                 #self.progress,
                 #self.status_text,
                 self.result,
@@ -353,6 +360,59 @@ class RateCalculatorUI:
     def on_address2_blur(self, e):
         # Sin hilos, solo ocultar después de un delay  
         pass  # O simplemente no hagas nada aquí
+
+    def clear_all_fields(self, e):
+        """Reinicia todos los campos del programa"""
+        # Limpiar campos de dirección
+        self.address1.value = ""
+        self.address2.value = ""
+        
+        # Limpiar campo manual
+        self.manual_miles.value = ""
+        
+        # Resetear dropdown de nivel de servicio
+        self.service_level.value = None
+        
+        # Limpiar campos numéricos
+        self.o2.value = ""
+        self.waiting_time.value = ""
+        
+        # Resetear checkboxes
+        self.liters_o2.value = False
+        self.after_hours.value = False
+        self.deadheads.value = False
+        self.roundtrip.value = False
+        self.bariatric.value = False
+        self.stairchair.value = False
+        self.wait.value = False
+        
+        # Deshabilitar campos dependientes
+        self.o2.disabled = True
+        self.waiting_time.disabled = True
+        
+        # Resetear selectors de condado y proveedor
+        self.county_selector.value = "Palm Beach"
+        self.config_selector.value = COUNTY_PROVIDERS["Palm Beach"][0]
+        
+        # Resetear modo de distancia a "Calculate from addresses"
+        self.distance_mode.selected_index = 0
+        self.on_mode_change(None)  # Aplicar cambio de modo
+        
+        # Limpiar resultados y estado
+        self.result.value = ""
+        self.status_text.value = ""
+        
+        # Ocultar mapa
+        self.hide_map()
+        
+        # Ocultar sugerencias
+        self.suggestions1.visible = False
+        self.suggestions1.controls.clear()
+        self.suggestions2.visible = False
+        self.suggestions2.controls.clear()
+        
+        # Actualizar toda la página
+        self.page.update()
 
 
 

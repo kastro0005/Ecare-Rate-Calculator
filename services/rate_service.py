@@ -39,8 +39,9 @@ class RateService:
             rate = base_rate + (increment * distance)
             
             # Aplicar modificadores
-            if after_hours:
-                rate += EXTRAS.get("AfterHours") # tarifa extra por viaje después de horas          
+            if service_level == "STR" or service_level == "BSTR" or service_level == "BWCH" or service_level == "WCH" or service_level == "BSTR":
+                if after_hours:
+                    rate += EXTRAS.get("AfterHours") # tarifa extra por viaje después de horas          
             if o2:
                 rate += (liters_o2 * EXTRAS.get("O2")) #  rate por unidad de O2
             if stc:
