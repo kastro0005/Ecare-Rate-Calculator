@@ -10,8 +10,8 @@ class RateService:
         service_level: str,
         after_hours: bool = False,
         deadheads: bool = False,
-        o2: bool = False,
-        liters_o2: int = 0,
+        liters_o2_amount: float = 0,  # <-- Cambiar nombre para claridad
+        liters_o2_enabled: bool = False,  # <-- El checkbox
         stc: bool = False,
         bariatric: bool = False,
         wait: bool = False,
@@ -42,8 +42,8 @@ class RateService:
             if service_level == "STR" or service_level == "BSTR" or service_level == "BWCH" or service_level == "WCH" or service_level == "BSTR":
                 if after_hours:
                     rate += EXTRAS.get("AfterHours") # tarifa extra por viaje después de horas          
-            if o2:
-                rate += (liters_o2 * EXTRAS.get("O2")) #  rate por unidad de O2
+            if liters_o2_enabled and liters_o2_amount > 0:  # <-- Verificar ambas condiciones
+                rate += (liters_o2_amount * EXTRAS.get("O2")) #  rate por unidad de O2
             if stc:
                 rate += EXTRAS.get("STC") # tarifa extra para silla de escaleras
             if bariatric:

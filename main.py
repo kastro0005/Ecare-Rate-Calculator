@@ -117,8 +117,8 @@ def main(page: ft.Page):
                 ui.service_level.value,
                 ui.after_hours.value,
                 ui.deadheads.value,
-                ui.o2.value,
-                ui.liters_o2.value,
+                float(ui.o2.value or 0),  # <-- Pasar el valor numérico, no un boolean
+                ui.liters_o2.value,       # <-- Pasar el checkbox (boolean)
                 ui.stairchair.value,
                 ui.bariatric.value,
                 ui.wait.value,
